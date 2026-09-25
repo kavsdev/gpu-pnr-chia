@@ -1,0 +1,38 @@
+{
+  "lef_input": [
+    "/OpenROAD-flow-scripts/flow/platforms/nangate45/lef/NangateOpenCellLibrary.tech.lef",
+    "/OpenROAD-flow-scripts/flow/platforms/nangate45/lef/NangateOpenCellLibrary.macro.mod.lef",
+    "/OpenROAD-flow-scripts/flow/designs/nangate45/tinyRocket/fakeram45_1024x32.lef",
+    "/OpenROAD-flow-scripts/flow/designs/nangate45/tinyRocket/fakeram45_64x32.lef"
+  ],
+  "def_input": "/work/tinyRocket/base/dp/pre_gp.def",
+  "result_dir": "/work/tinyRocket/dp-5cf1d859930177b8/dp_out",
+  "gpu": 1,
+  "num_threads": 8,
+  "global_place_flag": 1,
+  "legalize_flag": 0,
+  "detailed_place_flag": 0,
+  "plot_flag": 0,
+  "enable_fillers": 0,
+  "ignore_net_degree": 100,
+  "random_seed": 0,
+  "target_density": 0.8,
+  "density_weight": 8e-05,
+  "gamma": 4.0,
+  "stop_overflow": 0.1,
+  "num_bins_x": 0,
+  "num_bins_y": 0,
+  "routability_opt_flag": 0,
+  "global_place_stages": [
+    {
+      "num_bins_x": 0,
+      "num_bins_y": 0,
+      "iteration": 1000,
+      "learning_rate": 0.01,
+      "wirelength": "weighted_average",
+      "optimizer": "nesterov",
+      "Llambda_density_weight_iteration": 1,
+      "Lsub_iteration": 1
+    }
+  ]
+}

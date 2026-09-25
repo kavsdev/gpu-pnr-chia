@@ -1,0 +1,8 @@
+{
+	"macro_place__wirelength": 5.22464e+06,
+	"flow__warnings__count": 2,
+	"flow__errors__count": 0,
+	"flow__warnings__count:MPL-0055": 1,
+	"flow__warnings__count:MPL-0074": 1,
+	"flow__warnings__type_count": 2
+}

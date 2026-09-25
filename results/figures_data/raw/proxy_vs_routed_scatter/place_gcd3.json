@@ -1,0 +1,1205 @@
+{
+ "design": "gcd",
+ "rows": [
+  {
+   "idx": 0,
+   "cfg": {
+    "target_density": 0.8542397924013378,
+    "density_weight": 0.00014423670094187174,
+    "gamma": 8.91702000112582,
+    "num_bins": 0,
+    "stop_overflow": 0.1059434122286261,
+    "learning_rate": 0.01987266263377125
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14546.09,
+   "error": "",
+   "dp_runtime_s": 3.39,
+   "dp_iterations": 308,
+   "dp_overflow": 0.1027817,
+   "rejected": false,
+   "def": "defs/000.gp.def"
+  },
+  {
+   "idx": 1,
+   "cfg": {
+    "target_density": 0.7108990710552345,
+    "density_weight": 0.0005553375089304321,
+    "gamma": 7.0704973340667445,
+    "num_bins": 0,
+    "stop_overflow": 0.0531895851628453,
+    "learning_rate": 0.020255119457164298
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 15203.58,
+   "error": "",
+   "dp_runtime_s": 3.58,
+   "dp_iterations": 329,
+   "dp_overflow": 0.05093389,
+   "rejected": false,
+   "def": "defs/001.gp.def"
+  },
+  {
+   "idx": 2,
+   "cfg": {
+    "target_density": 0.6855764096751625,
+    "density_weight": 0.00011302834889623763,
+    "gamma": 8.495782088529332,
+    "num_bins": 0,
+    "stop_overflow": 0.05044029301447085,
+    "learning_rate": 0.007605182076080455
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 15539.87,
+   "error": "",
+   "dp_runtime_s": 3.76,
+   "dp_iterations": 371,
+   "dp_overflow": 0.04662388,
+   "rejected": false,
+   "def": "defs/002.gp.def"
+  },
+  {
+   "idx": 3,
+   "cfg": {
+    "target_density": 0.7914588261604387,
+    "density_weight": 8.140808014604058e-05,
+    "gamma": 9.764435520152396,
+    "num_bins": 0,
+    "stop_overflow": 0.0767937399777948,
+    "learning_rate": 0.005154052226920902
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 15172.94,
+   "error": "",
+   "dp_runtime_s": 3.53,
+   "dp_iterations": 339,
+   "dp_overflow": 0.07657743,
+   "rejected": false,
+   "def": "defs/003.gp.def"
+  },
+  {
+   "idx": 4,
+   "cfg": {
+    "target_density": 0.7378094098357972,
+    "density_weight": 0.0007052938108556054,
+    "gamma": 6.104767868383347,
+    "num_bins": 0,
+    "stop_overflow": 0.1486353948681861,
+    "learning_rate": 0.016172685424595417
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14646.22,
+   "error": "",
+   "dp_runtime_s": 3.24,
+   "dp_iterations": 274,
+   "dp_overflow": 0.1472586,
+   "rejected": false,
+   "def": "defs/004.gp.def"
+  },
+  {
+   "idx": 5,
+   "cfg": {
+    "target_density": 0.8296308070403384,
+    "density_weight": 0.000495660723493141,
+    "gamma": 5.298611986480354,
+    "num_bins": 0,
+    "stop_overflow": 0.0695706154152172,
+    "learning_rate": 0.005509697013721609
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14405.59,
+   "error": "",
+   "dp_runtime_s": 3.58,
+   "dp_iterations": 295,
+   "dp_overflow": 0.0668624,
+   "rejected": false,
+   "def": "defs/005.gp.def"
+  },
+  {
+   "idx": 6,
+   "cfg": {
+    "target_density": 0.8253393918065682,
+    "density_weight": 1.653031066346193e-05,
+    "gamma": 2.9208273559026376,
+    "num_bins": 0,
+    "stop_overflow": 0.11382403940804978,
+    "learning_rate": 0.006453723830631674
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 13692.17,
+   "error": "",
+   "dp_runtime_s": 4.0,
+   "dp_iterations": 354,
+   "dp_overflow": 0.1118756,
+   "rejected": false,
+   "def": "defs/006.gp.def"
+  },
+  {
+   "idx": 7,
+   "cfg": {
+    "target_density": 0.8128073244505591,
+    "density_weight": 0.0003499979759521633,
+    "gamma": 3.5568921095696657,
+    "num_bins": 0,
+    "stop_overflow": 0.08254580632980618,
+    "learning_rate": 0.008439261775361796
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14076.5,
+   "error": "",
+   "dp_runtime_s": 3.59,
+   "dp_iterations": 297,
+   "dp_overflow": 0.08060014,
+   "rejected": false,
+   "def": "defs/007.gp.def"
+  },
+  {
+   "idx": 8,
+   "cfg": {
+    "target_density": 0.9238950119531346,
+    "density_weight": 0.00010287388295577025,
+    "gamma": 7.462749610120462,
+    "num_bins": 0,
+    "stop_overflow": 0.06774050582926852,
+    "learning_rate": 0.013446102958223752
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14375.47,
+   "error": "",
+   "dp_runtime_s": 5.18,
+   "dp_iterations": 321,
+   "dp_overflow": 0.066027,
+   "rejected": false,
+   "def": "defs/008.gp.def"
+  },
+  {
+   "idx": 9,
+   "cfg": {
+    "target_density": 0.8473163620648725,
+    "density_weight": 1.2883570215383109e-05,
+    "gamma": 9.607818935550299,
+    "num_bins": 0,
+    "stop_overflow": 0.12121699911394324,
+    "learning_rate": 0.018342378546102083
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14446.5,
+   "error": "",
+   "dp_runtime_s": 3.68,
+   "dp_iterations": 358,
+   "dp_overflow": 0.1208414,
+   "rejected": false,
+   "def": "defs/009.gp.def"
+  },
+  {
+   "idx": 10,
+   "cfg": {
+    "target_density": 0.676468423383483,
+    "density_weight": 4.6494981827001203e-05,
+    "gamma": 9.052649374004504,
+    "num_bins": 0,
+    "stop_overflow": 0.14463701906522586,
+    "learning_rate": 0.013111862037364858
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 15419.73,
+   "error": "",
+   "dp_runtime_s": 3.84,
+   "dp_iterations": 346,
+   "dp_overflow": 0.143134,
+   "rejected": false,
+   "def": "defs/010.gp.def"
+  },
+  {
+   "idx": 11,
+   "cfg": {
+    "target_density": 0.9971273833564955,
+    "density_weight": 1.4653000931415591e-05,
+    "gamma": 3.0689584079549297,
+    "num_bins": 0,
+    "stop_overflow": 0.07386468930938811,
+    "learning_rate": 0.007488202963428027
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 13425.56,
+   "error": "",
+   "dp_runtime_s": 5.44,
+   "dp_iterations": 352,
+   "dp_overflow": 0.0736232,
+   "rejected": false,
+   "def": "defs/011.gp.def"
+  },
+  {
+   "idx": 12,
+   "cfg": {
+    "target_density": 0.8614465796082209,
+    "density_weight": 0.00018923460435336419,
+    "gamma": 11.89671078030849,
+    "num_bins": 0,
+    "stop_overflow": 0.13093296889391273,
+    "learning_rate": 0.005058486322812814
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14375.69,
+   "error": "",
+   "dp_runtime_s": 4.78,
+   "dp_iterations": 295,
+   "dp_overflow": 0.1303736,
+   "rejected": false,
+   "def": "defs/012.gp.def"
+  },
+  {
+   "idx": 13,
+   "cfg": {
+    "target_density": 0.6975937876036278,
+    "density_weight": 0.0008017346324121872,
+    "gamma": 11.7971036391225,
+    "num_bins": 0,
+    "stop_overflow": 0.11621315662521112,
+    "learning_rate": 0.015301594724160272
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 15590.88,
+   "error": "",
+   "dp_runtime_s": 5.07,
+   "dp_iterations": 290,
+   "dp_overflow": 0.1153652,
+   "rejected": false,
+   "def": "defs/013.gp.def"
+  },
+  {
+   "idx": 14,
+   "cfg": {
+    "target_density": 0.9090060699251346,
+    "density_weight": 7.055758987895304e-05,
+    "gamma": 3.3231737438751816,
+    "num_bins": 0,
+    "stop_overflow": 0.12191590319299579,
+    "learning_rate": 0.005405672749335613
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 13472.35,
+   "error": "",
+   "dp_runtime_s": 3.35,
+   "dp_iterations": 312,
+   "dp_overflow": 0.1218702,
+   "rejected": false,
+   "def": "defs/014.gp.def"
+  },
+  {
+   "idx": 15,
+   "cfg": {
+    "target_density": 0.673304298903403,
+    "density_weight": 6.291828157838616e-05,
+    "gamma": 2.0021907494478524,
+    "num_bins": 0,
+    "stop_overflow": 0.08375154726327591,
+    "learning_rate": 0.004458452377083272
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14254.01,
+   "error": "",
+   "dp_runtime_s": 3.84,
+   "dp_iterations": 350,
+   "dp_overflow": 0.08176292,
+   "rejected": false,
+   "def": "defs/015.gp.def"
+  },
+  {
+   "idx": 16,
+   "cfg": {
+    "target_density": 0.7572739972195421,
+    "density_weight": 2.1577531684926582e-05,
+    "gamma": 5.028550376792074,
+    "num_bins": 0,
+    "stop_overflow": 0.1117658719137074,
+    "learning_rate": 0.010192191469768894
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14515.29,
+   "error": "",
+   "dp_runtime_s": 5.49,
+   "dp_iterations": 359,
+   "dp_overflow": 0.1100394,
+   "rejected": false,
+   "def": "defs/016.gp.def"
+  },
+  {
+   "idx": 17,
+   "cfg": {
+    "target_density": 0.896714953225527,
+    "density_weight": 6.432365924706213e-05,
+    "gamma": 3.7087458073745054,
+    "num_bins": 0,
+    "stop_overflow": 0.14617577854629105,
+    "learning_rate": 0.023878391685489934
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 13484.17,
+   "error": "",
+   "dp_runtime_s": 3.4,
+   "dp_iterations": 310,
+   "dp_overflow": 0.1415791,
+   "rejected": false,
+   "def": "defs/017.gp.def"
+  },
+  {
+   "idx": 18,
+   "cfg": {
+    "target_density": 0.65506236009552,
+    "density_weight": 0.0001193109029412875,
+    "gamma": 10.89670634368471,
+    "num_bins": 0,
+    "stop_overflow": 0.07081663832553874,
+    "learning_rate": 0.007952815874729865
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 16012.7,
+   "error": "",
+   "dp_runtime_s": 3.91,
+   "dp_iterations": 361,
+   "dp_overflow": 0.06809039,
+   "rejected": false,
+   "def": "defs/018.gp.def"
+  },
+  {
+   "idx": 19,
+   "cfg": {
+    "target_density": 0.766873411676465,
+    "density_weight": 8.819930635825455e-05,
+    "gamma": 4.079532916113177,
+    "num_bins": 0,
+    "stop_overflow": 0.07187570900400922,
+    "learning_rate": 0.010747397231787362
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14393.39,
+   "error": "",
+   "dp_runtime_s": 3.65,
+   "dp_iterations": 337,
+   "dp_overflow": 0.06955606,
+   "rejected": false,
+   "def": "defs/019.gp.def"
+  },
+  {
+   "idx": 20,
+   "cfg": {
+    "target_density": 0.7991920853350365,
+    "density_weight": 3.073109512741388e-05,
+    "gamma": 4.7557728400921295,
+    "num_bins": 0,
+    "stop_overflow": 0.09443816955730178,
+    "learning_rate": 0.005900342347259422
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14328.06,
+   "error": "",
+   "dp_runtime_s": 3.77,
+   "dp_iterations": 350,
+   "dp_overflow": 0.09248096,
+   "rejected": false,
+   "def": "defs/020.gp.def"
+  },
+  {
+   "idx": 21,
+   "cfg": {
+    "target_density": 0.9864308863153938,
+    "density_weight": 1.1411525587831457e-05,
+    "gamma": 5.634341839860485,
+    "num_bins": 0,
+    "stop_overflow": 0.13883427717595653,
+    "learning_rate": 0.007029635706340545
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 13371.29,
+   "error": "",
+   "dp_runtime_s": 3.73,
+   "dp_iterations": 346,
+   "dp_overflow": 0.1363621,
+   "rejected": false,
+   "def": "defs/021.gp.def"
+  },
+  {
+   "idx": 22,
+   "cfg": {
+    "target_density": 0.6400877866103658,
+    "density_weight": 1.712833898900562e-05,
+    "gamma": 10.786007137004336,
+    "num_bins": 0,
+    "stop_overflow": 0.05889440340308949,
+    "learning_rate": 0.012357248734227272
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 16022.74,
+   "error": "",
+   "dp_runtime_s": 5.09,
+   "dp_iterations": 413,
+   "dp_overflow": 0.05854342,
+   "rejected": false,
+   "def": "defs/022.gp.def"
+  },
+  {
+   "idx": 23,
+   "cfg": {
+    "target_density": 0.9172338273827024,
+    "density_weight": 0.0002291537255541532,
+    "gamma": 5.803916460425596,
+    "num_bins": 0,
+    "stop_overflow": 0.09611661109643775,
+    "learning_rate": 0.024771427318895645
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14048.87,
+   "error": "",
+   "dp_runtime_s": 4.93,
+   "dp_iterations": 295,
+   "dp_overflow": 0.09200856,
+   "rejected": false,
+   "def": "defs/023.gp.def"
+  },
+  {
+   "idx": 24,
+   "cfg": {
+    "target_density": 0.8159664226933383,
+    "density_weight": 0.00025482760823085767,
+    "gamma": 7.854477214373878,
+    "num_bins": 0,
+    "stop_overflow": 0.08946404721305296,
+    "learning_rate": 0.009113022404640538
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14761.27,
+   "error": "",
+   "dp_runtime_s": 3.7,
+   "dp_iterations": 306,
+   "dp_overflow": 0.08707879,
+   "rejected": false,
+   "def": "defs/024.gp.def"
+  },
+  {
+   "idx": 25,
+   "cfg": {
+    "target_density": 0.7316083457080099,
+    "density_weight": 2.7248086984187943e-05,
+    "gamma": 11.01331687168123,
+    "num_bins": 0,
+    "stop_overflow": 0.13440829618176414,
+    "learning_rate": 0.004751036587475672
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 15189.94,
+   "error": "",
+   "dp_runtime_s": 4.09,
+   "dp_iterations": 352,
+   "dp_overflow": 0.1328112,
+   "rejected": false,
+   "def": "defs/025.gp.def"
+  },
+  {
+   "idx": 26,
+   "cfg": {
+    "target_density": 0.6240261335906413,
+    "density_weight": 3.597294938222903e-05,
+    "gamma": 7.500301441621063,
+    "num_bins": 0,
+    "stop_overflow": 0.1274237296124688,
+    "learning_rate": 0.004950023528942326
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 15427.76,
+   "error": "",
+   "dp_runtime_s": 3.71,
+   "dp_iterations": 360,
+   "dp_overflow": 0.1257011,
+   "rejected": false,
+   "def": "defs/026.gp.def"
+  },
+  {
+   "idx": 27,
+   "cfg": {
+    "target_density": 0.8395705781446968,
+    "density_weight": 4.5491941951627106e-05,
+    "gamma": 6.310425761342394,
+    "num_bins": 0,
+    "stop_overflow": 0.09969558384599278,
+    "learning_rate": 0.006831329535098668
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14393.54,
+   "error": "",
+   "dp_runtime_s": 3.73,
+   "dp_iterations": 337,
+   "dp_overflow": 0.09833477,
+   "rejected": false,
+   "def": "defs/027.gp.def"
+  },
+  {
+   "idx": 28,
+   "cfg": {
+    "target_density": 0.6015864308472793,
+    "density_weight": 0.00028044076557252423,
+    "gamma": 11.600739144596297,
+    "num_bins": 0,
+    "stop_overflow": 0.11790377224711056,
+    "learning_rate": 0.011843263688212301
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 15804.33,
+   "error": "",
+   "dp_runtime_s": 5.09,
+   "dp_iterations": 318,
+   "dp_overflow": 0.1174902,
+   "rejected": false,
+   "def": "defs/028.gp.def"
+  },
+  {
+   "idx": 29,
+   "cfg": {
+    "target_density": 0.8841776552724454,
+    "density_weight": 3.2774923070895255e-05,
+    "gamma": 6.711431018533917,
+    "num_bins": 0,
+    "stop_overflow": 0.1332013508097769,
+    "learning_rate": 0.02292341208056021
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14038.06,
+   "error": "",
+   "dp_runtime_s": 5.36,
+   "dp_iterations": 332,
+   "dp_overflow": 0.130337,
+   "rejected": false,
+   "def": "defs/029.gp.def"
+  },
+  {
+   "idx": 30,
+   "cfg": {
+    "target_density": 0.9926979732300816,
+    "density_weight": 1.0336489118592776e-05,
+    "gamma": 3.9769441194099446,
+    "num_bins": 0,
+    "stop_overflow": 0.0807306987405716,
+    "learning_rate": 0.004601005071479822
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 13544.49,
+   "error": "",
+   "dp_runtime_s": 5.6,
+   "dp_iterations": 361,
+   "dp_overflow": 0.07993133,
+   "rejected": false,
+   "def": "defs/030.gp.def"
+  },
+  {
+   "idx": 31,
+   "cfg": {
+    "target_density": 0.7010041094934901,
+    "density_weight": 2.6367726451517878e-05,
+    "gamma": 10.35395917063903,
+    "num_bins": 0,
+    "stop_overflow": 0.12395129891596635,
+    "learning_rate": 0.012506584305184277
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 15454.2,
+   "error": "",
+   "dp_runtime_s": 3.61,
+   "dp_iterations": 362,
+   "dp_overflow": 0.121765,
+   "rejected": false,
+   "def": "defs/031.gp.def"
+  },
+  {
+   "idx": 32,
+   "cfg": {
+    "target_density": 0.9677539974798072,
+    "density_weight": 2.0860858333880276e-05,
+    "gamma": 9.219096633384346,
+    "num_bins": 0,
+    "stop_overflow": 0.06512994382791341,
+    "learning_rate": 0.014694328301578404
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14415.35,
+   "error": "",
+   "dp_runtime_s": 3.95,
+   "dp_iterations": 356,
+   "dp_overflow": 0.06287295,
+   "rejected": false,
+   "def": "defs/032.gp.def"
+  },
+  {
+   "idx": 33,
+   "cfg": {
+    "target_density": 0.7404268762548466,
+    "density_weight": 0.00014708352857467906,
+    "gamma": 3.4353606516043187,
+    "num_bins": 0,
+    "stop_overflow": 0.06221911603505688,
+    "learning_rate": 0.02226067301014667
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14397.75,
+   "error": "",
+   "dp_runtime_s": 5.54,
+   "dp_iterations": 334,
+   "dp_overflow": 0.06097349,
+   "rejected": false,
+   "def": "defs/033.gp.def"
+  },
+  {
+   "idx": 34,
+   "cfg": {
+    "target_density": 0.7620084510634381,
+    "density_weight": 1.1873748723210123e-05,
+    "gamma": 8.020771039090842,
+    "num_bins": 0,
+    "stop_overflow": 0.10324074859372434,
+    "learning_rate": 0.004110375175519737
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14998.99,
+   "error": "",
+   "dp_runtime_s": 3.72,
+   "dp_iterations": 376,
+   "dp_overflow": 0.1021938,
+   "rejected": false,
+   "def": "defs/034.gp.def"
+  },
+  {
+   "idx": 35,
+   "cfg": {
+    "target_density": 0.9644751569477501,
+    "density_weight": 0.00037826119334898446,
+    "gamma": 4.391973605032765,
+    "num_bins": 0,
+    "stop_overflow": 0.11940972397284791,
+    "learning_rate": 0.006280369233133166
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 13474.82,
+   "error": "",
+   "dp_runtime_s": 3.19,
+   "dp_iterations": 273,
+   "dp_overflow": 0.1176887,
+   "rejected": false,
+   "def": "defs/035.gp.def"
+  },
+  {
+   "idx": 36,
+   "cfg": {
+    "target_density": 0.6157997011103205,
+    "density_weight": 0.0007484582757275808,
+    "gamma": 11.196426024092935,
+    "num_bins": 0,
+    "stop_overflow": 0.05789015651588027,
+    "learning_rate": 0.017226604534552766
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 16064.12,
+   "error": "",
+   "dp_runtime_s": 3.58,
+   "dp_iterations": 330,
+   "dp_overflow": 0.05751356,
+   "rejected": false,
+   "def": "defs/036.gp.def"
+  },
+  {
+   "idx": 37,
+   "cfg": {
+    "target_density": 0.9461929706746668,
+    "density_weight": 0.0004445777167578777,
+    "gamma": 2.7771493507174716,
+    "num_bins": 0,
+    "stop_overflow": 0.14684570155684942,
+    "learning_rate": 0.013627897738920824
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 13101.61,
+   "error": "",
+   "dp_runtime_s": 3.4,
+   "dp_iterations": 262,
+   "dp_overflow": 0.141839,
+   "rejected": false,
+   "def": "defs/037.gp.def"
+  },
+  {
+   "idx": 38,
+   "cfg": {
+    "target_density": 0.8886735079895034,
+    "density_weight": 0.00030898368395931207,
+    "gamma": 8.1780694480772,
+    "num_bins": 0,
+    "stop_overflow": 0.09824036626525291,
+    "learning_rate": 0.011037994086173647
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14401.68,
+   "error": "",
+   "dp_runtime_s": 3.29,
+   "dp_iterations": 291,
+   "dp_overflow": 0.09586659,
+   "rejected": false,
+   "def": "defs/038.gp.def"
+  },
+  {
+   "idx": 39,
+   "cfg": {
+    "target_density": 0.7831516605911031,
+    "density_weight": 0.00031870929018892375,
+    "gamma": 4.9694684745361535,
+    "num_bins": 0,
+    "stop_overflow": 0.1424706207999642,
+    "learning_rate": 0.016473744130029624
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14223.79,
+   "error": "",
+   "dp_runtime_s": 3.4,
+   "dp_iterations": 287,
+   "dp_overflow": 0.1413598,
+   "rejected": false,
+   "def": "defs/039.gp.def"
+  },
+  {
+   "idx": 40,
+   "cfg": {
+    "target_density": 0.9523760037759784,
+    "density_weight": 0.0004244090437416522,
+    "gamma": 7.675805598218298,
+    "num_bins": 0,
+    "stop_overflow": 0.08587948087529947,
+    "learning_rate": 0.021510502339736445
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14187.6,
+   "error": "",
+   "dp_runtime_s": 3.28,
+   "dp_iterations": 284,
+   "dp_overflow": 0.08301865,
+   "rejected": false,
+   "def": "defs/040.gp.def"
+  },
+  {
+   "idx": 41,
+   "cfg": {
+    "target_density": 0.610294861501973,
+    "density_weight": 9.486128908233945e-05,
+    "gamma": 4.297054185297798,
+    "num_bins": 0,
+    "stop_overflow": 0.14031150489372143,
+    "learning_rate": 0.008235988919797469
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14726.25,
+   "error": "",
+   "dp_runtime_s": 3.67,
+   "dp_iterations": 328,
+   "dp_overflow": 0.1388011,
+   "rejected": false,
+   "def": "defs/041.gp.def"
+  },
+  {
+   "idx": 42,
+   "cfg": {
+    "target_density": 0.6615622064069779,
+    "density_weight": 0.000675299781288781,
+    "gamma": 4.532888945343868,
+    "num_bins": 0,
+    "stop_overflow": 0.12653330426235213,
+    "learning_rate": 0.006619408572987739
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14834.95,
+   "error": "",
+   "dp_runtime_s": 5.24,
+   "dp_iterations": 293,
+   "dp_overflow": 0.1263404,
+   "rejected": false,
+   "def": "defs/042.gp.def"
+  },
+  {
+   "idx": 43,
+   "cfg": {
+    "target_density": 0.779103514913193,
+    "density_weight": 0.0001295901556152976,
+    "gamma": 2.290883044551827,
+    "num_bins": 0,
+    "stop_overflow": 0.0764722513193235,
+    "learning_rate": 0.004302012157270321
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14023.3,
+   "error": "",
+   "dp_runtime_s": 5.41,
+   "dp_iterations": 320,
+   "dp_overflow": 0.07365756,
+   "rejected": false,
+   "def": "defs/043.gp.def"
+  },
+  {
+   "idx": 44,
+   "cfg": {
+    "target_density": 0.9378798809108998,
+    "density_weight": 4.203054373005034e-05,
+    "gamma": 6.921211029737781,
+    "num_bins": 0,
+    "stop_overflow": 0.13608264808353573,
+    "learning_rate": 0.018667679089365983
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 13716.24,
+   "error": "",
+   "dp_runtime_s": 5.41,
+   "dp_iterations": 322,
+   "dp_overflow": 0.1340937,
+   "rejected": false,
+   "def": "defs/044.gp.def"
+  },
+  {
+   "idx": 45,
+   "cfg": {
+    "target_density": 0.7517215349752454,
+    "density_weight": 7.698788622985244e-05,
+    "gamma": 9.893472430935663,
+    "num_bins": 0,
+    "stop_overflow": 0.10389755062352649,
+    "learning_rate": 0.0057009629774271145
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 15241.65,
+   "error": "",
+   "dp_runtime_s": 3.63,
+   "dp_iterations": 336,
+   "dp_overflow": 0.1012986,
+   "rejected": false,
+   "def": "defs/045.gp.def"
+  },
+  {
+   "idx": 46,
+   "cfg": {
+    "target_density": 0.633770192394932,
+    "density_weight": 1.9076865223551786e-05,
+    "gamma": 10.221462717191253,
+    "num_bins": 0,
+    "stop_overflow": 0.10017860979778306,
+    "learning_rate": 0.009446462239588355
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 15870.48,
+   "error": "",
+   "dp_runtime_s": 4.3,
+   "dp_iterations": 387,
+   "dp_overflow": 0.09832671,
+   "rejected": false,
+   "def": "defs/046.gp.def"
+  },
+  {
+   "idx": 47,
+   "cfg": {
+    "target_density": 0.9326946784723185,
+    "density_weight": 0.00018106691661254356,
+    "gamma": 6.341655308699222,
+    "num_bins": 0,
+    "stop_overflow": 0.05339354254748251,
+    "learning_rate": 0.00873342363289691
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14274.81,
+   "error": "",
+   "dp_runtime_s": 5.3,
+   "dp_iterations": 312,
+   "dp_overflow": 0.05073876,
+   "rejected": false,
+   "def": "defs/047.gp.def"
+  },
+  {
+   "idx": 48,
+   "cfg": {
+    "target_density": 0.9790709168874417,
+    "density_weight": 5.6999014075424204e-05,
+    "gamma": 5.486961085212272,
+    "num_bins": 0,
+    "stop_overflow": 0.0639661261251308,
+    "learning_rate": 0.0156748070595554
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 13925.15,
+   "error": "",
+   "dp_runtime_s": 3.47,
+   "dp_iterations": 330,
+   "dp_overflow": 0.06292104,
+   "rejected": false,
+   "def": "defs/048.gp.def"
+  },
+  {
+   "idx": 49,
+   "cfg": {
+    "target_density": 0.8047608632240747,
+    "density_weight": 0.00020296349281808795,
+    "gamma": 9.391881593050805,
+    "num_bins": 0,
+    "stop_overflow": 0.055753928231451665,
+    "learning_rate": 0.017828845664265198
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 15196.58,
+   "error": "",
+   "dp_runtime_s": 3.48,
+   "dp_iterations": 326,
+   "dp_overflow": 0.0554007,
+   "rejected": false,
+   "def": "defs/049.gp.def"
+  },
+  {
+   "idx": 50,
+   "cfg": {
+    "target_density": 0.6308381353607203,
+    "density_weight": 1.5276982334881913e-05,
+    "gamma": 10.031847000107197,
+    "num_bins": 0,
+    "stop_overflow": 0.09061405495749567,
+    "learning_rate": 0.019435573563381874
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 15876.62,
+   "error": "",
+   "dp_runtime_s": 4.25,
+   "dp_iterations": 396,
+   "dp_overflow": 0.08951442,
+   "rejected": false,
+   "def": "defs/050.gp.def"
+  },
+  {
+   "idx": 51,
+   "cfg": {
+    "target_density": 0.6522497938806431,
+    "density_weight": 0.00023693170110759322,
+    "gamma": 7.2454833355087995,
+    "num_bins": 0,
+    "stop_overflow": 0.13736689586881454,
+    "learning_rate": 0.009936785895004307
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 15358.12,
+   "error": "",
+   "dp_runtime_s": 3.71,
+   "dp_iterations": 314,
+   "dp_overflow": 0.1347639,
+   "rejected": false,
+   "def": "defs/051.gp.def"
+  },
+  {
+   "idx": 52,
+   "cfg": {
+    "target_density": 0.7234878747358887,
+    "density_weight": 0.0009397812879991784,
+    "gamma": 8.681021334622557,
+    "num_bins": 0,
+    "stop_overflow": 0.07905426874896547,
+    "learning_rate": 0.004245385272751962
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 15410.92,
+   "error": "",
+   "dp_runtime_s": 3.58,
+   "dp_iterations": 298,
+   "dp_overflow": 0.07738551,
+   "rejected": false,
+   "def": "defs/052.gp.def"
+  },
+  {
+   "idx": 53,
+   "cfg": {
+    "target_density": 0.719120302047622,
+    "density_weight": 5.035228999158277e-05,
+    "gamma": 5.834584120024617,
+    "num_bins": 0,
+    "stop_overflow": 0.06004897361416124,
+    "learning_rate": 0.007188769078136031
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14919.82,
+   "error": "",
+   "dp_runtime_s": 5.09,
+   "dp_iterations": 371,
+   "dp_overflow": 0.05778476,
+   "rejected": false,
+   "def": "defs/053.gp.def"
+  },
+  {
+   "idx": 54,
+   "cfg": {
+    "target_density": 0.8458591110689203,
+    "density_weight": 3.788080789616744e-05,
+    "gamma": 2.5499813447880824,
+    "num_bins": 0,
+    "stop_overflow": 0.08783450404025892,
+    "learning_rate": 0.0103260910903702
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 13751.22,
+   "error": "",
+   "dp_runtime_s": 3.58,
+   "dp_iterations": 338,
+   "dp_overflow": 0.08761737,
+   "rejected": false,
+   "def": "defs/054.gp.def"
+  },
+  {
+   "idx": 55,
+   "cfg": {
+    "target_density": 0.9599399309657921,
+    "density_weight": 2.4388959061785335e-05,
+    "gamma": 6.5452328389488885,
+    "num_bins": 0,
+    "stop_overflow": 0.0924173528986118,
+    "learning_rate": 0.01436469084604511
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 13981.8,
+   "error": "",
+   "dp_runtime_s": 3.61,
+   "dp_iterations": 344,
+   "dp_overflow": 0.09141009,
+   "rejected": false,
+   "def": "defs/055.gp.def"
+  },
+  {
+   "idx": 56,
+   "cfg": {
+    "target_density": 0.873103200925988,
+    "density_weight": 0.0001655675669317187,
+    "gamma": 11.395545762604499,
+    "num_bins": 0,
+    "stop_overflow": 0.12851369305118723,
+    "learning_rate": 0.005950207860878015
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14322.88,
+   "error": "",
+   "dp_runtime_s": 3.34,
+   "dp_iterations": 298,
+   "dp_overflow": 0.1257361,
+   "rejected": false,
+   "def": "defs/056.gp.def"
+  },
+  {
+   "idx": 57,
+   "cfg": {
+    "target_density": 0.6898423547246622,
+    "density_weight": 0.0008932799529061368,
+    "gamma": 8.64240815578987,
+    "num_bins": 0,
+    "stop_overflow": 0.11084780491084056,
+    "learning_rate": 0.009376456650540552
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 15492.51,
+   "error": "",
+   "dp_runtime_s": 3.21,
+   "dp_iterations": 292,
+   "dp_overflow": 0.1102674,
+   "rejected": false,
+   "def": "defs/057.gp.def"
+  },
+  {
+   "idx": 58,
+   "cfg": {
+    "target_density": 0.8762410791108495,
+    "density_weight": 0.0006142442210219144,
+    "gamma": 2.361970265089456,
+    "num_bins": 0,
+    "stop_overflow": 0.10754280081780375,
+    "learning_rate": 0.020840994016824245
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 13502.22,
+   "error": "",
+   "dp_runtime_s": 3.3,
+   "dp_iterations": 269,
+   "dp_overflow": 0.1075079,
+   "rejected": false,
+   "def": "defs/058.gp.def"
+  },
+  {
+   "idx": 59,
+   "cfg": {
+    "target_density": 0.9025724417256327,
+    "density_weight": 0.000507741670752265,
+    "gamma": 10.592587657277148,
+    "num_bins": 0,
+    "stop_overflow": 0.10944480391211658,
+    "learning_rate": 0.011326380326513761
+   },
+   "seed": 0,
+   "ok": true,
+   "proxy_hpwl": 14325.04,
+   "error": "",
+   "dp_runtime_s": 5.01,
+   "dp_iterations": 277,
+   "dp_overflow": 0.1053582,
+   "rejected": false,
+   "def": "defs/059.gp.def"
+  }
+ ]
+}

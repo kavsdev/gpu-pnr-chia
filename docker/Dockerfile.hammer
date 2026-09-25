@@ -1,0 +1,10 @@
+# chia-pnr:hammer -- Hammer in its own venv (needs pydantic<2; CHIA needs pydantic 2.x).
+FROM chia-pnr:base
+USER root
+RUN /home/ray/anaconda3/envs/py_worker/bin/pip uninstall -y hammer-vlsi \
+ && /opt/python/bin/python3 -m venv /opt/hammer \
+ && /opt/hammer/bin/pip install --no-cache-dir "hammer-vlsi==1.2.0" \
+ && /home/ray/anaconda3/envs/py_worker/bin/pip check 2>&1 | tail -3 \
+ && chmod -R a+rX /opt/hammer
+ENV HAMMER_BIN=/opt/hammer/bin/hammer-vlsi
+ENV PATH="${PATH}:/opt/hammer/bin"

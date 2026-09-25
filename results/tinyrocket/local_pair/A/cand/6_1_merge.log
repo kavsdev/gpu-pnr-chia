@@ -1,0 +1,8 @@
+KLayout 0.30.12
+Warning: DEF UNITS does not match reader DBU (DEF UNITS is 2000 and corresponds to a DBU of 0.0005, but reader DBU is set to 0.0001) (line=5, cell=, file=6_final.def)
+[INFO] Reporting cells prior to loading DEF ...
+	/OpenROAD-flow-scripts/flow/platforms/nangate45/gds/NangateOpenCellLibrary.gds
+[INFO] GDS_ALLOW_EMPTY=fakeram.*
+[WARNING] LEF Cell 'fakeram45_64x32' ignored. Matches GDS_ALLOW_EMPTY.
+[INFO] No orphan cells in the final layout
+Elapsed time: 0:02.91[h:]min:sec. CPU time: user 2.58 sys 0.32 (99%). Peak memory: 553520KB.

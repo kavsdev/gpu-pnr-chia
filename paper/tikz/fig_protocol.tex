@@ -1,0 +1,31 @@
+\input{common}
+\begin{document}\small
+\begin{tikzpicture}[x=1pt,y=1pt,>={Stealth[length=4pt]},
+  b/.style={draw,thick,rounded corners=3pt,align=center,inner sep=3pt,minimum height=22pt,fill=white,font=\small},
+  lab/.style={font=\footnotesize,align=center}]
+% outermost: experiment
+\draw[rounded corners=8pt,fill=blue!5,thick] (0,-66) rectangle (506,58);
+\node[anchor=north west,font=\footnotesize\bfseries] at (4,56) {Experiment};
+% arm-run
+\draw[rounded corners=7pt,fill=blue!10,thick] (8,-58) rectangle (370,42);
+\node[anchor=north west,font=\footnotesize\bfseries] at (12,40) {Arm-run \,$\times n$ repeats \,(default / random / LLM)};
+% round
+\draw[rounded corners=6pt,fill=white,thick,densely dashed] (16,-52) rectangle (362,26);
+\node[anchor=north west,font=\footnotesize\bfseries] at (20,24) {Round \,$\times 4$};
+% pipeline inside round
+\node[b,fill=violet!12] (P) at (48,-8) {Proposer\\[-1pt]8 cfgs};
+\node[b,fill=green!15] (T1) at (132,-8) {\textbf{proxy}\\[-1pt]DREAMPlace\\[-1pt]{\footnotesize $\rho{=}{-}0.29$}};
+\node[b,fill=orange!15] (T2) at (228,-8) {\textbf{grt}\\[-1pt]global route\\[-1pt]{\footnotesize $\rho{=}{+}0.99$}};
+\node[b,fill=orange!28] (T3) at (318,-8) {\textbf{route}\\[-1pt]detailed route};
+\draw[->] (P)--(T1);
+\draw[->] (T1)--node[above,lab]{converged}(T2);
+\draw[->] (T2)--node[above,lab]{top 3}(T3);
+\draw[->] (T3.south) |- (48,-42) -- (P.south);
+\node[lab,above] at (183,-42) {history $\to$ next round};
+% after arm-runs
+\node[b,fill=white] (V) at (438,10) {re-route best\\[-1pt]on seeds 101--104};
+\node[b,fill=yellow!20] (C) at (438,-35) {credit if ${>}2\sigma$\\[-1pt]over default};
+\draw[->] (370,10)--(V); \draw[->] (V)--(C);
+\node[lab,anchor=south] at (438,26) {repair infra-failed runs first};
+\end{tikzpicture}
+\end{document}

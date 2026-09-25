@@ -1,0 +1,83 @@
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+
+# Local run artifacts (databases, logs, evidence bundles from real evaluator runs)
+*.db
+*.db-journal
+*.log
+exp/
+work/
+
+# All markdown files are ignored by default -- default-deny, not a blocklist. A new internal *.md
+# doc (spec/audit/status/report/whatever any session names it) from any concurrent session is
+# excluded automatically, with nothing to remember to add by name. To publish a .md file, add an
+# explicit `!path/to/file.md` line below -- each one is a deliberate, individual decision, not a
+# directory-level blanket allow (so a new file dropped into results/ etc. doesn't become public
+# just by being in the right folder).
+*.md
+
+# --- Whitelisted (public) markdown files ---
+!README.md
+!LOCAL_QUICKSTART.md
+!results/ariane133/ariane133_stock_flow.md
+!results/ariane133/ariane133_vs_stock.md
+!results/figures_data/MANIFEST.md
+!results/gcd/g1_gcd_handoff.md
+!results/gcd/gcd_arms.md
+!results/gcd/noise_floor_gcd.md
+!results/gcd/proxy_route_study_gcd.md
+!results/hammer_orfs_parity.md
+!results/hammer_orfs_parity/raw/driver/REPORT.md
+!results/librelane_sky130/REPORT.md
+!results/tinyrocket/autodmp_vs_llm_tinyrocket.md
+!results/tinyrocket/tinyrocket_arms.md
+!results/tinyrocket/tinyrocket_expanded_knobs.md
+!results/tinyrocket/tinyrocket_random_controls.md
+!results/tinyrocket/local_pair/compare.md
+
+# Submission-site page -- contains personal account info, never published
+/New submission*.html
+/SUBMISSION_DRAFT.md
+
+# Saved copy of the hackathon's own CFP/rules page -- local reference only, not project content
+/CHIAHackathonA3AgenticApproachestoArchitecture(MICRO2026).html
+
+# Development-only files kept locally, not part of the published artifact
+/.mcp.json
+/validate_real_data.py
+/flows/librelane_nangate45/
+/results/librelane/
+/results/figures_data/pull_raw_data.sh
+/results/figures_data/raw/search_convergence/
+/results/tinyrocket/local_pair/*/reports/
+/results/tinyrocket/local_pair/*/cand/reports/
+/results/tinyrocket/random_controls_raw/analysis_output.txt
+/results/tinyrocket/random_controls_raw/at1.py
+/results/tinyrocket/random_controls_raw/tinyRocket_random_controls.json
+/paper/.gitignore
+/paper/tikz/fig_overview.png
+/paper/fig_cost_fidelity.pdf
+/scripts/make_fig_cost_fidelity.py
+
+# Local Claude Code state -- worktrees, local settings; never project content
+/.claude/
+
+# Paper build outputs and scratch (sources and the final main.pdf are committed)
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.out
+paper/tikz/*.aux
+paper/chia_evaluator_*.pdf
+paper/diagrams/
+paper/fig2_variants/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store

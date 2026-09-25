@@ -1,0 +1,10 @@
+# chia-pnr:dp -- DREAMPlace (GPU) in its own venv, next to OpenROAD, Hammer and the CHIA worker layer.
+FROM chia-pnr:hammer
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends libcairo2 libgomp1 && rm -rf /var/lib/apt/lists/*
+RUN /opt/python/bin/python3 -m venv /opt/dp-venv \
+ && /opt/dp-venv/bin/pip install --no-cache-dir "numpy<2" "torch==2.9.1" --index-url https://download.pytorch.org/whl/cu129 --extra-index-url https://pypi.org/simple \
+ && /opt/dp-venv/bin/pip install --no-cache-dir "numpy<2" scipy matplotlib pyunpack patool cairocffi pkgconfig shapely torch_optimizer==0.3.0 ncg_optimizer==0.2.2 pulp networkx
+COPY dp_install /opt/dreamplace
+RUN chmod -R a+rX /opt/dp-venv /opt/dreamplace
+ENV PNR_DREAMPLACE=/opt/dreamplace PNR_DP_PYTHON=/opt/dp-venv/bin/python

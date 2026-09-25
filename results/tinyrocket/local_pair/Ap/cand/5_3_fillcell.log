@@ -1,0 +1,18 @@
+OpenROAD unknown 
+Features included (+) or not (-): -GPU +GUI -Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 16 thread(s).
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_liberty /OpenROAD-flow-scripts/flow/designs/nangate45/tinyRocket/fakeram45_1024x32.lib
+read_liberty /OpenROAD-flow-scripts/flow/designs/nangate45/tinyRocket/fakeram45_64x32.lib
+read_db /work/tinyRocket/18b7966f4e91c8d5/orfs/results/nangate45/tinyRocket/base/5_2_route.odb
+read_sdc /work/tinyRocket/18b7966f4e91c8d5/orfs/results/nangate45/tinyRocket/base/5_1_grt.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+filler_placement "FILLCELL_X1 FILLCELL_X2 FILLCELL_X4 FILLCELL_X8 FILLCELL_X16 FILLCELL_X32"
+[INFO DPL-0001] Placed 25549 filler instances.
+Design area 54716 um^2 62% utilization.
+write_db /work/tinyRocket/18b7966f4e91c8d5/orfs/results/nangate45/tinyRocket/base/5_3_fillcell.odb
+Elapsed time: 0:00.74[h:]min:sec. CPU time: user 0.59 sys 0.14 (99%). Peak memory: 214968KB.
+Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
+5_3_fillcell              .odb            0            209 222a7fdaf3274b0de21f

@@ -1,0 +1,35 @@
+Hammer routed WL      = 5593  (expect ~5593)
+Hammer final DRC      = 0   (expect 0)
+Hammer DRC iters      = 0:115, 1:85, 2:49, 3:0
+Hammer power (measured) = 0.0
+Hammer WNS (measured)   = 0.0
+Hammer TNS (measured)   = 0.0
+Hammer inst_area (measured)= 871.1500000000026
+
+--- raw measure_ppa tail ---
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ODB-0227] LEF file: /OpenROAD-flow-scripts/flow/platforms/nangate45/lef/NangateOpenCellLibrary.tech.lef, created 22 layers, 27 vias
+[INFO ODB-0227] LEF file: /OpenROAD-flow-scripts/flow/platforms/nangate45/lef/NangateOpenCellLibrary.macro.mod.lef, created 135 library cells
+[WARNING STA-0450] virtual clock vclk_core_clock can not be propagated.
+wns max -0.32
+tns max -11.98
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential           8.8695e-04 1.7903e-04 2.8017e-06 1.0688e-03  16.9%
+Combinational        2.3890e-03 2.3130e-03 1.8838e-05 4.7208e-03  74.5%
+Clock                2.2833e-04 3.2063e-04 1.9585e-07 5.4915e-04   8.7%
+Macro                0.0000e+00 0.0000e+00 0.0000e+00 0.0000e+00   0.0%
+Pad                  0.0000e+00 0.0000e+00 0.0000e+00 0.0000e+00   0.0%
+----------------------------------------------------------------
+Total                3.5042e-03 2.8126e-03 2.1836e-05 6.3387e-03 100.0%
+                          55.3%      44.4%       0.3%
+=== MEASUREMENT START ===
+inst_count: 696
+inst_area: 871.1500000000026
+WNS: 0.0
+TNS: 0.0
+total_power: 0.0
+routed_wirelength: 20.42000000000002
+=== MEASUREMENT END ===
+

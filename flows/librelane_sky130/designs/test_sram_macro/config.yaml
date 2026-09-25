@@ -1,0 +1,33 @@
+//EXTRA_VERILOG_MODELS:
+- pdk_dir::libs.ref/sky130_sram_macros/verilog/sky130_sram_1kbyte_1rw1r_32x256_8.v
+CLOCK_PERIOD: 25.0
+CLOCK_PORT: clk
+DESIGN_IS_CORE: true
+DESIGN_NAME: test_sram_macro
+DIE_AREA:
+- 0.0
+- 0.0
+- 750.0
+- 1250.0
+EXTRA_GDS_FILES:
+- pdk_dir::libs.ref/sky130_sram_macros/gds/sky130_sram_1kbyte_1rw1r_32x256_8.gds
+EXTRA_LEFS:
+- pdk_dir::libs.ref/sky130_sram_macros/lef/sky130_sram_1kbyte_1rw1r_32x256_8.lef
+EXTRA_LIBS:
+- pdk_dir::libs.ref/sky130_sram_macros/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib
+FP_SIZING: absolute
+GND_NETS:
+- vssd1
+MACRO_PLACEMENT_CFG: dir::macro_placement.cfg
+MAGIC_DRC_USE_GDS: false
+PDN_MACRO_CONNECTIONS:
+- submodule.sram0 vccd1 vssd1 vccd1 vssd1
+- submodule.sram1 vccd1 vssd1 vccd1 vssd1
+PL_TARGET_DENSITY: 0.7
+QUIT_ON_MAGIC_DRC: false
+RUN_KLAYOUT_XOR: false
+RUN_LINTER: false
+VDD_NETS:
+- vccd1
+VERILOG_FILES:
+- dir::src/*.v

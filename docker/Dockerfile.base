@@ -1,0 +1,21 @@
+# chia-pnr:base -- OpenROAD + Yosys (from ORFS) + CHIA worker layer + Hammer.
+# DREAMPlace is layered on top in a later stage (Dockerfile.dp).
+# ORFS_IMAGE defaults to the floating :latest (the packer/cloud path builds it that way, unchanged); the local
+# path (docker/run_local.sh) overrides it with the pinned digest so the toolchain fingerprint is reproducible.
+ARG ORFS_IMAGE=openroad/orfs:latest
+FROM ${ORFS_IMAGE}
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates openssh-client rsync git \
+    && rm -rf /var/lib/apt/lists/*
+ARG PYTHON_VERSION=3.10.19
+ARG PBS_TAG=20260203
+RUN curl -fsSL "https://github.com/astral-sh/python-build-standalone/releases/download/${PBS_TAG}/cpython-${PYTHON_VERSION}+${PBS_TAG}-x86_64-unknown-linux-gnu-install_only.tar.gz" | tar -xzf - -C /opt \
+ && mkdir -p /home/ray/anaconda3/envs \
+ && /opt/python/bin/python3 -m venv /home/ray/anaconda3/envs/py_worker \
+ && /home/ray/anaconda3/envs/py_worker/bin/pip install --no-cache-dir "ray[default]==2.54.0" pyyaml "hammer-vlsi==1.2.0"
+COPY chia /tmp/chia
+RUN /home/ray/anaconda3/envs/py_worker/bin/pip install --no-cache-dir /tmp/chia && rm -rf /tmp/chia
+ENV PATH="/home/ray/anaconda3/envs/py_worker/bin:/OpenROAD-flow-scripts/tools/install/OpenROAD/bin:/OpenROAD-flow-scripts/tools/install/yosys/bin:${PATH}"
+ENV HOME=/home/ray
+WORKDIR /home/ray
+RUN mkdir -p /home/ray && chmod -R a+rwX /home/ray && chmod a+rw /etc/passwd

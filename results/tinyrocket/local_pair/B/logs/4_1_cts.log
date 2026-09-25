@@ -1,0 +1,647 @@
+OpenROAD unknown 
+Features included (+) or not (-): -GPU +GUI -Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 16 thread(s).
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_liberty /OpenROAD-flow-scripts/flow/designs/nangate45/tinyRocket/fakeram45_1024x32.lib
+read_liberty /OpenROAD-flow-scripts/flow/designs/nangate45/tinyRocket/fakeram45_64x32.lib
+read_db /work/results/nangate45/tinyRocket/base/3_place.odb
+read_sdc /work/results/nangate45/tinyRocket/base/3_place.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+clock_tree_synthesis -sink_clustering_enable -repair_clock_nets
+[INFO CTS-0050] Root buffer is CLKBUF_X3.
+[INFO CTS-0051] Sink buffer is CLKBUF_X3.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    CLKBUF_X3
+[INFO CTS-0049] Characterization buffer is CLKBUF_X3.
+[INFO CTS-0007] Net "clock" found for clock "core_clock".
+[INFO CTS-0011]  Clock net "clock" for macros has 2 sinks.
+[INFO CTS-0011]  Clock net "clock_regs" for registers has 3913 sinks.
+[INFO CTS-0008] TritonCTS found 2 clock nets.
+[INFO CTS-0097] Characterization used 1 buffer(s) types.
+[INFO CTS-0201] 2 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clock.
+[INFO CTS-0028]  Total number of sinks: 2.
+[INFO CTS-0029]  Macro  sinks will be clustered in groups of up to 4 and with maximum cluster diameter of 123.2 um.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 14000  dbu (7 um).
+[INFO CTS-0023]  Original sink region: [(49050, 16100), (555910, 119140)].
+[INFO CTS-0024]  Normalized sink region: [(3.50357, 1.15), (39.7079, 8.51)].
+[INFO CTS-0025]     Width:  36.2043.
+[INFO CTS-0026]     Height: 7.3600.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 1
+    Sub-region size: 18.1021 X 7.3600
+[INFO CTS-0034]     Segment length (rounded): 10.
+[INFO CTS-0038]  Stop criterion found. Sink region hpwl is smaller than max wirelength (591.189 um) and max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 2.
+[INFO CTS-0201] 2 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net clock_regs.
+[INFO CTS-0028]  Total number of sinks: 3913.
+[INFO CTS-0090]  Sinks will be clustered based on buffer max cap.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 14000  dbu (7 um).
+[INFO CTS-0206] Best clustering solution was found from max clustering size of 9 and max clustering diameter of 48.
+[INFO CTS-0019]  Total number of sinks after clustering: 553.
+[INFO CTS-0024]  Normalized sink region: [(0.914714, 1), (42.4107, 42.3052)].
+[INFO CTS-0025]     Width:  41.4960.
+[INFO CTS-0026]     Height: 41.3052.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 277
+    Sub-region size: 20.7480 X 41.3052
+[INFO CTS-0034]     Segment length (rounded): 10.
+ Level 2
+    Direction: Vertical
+    Sinks per sub-region: 139
+    Sub-region size: 20.7480 X 20.6526
+[INFO CTS-0034]     Segment length (rounded): 10.
+ Level 3
+    Direction: Horizontal
+    Sinks per sub-region: 70
+    Sub-region size: 10.3740 X 20.6526
+[INFO CTS-0034]     Segment length (rounded): 6.
+ Level 4
+    Direction: Vertical
+    Sinks per sub-region: 35
+    Sub-region size: 10.3740 X 10.3263
+[INFO CTS-0034]     Segment length (rounded): 6.
+ Level 5
+    Direction: Horizontal
+    Sinks per sub-region: 18
+    Sub-region size: 5.1870 X 10.3263
+[INFO CTS-0034]     Segment length (rounded): 2.
+ Level 6
+    Direction: Vertical
+    Sinks per sub-region: 9
+    Sub-region size: 5.1870 X 5.1632
+[INFO CTS-0034]     Segment length (rounded): 2.
+[INFO CTS-0038]  Stop criterion found. Sink region hpwl is smaller than max wirelength (591.189 um) and max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 553.
+[INFO CTS-0018]     Created 3 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 2.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 2.
+[INFO CTS-0015]     Created 3 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 1:2..
+[INFO CTS-0017]     Max level of the clock tree: 1.
+[INFO CTS-0018]     Created 622 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 4.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 4.
+[INFO CTS-0015]     Created 622 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 3:3, 4:15, 5:26, 6:98, 7:233, 8:186, 9:31, 10:9, 11:8, 12:2, 13:5, 14:1..
+[INFO CTS-0017]     Max level of the clock tree: 6.
+[INFO CTS-0098] Clock net "clock"
+[INFO CTS-0099]  Sinks 2
+[INFO CTS-0100]  Leaf buffers 0
+[INFO CTS-0101]  Average sink wire length 333.31 um
+[INFO CTS-0102]  Path depth 2 - 2
+[INFO CTS-0207]  Dummy loads inserted 0
+[INFO CTS-0098] Clock net "clock_regs"
+[INFO CTS-0099]  Sinks 4363
+[INFO CTS-0100]  Leaf buffers 553
+[INFO CTS-0101]  Average sink wire length 217.02 um
+[INFO CTS-0102]  Path depth 3 - 4
+[INFO CTS-0207]  Dummy loads inserted 450
+[INFO CTS-0033] Balancing latency for clock core_clock
+[INFO CTS-0036]  inserted 6 delay buffers
+[INFO CTS-0037] Total number of delay buffers: 6
+[INFO CTS-0500] Runtime: 1.93s
+estimate_parasitics -placement
+detailed_placement
+[INFO DPL-0006] Core area: 88535.44 um^2
+[INFO DPL-0007] Movable instances area: 52589.00 um^2
+[INFO DPL-0008] Fixed instances area within core: 2693.78 um^2
+[INFO DPL-0009] Utilization: 62.4%
+[INFO DPL-0005] Diamond search max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+[INFO DPL-1102] Legalizing using negotiation legalizer.
+[INFO DPL-1103] Negotiation base search window: +/-20 sites horizontally, +/-5 rows vertically 
+	Automatic search window extension enabled.
+	Search window extendable up to the max displacement cap of +/-500 sites, +/-100 rows near walls.
+[INFO DPL-1104] NegotiationLegalizer DRC penalty: 5.
+[INFO DPL-0392] Negotiation cell height distribution (2 unique row-count(s)):
+[INFO DPL-0393]   height 1 row(s): 29589 cells
+[INFO DPL-0393]   height 44 row(s): 2 cells
+          |      Total |  Illegal |  Illegal
+Iteration | Violations |    Cells |    Sites
+---------------------------------------------
+        0 |       3548 |       858 |      2690
+        1 |        584 |       116 |       468
+        2 |        322 |        48 |       274
+        3 |         88 |        10 |        78
+        4 |          0 |         0 |         0
+Negotiation phase 1 converged at iteration 4.
+[INFO DPL-0500] Runtime: 0.32s
+Placement Analysis
+---------------------------------
+total displacement      14559.3 u
+average displacement        0.5 u
+max displacement            8.8 u
+original HPWL          421825.6 u
+legalized HPWL         429403.8 u
+delta HPWL                    2 %
+
+estimate_parasitics -placement
+repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
+[INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove CloneMove SplitLoadMove 
+[INFO RSZ-0094] Found 588 endpoints with setup violations.
+[INFO RSZ-0099] Repairing 588 out of 588 (100.00%) violating endpoints...
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |   StTNS    |   EnTNS    |  Viol  |  Worst  
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            |            | Endpts | St/EnPt 
+------------------------------------------------------------------------------------------------------------------------------
+       0* |       0 |       0 |        0 |      0 |     0 |    +0.0% |   -0.150 |       -5.4 |      -25.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+      10* |       0 |       0 |        4 |      0 |     5 |    +0.0% |   -0.135 |       -5.2 |      -25.6 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+      20* |       0 |       3 |        5 |      0 |    11 |    +0.0% |   -0.137 |       -4.9 |      -25.6 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+      30* |       0 |       4 |        9 |      0 |    16 |    +0.0% |   -0.133 |       -4.9 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+      40* |       0 |       5 |        9 |      0 |    25 |    +0.0% |   -0.165 |       -5.3 |      -26.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+      50* |       0 |       7 |       13 |      2 |    27 |    +0.0% |   -0.152 |       -5.2 |      -25.9 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+      60* |       0 |      12 |       16 |      2 |    30 |    +0.1% |   -0.144 |       -5.0 |      -25.9 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+      70* |       0 |      17 |       17 |      2 |    34 |    +0.1% |   -0.142 |       -4.9 |      -25.8 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+      76* |       0 |       5 |        9 |      0 |    18 |    +0.0% |   -0.130 |       -4.8 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+      80* |       0 |       7 |        9 |      0 |    19 |    +0.0% |   -0.132 |       -4.9 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+      90* |       0 |      14 |       10 |      0 |    21 |    +0.0% |   -0.130 |       -4.7 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     100* |       0 |      20 |       12 |      0 |    23 |    +0.1% |   -0.140 |       -4.8 |      -25.4 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+     110* |       0 |      22 |       13 |      0 |    30 |    +0.1% |   -0.132 |       -4.7 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     120* |       0 |      23 |       14 |      0 |    38 |    +0.1% |   -0.132 |       -4.7 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     130* |       0 |      25 |       16 |      0 |    44 |    +0.1% |   -0.131 |       -4.6 |      -25.2 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     139* |       0 |      14 |       10 |      0 |    20 |    +0.0% |   -0.130 |       -4.6 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     140* |       0 |      14 |       10 |      0 |    20 |    +0.0% |   -0.130 |       -4.6 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     150* |       0 |      18 |       12 |      1 |    23 |    +0.1% |   -0.135 |       -4.7 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     160* |       0 |      22 |       13 |      1 |    28 |    +0.1% |   -0.141 |       -4.6 |      -25.5 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+     170* |       0 |      25 |       16 |      2 |    31 |    +0.1% |   -0.145 |       -4.6 |      -25.6 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+     175* |       0 |      14 |       11 |      0 |    20 |    +0.0% |   -0.130 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     180* |       0 |      14 |       14 |      1 |    20 |    +0.1% |   -0.148 |       -4.6 |      -25.8 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+     190* |       0 |      15 |       15 |      1 |    28 |    +0.1% |   -0.155 |       -4.9 |      -25.9 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+     200* |       0 |      21 |       17 |      1 |    30 |    +0.1% |   -0.155 |       -4.8 |      -25.7 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+     210* |       0 |      24 |       19 |      2 |    34 |    +0.1% |   -0.155 |       -4.8 |      -25.9 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+     216* |       0 |      14 |       11 |      0 |    20 |    +0.0% |   -0.130 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     220* |       0 |      15 |       12 |      1 |    20 |    +0.1% |   -0.133 |       -4.8 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     230* |       0 |      18 |       14 |      1 |    25 |    +0.1% |   -0.144 |       -4.7 |      -25.6 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     238* |       0 |      14 |       11 |      0 |    20 |    +0.0% |   -0.130 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     240* |       0 |      15 |       11 |      0 |    20 |    +0.0% |   -0.130 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     250* |       0 |      19 |       13 |      1 |    23 |    +0.1% |   -0.136 |       -4.7 |      -25.5 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     260* |       0 |      21 |       15 |      2 |    28 |    +0.1% |   -0.137 |       -4.7 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     270* |       0 |      25 |       17 |      3 |    31 |    +0.1% |   -0.143 |       -4.8 |      -25.6 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     280* |       0 |      26 |       20 |      3 |    38 |    +0.1% |   -0.162 |       -5.0 |      -25.9 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+     290* |       1 |      29 |       23 |      3 |    41 |    +0.1% |   -0.176 |       -5.5 |      -26.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     290* |       0 |      15 |       11 |      0 |    20 |    +0.0% |   -0.130 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     300* |       0 |      20 |       13 |      1 |    21 |    +0.1% |   -0.136 |       -4.7 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     310* |       0 |      24 |       15 |      3 |    23 |    +0.1% |   -0.149 |       -4.8 |      -25.6 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     320* |       1 |      28 |       16 |      3 |    27 |    +0.1% |   -0.149 |       -5.0 |      -25.6 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     330* |       1 |      33 |       17 |      3 |    31 |    +0.1% |   -0.149 |       -5.0 |      -25.6 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     340* |       1 |      36 |       19 |      3 |    36 |    +0.1% |   -0.150 |       -5.0 |      -25.7 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+     341* |       0 |      15 |       11 |      0 |    20 |    +0.0% |   -0.130 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     350* |       0 |      17 |       13 |      0 |    24 |    +0.0% |   -0.128 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     360* |       0 |      18 |       18 |      1 |    27 |    +0.1% |   -0.157 |       -4.6 |      -25.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     370* |       0 |      21 |       21 |      1 |    31 |    +0.1% |   -0.157 |       -4.8 |      -26.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     380* |       0 |      28 |       24 |      1 |    32 |    +0.1% |   -0.157 |       -4.8 |      -26.0 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     383* |       0 |      18 |       14 |      0 |    26 |    +0.1% |   -0.127 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     390* |       0 |      22 |       16 |      0 |    27 |    +0.1% |   -0.127 |       -4.6 |      -25.2 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     400* |       0 |      27 |       18 |      1 |    29 |    +0.1% |   -0.134 |       -4.6 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     410* |       0 |      33 |       19 |      2 |    31 |    +0.1% |   -0.139 |       -4.7 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     420* |       0 |      40 |       21 |      2 |    32 |    +0.1% |   -0.139 |       -4.7 |      -25.5 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+     429* |       0 |      18 |       14 |      0 |    26 |    +0.1% |   -0.127 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     430* |       0 |      18 |       14 |      0 |    26 |    +0.1% |   -0.127 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     440* |       0 |      24 |       15 |      1 |    28 |    +0.1% |   -0.140 |       -4.7 |      -25.5 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+     450* |       0 |      26 |       16 |      1 |    35 |    +0.1% |   -0.141 |       -4.5 |      -25.5 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+     460* |       0 |      31 |       17 |      1 |    39 |    +0.1% |   -0.141 |       -4.5 |      -25.4 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+     470* |       0 |      36 |       19 |      1 |    42 |    +0.1% |   -0.143 |       -4.6 |      -25.5 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     480* |       0 |      41 |       21 |      1 |    45 |    +0.1% |   -0.143 |       -4.6 |      -25.5 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     480* |       0 |      18 |       14 |      0 |    26 |    +0.1% |   -0.127 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     490* |       0 |      25 |       17 |      0 |    26 |    +0.1% |   -0.134 |       -4.7 |      -25.2 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     500* |       0 |      31 |       18 |      2 |    27 |    +0.1% |   -0.143 |       -4.7 |      -25.5 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     510* |       0 |      37 |       19 |      2 |    30 |    +0.1% |   -0.143 |       -4.7 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     516* |       0 |      18 |       14 |      0 |    26 |    +0.1% |   -0.127 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     520* |       0 |      20 |       14 |      0 |    27 |    +0.1% |   -0.127 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     530* |       0 |      24 |       18 |      1 |    28 |    +0.1% |   -0.133 |       -4.6 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     540* |       0 |      30 |       18 |      1 |    32 |    +0.1% |   -0.132 |       -4.6 |      -25.4 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+     549* |       0 |      21 |       14 |      0 |    27 |    +0.1% |   -0.127 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     550* |       0 |      21 |       14 |      0 |    27 |    +0.1% |   -0.127 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     560* |       0 |      25 |       18 |      1 |    30 |    +0.1% |   -0.130 |       -4.6 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     570* |       0 |      33 |       19 |      2 |    30 |    +0.1% |   -0.133 |       -4.7 |      -25.5 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+     580* |       0 |      41 |       20 |      2 |    31 |    +0.1% |   -0.137 |       -4.6 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     590* |       0 |      47 |       21 |      3 |    33 |    +0.1% |   -0.138 |       -4.6 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     600* |       0 |      53 |       23 |      4 |    34 |    +0.1% |   -0.143 |       -4.6 |      -25.5 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     605* |       0 |      22 |       16 |      0 |    30 |    +0.1% |   -0.127 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     610* |       0 |      23 |       18 |      1 |    30 |    +0.1% |   -0.129 |       -4.6 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     620* |       0 |      27 |       21 |      1 |    33 |    +0.1% |   -0.135 |       -4.6 |      -25.5 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     630* |       0 |      35 |       22 |      1 |    34 |    +0.1% |   -0.132 |       -4.6 |      -25.5 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     640* |       0 |      41 |       22 |      3 |    36 |    +0.1% |   -0.141 |       -4.6 |      -25.7 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     643* |       0 |      23 |       17 |      0 |    30 |    +0.1% |   -0.127 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     650* |       0 |      23 |       21 |      1 |    31 |    +0.1% |   -0.145 |       -4.6 |      -25.7 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     660* |       0 |      31 |       22 |      1 |    32 |    +0.1% |   -0.132 |       -4.6 |      -25.5 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+     668* |       0 |      23 |       17 |      0 |    31 |    +0.1% |   -0.127 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     670* |       0 |      23 |       17 |      0 |    32 |    +0.1% |   -0.127 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     680* |       0 |      27 |       21 |      1 |    33 |    +0.1% |   -0.133 |       -4.6 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     690* |       0 |      33 |       23 |      1 |    35 |    +0.1% |   -0.132 |       -4.6 |      -25.4 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+     700* |       0 |      40 |       25 |      1 |    36 |    +0.1% |   -0.133 |       -4.6 |      -25.5 |    588 | core/div/remainder\[57\]$_SDFFE_PP0P_/D
+     706* |       0 |      23 |       17 |      0 |    32 |    +0.1% |   -0.127 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     710* |       0 |      26 |       17 |      0 |    32 |    +0.1% |   -0.132 |       -4.6 |      -25.2 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     720* |       0 |      32 |       21 |      1 |    32 |    +0.1% |   -0.134 |       -4.7 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     730* |       0 |      38 |       22 |      2 |    34 |    +0.1% |   -0.143 |       -4.7 |      -25.5 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     740* |       0 |      46 |       22 |      2 |    36 |    +0.1% |   -0.143 |       -4.8 |      -25.5 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     740* |       0 |      23 |       17 |      0 |    32 |    +0.1% |   -0.127 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     750* |       0 |      29 |       20 |      1 |    32 |    +0.1% |   -0.152 |       -4.6 |      -25.7 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     760* |       0 |      35 |       21 |      2 |    34 |    +0.1% |   -0.143 |       -4.6 |      -25.5 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     770* |       0 |      43 |       23 |      2 |    34 |    +0.1% |   -0.139 |       -4.6 |      -25.5 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     780* |       0 |      51 |       24 |      2 |    35 |    +0.1% |   -0.139 |       -4.6 |      -25.5 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     782* |       0 |      23 |       17 |      0 |    32 |    +0.1% |   -0.127 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     790* |       0 |      29 |       18 |      0 |    32 |    +0.1% |   -0.127 |       -4.6 |      -25.2 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     800* |       0 |      31 |       21 |      1 |    36 |    +0.1% |   -0.129 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     810* |       0 |      35 |       24 |      1 |    39 |    +0.1% |   -0.141 |       -4.6 |      -25.6 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     820* |       0 |      39 |       27 |      1 |    43 |    +0.1% |   -0.141 |       -4.6 |      -25.6 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     830* |       0 |      43 |       28 |      1 |    48 |    +0.1% |   -0.141 |       -4.6 |      -25.5 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     840* |       0 |      50 |       30 |      1 |    49 |    +0.1% |   -0.141 |       -4.6 |      -25.5 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     842* |       0 |      29 |       18 |      0 |    34 |    +0.1% |   -0.127 |       -4.6 |      -25.2 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     850* |       0 |      31 |       21 |      1 |    35 |    +0.1% |   -0.129 |       -4.6 |      -25.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     860* |       0 |      36 |       26 |      1 |    36 |    +0.1% |   -0.141 |       -4.6 |      -25.5 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     870* |       0 |      44 |       27 |      1 |    37 |    +0.1% |   -0.141 |       -4.6 |      -25.5 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     880* |       0 |      50 |       30 |      1 |    38 |    +0.1% |   -0.141 |       -4.6 |      -25.5 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     890* |       0 |      55 |       35 |      1 |    39 |    +0.1% |   -0.141 |       -4.6 |      -25.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     895* |       0 |      29 |       19 |      0 |    35 |    +0.1% |   -0.127 |       -4.6 |      -25.2 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     900* |       0 |      31 |       19 |      1 |    36 |    +0.1% |   -0.145 |       -4.6 |      -25.6 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     910* |       0 |      35 |       24 |      1 |    37 |    +0.1% |   -0.131 |       -4.6 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     920* |       0 |      43 |       25 |      1 |    38 |    +0.1% |   -0.129 |       -4.6 |      -25.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     922* |       0 |      31 |       19 |      0 |    35 |    +0.1% |   -0.127 |       -4.6 |      -25.2 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     930* |       0 |      35 |       20 |      0 |    37 |    +0.1% |   -0.127 |       -4.6 |      -25.0 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     940* |       0 |      39 |       22 |      1 |    40 |    +0.1% |   -0.127 |       -4.6 |      -24.7 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     950* |       0 |      45 |       23 |      1 |    43 |    +0.1% |   -0.127 |       -4.5 |      -18.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     960* |       0 |      47 |       33 |      2 |    45 |    +0.2% |   -0.127 |       -4.5 |      -17.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     970* |       0 |      49 |       35 |      3 |    50 |    +0.2% |   -0.127 |       -4.5 |      -18.9 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     980* |       0 |      58 |       35 |      3 |    51 |    +0.2% |   -0.127 |       -4.5 |      -18.2 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+     990* |       0 |      60 |       41 |      3 |    54 |    +0.2% |   -0.127 |       -4.5 |      -15.7 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1000* |       0 |      67 |       42 |      3 |    56 |    +0.2% |   -0.127 |       -4.5 |      -13.0 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1010* |       0 |      73 |       44 |      3 |    58 |    +0.2% |   -0.127 |       -4.5 |      -12.9 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1016* |       0 |      77 |       44 |      5 |    58 |    +0.2% |   -0.127 |       -4.5 |      -13.0 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1017* |       0 |      77 |       44 |      5 |    58 |    +0.2% |   -0.127 |       -4.5 |      -13.0 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1018* |       0 |      77 |       44 |      5 |    58 |    +0.2% |   -0.127 |       -4.5 |      -13.0 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1019* |       0 |      77 |       44 |      5 |    58 |    +0.2% |   -0.127 |       -4.5 |      -13.0 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1020* |       0 |      77 |       44 |      5 |    58 |    +0.2% |   -0.127 |       -4.5 |      -13.0 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1020* |       0 |      77 |       44 |      5 |    58 |    +0.2% |   -0.127 |       -4.5 |      -13.0 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1021* |       0 |      77 |       44 |      5 |    58 |    +0.2% |   -0.127 |       -4.5 |      -13.0 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1022* |       0 |      77 |       44 |      5 |    58 |    +0.2% |   -0.127 |       -4.5 |      -13.0 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1025* |       0 |      79 |       44 |      5 |    58 |    +0.2% |   -0.127 |       -4.5 |      -12.7 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1026* |       0 |      79 |       44 |      5 |    58 |    +0.2% |   -0.127 |       -4.5 |      -12.7 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1027* |       0 |      79 |       44 |      5 |    58 |    +0.2% |   -0.127 |       -4.5 |      -12.7 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1028* |       0 |      79 |       44 |      5 |    58 |    +0.2% |   -0.127 |       -4.5 |      -12.7 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1030* |       0 |      80 |       44 |      5 |    58 |    +0.2% |   -0.132 |       -4.5 |      -12.7 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1040* |       0 |      85 |       48 |      6 |    59 |    +0.3% |   -0.134 |       -4.5 |      -12.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1050* |       0 |      93 |       49 |      7 |    59 |    +0.3% |   -0.139 |       -4.5 |      -12.9 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1060* |       0 |     100 |       50 |      7 |    61 |    +0.3% |   -0.139 |       -4.5 |      -12.9 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1060* |       0 |      79 |       44 |      5 |    58 |    +0.2% |   -0.127 |       -4.5 |      -12.7 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1061* |       0 |      79 |       44 |      5 |    58 |    +0.2% |   -0.127 |       -4.5 |      -12.7 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1062* |       0 |      79 |       44 |      5 |    58 |    +0.2% |   -0.127 |       -4.5 |      -12.7 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1070* |       0 |      82 |       47 |      6 |    59 |    +0.3% |   -0.127 |       -4.5 |      -12.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1072* |       0 |      82 |       47 |      8 |    59 |    +0.3% |   -0.127 |       -4.5 |      -12.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1073* |       0 |      82 |       47 |      8 |    59 |    +0.3% |   -0.127 |       -4.5 |      -12.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1074* |       0 |      82 |       47 |      8 |    59 |    +0.3% |   -0.127 |       -4.5 |      -12.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1075* |       0 |      82 |       47 |      8 |    59 |    +0.3% |   -0.127 |       -4.5 |      -12.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1076* |       0 |      82 |       47 |      8 |    59 |    +0.3% |   -0.127 |       -4.5 |      -12.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1077* |       0 |      82 |       47 |      8 |    59 |    +0.3% |   -0.127 |       -4.5 |      -12.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1080* |       0 |      82 |       47 |     10 |    59 |    +0.3% |   -0.127 |       -4.5 |      -13.4 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1083* |       0 |      82 |       47 |      9 |    59 |    +0.3% |   -0.127 |       -4.5 |      -13.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1084* |       0 |      82 |       47 |      9 |    59 |    +0.3% |   -0.127 |       -4.5 |      -13.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1085* |       0 |      82 |       47 |      9 |    59 |    +0.3% |   -0.127 |       -4.5 |      -13.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1086* |       0 |      82 |       47 |      9 |    59 |    +0.3% |   -0.127 |       -4.5 |      -13.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1087* |       0 |      82 |       47 |      9 |    59 |    +0.3% |   -0.127 |       -4.5 |      -13.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1088* |       0 |      82 |       47 |      9 |    59 |    +0.3% |   -0.127 |       -4.5 |      -13.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1089* |       0 |      82 |       47 |      9 |    59 |    +0.3% |   -0.127 |       -4.5 |      -13.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1090* |       0 |      82 |       47 |      9 |    59 |    +0.3% |   -0.127 |       -4.5 |      -13.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1092* |       0 |      84 |       47 |      9 |    59 |    +0.3% |   -0.127 |       -4.5 |      -13.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1094* |       0 |      85 |       47 |      9 |    59 |    +0.3% |   -0.127 |       -4.5 |      -13.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1097* |       0 |      85 |       47 |      9 |    59 |    +0.3% |   -0.127 |       -4.5 |      -13.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1100* |       0 |      85 |       47 |     11 |    59 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1100* |       0 |      85 |       47 |      9 |    59 |    +0.3% |   -0.127 |       -4.5 |      -13.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1103* |       0 |      85 |       47 |      9 |    59 |    +0.3% |   -0.127 |       -4.5 |      -13.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1110* |       0 |      88 |       49 |     10 |    60 |    +0.3% |   -0.127 |       -4.5 |      -13.5 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1114* |       0 |      90 |       49 |     11 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.6 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1119* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1120* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1122* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1123* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1124* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1125* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1126* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1127* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1128* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1129* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1130* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1132* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1135* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1138* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1139* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1140* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1140* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1141* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1142* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1145* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1146* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1147* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1148* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1149* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1150* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1150* |       0 |      93 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1152* |       0 |      94 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1153* |       0 |      94 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1154* |       0 |      94 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1155* |       0 |      94 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1156* |       0 |      94 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1157* |       0 |      94 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1159* |       0 |      94 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1160* |       0 |      94 |       49 |     12 |    61 |    +0.3% |   -0.127 |       -4.5 |      -13.8 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1161* |       0 |      95 |       49 |     12 |    61 |    +0.4% |   -0.127 |       -4.5 |      -13.9 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1163* |       0 |      95 |       49 |     12 |    61 |    +0.4% |   -0.127 |       -4.5 |      -13.9 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1164* |       0 |      95 |       49 |     12 |    61 |    +0.4% |   -0.127 |       -4.5 |      -13.9 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1165* |       0 |      95 |       49 |     12 |    61 |    +0.4% |   -0.127 |       -4.5 |      -13.9 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1167* |       0 |      95 |       49 |     12 |    61 |    +0.4% |   -0.127 |       -4.5 |      -13.9 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1168* |       0 |      95 |       49 |     12 |    61 |    +0.4% |   -0.127 |       -4.5 |      -13.9 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1170* |       0 |      95 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.2 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1170* |       0 |      95 |       49 |     12 |    61 |    +0.4% |   -0.127 |       -4.5 |      -13.9 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1171* |       0 |      95 |       49 |     12 |    61 |    +0.4% |   -0.127 |       -4.5 |      -13.9 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1173* |       0 |      95 |       49 |     12 |    61 |    +0.4% |   -0.127 |       -4.5 |      -13.9 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1174* |       0 |      95 |       49 |     12 |    61 |    +0.4% |   -0.127 |       -4.5 |      -13.9 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1178* |       0 |      97 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1179* |       0 |      97 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1180* |       0 |      97 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1180* |       0 |      97 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1182* |       0 |      97 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1184* |       0 |      98 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1186* |       0 |      98 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1187* |       0 |      98 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1188* |       0 |      98 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1189* |       0 |      98 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1190* |       0 |      98 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1190* |       0 |      98 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1191* |       0 |      98 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1192* |       0 |      98 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1194* |       0 |      98 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1195* |       0 |      98 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1196* |       0 |      98 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.1 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1199* |       0 |      99 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1200* |       0 |      99 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1200* |       0 |      99 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1200* |       0 |      99 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.3 |    588 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1200+ |       0 |      99 |       49 |     13 |    61 |    +0.4% |   -0.127 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1203+ |       0 |     101 |       49 |     13 |    61 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1204+ |       0 |     101 |       49 |     13 |    61 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1205+ |       0 |     101 |       49 |     13 |    61 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1206+ |       0 |     101 |       49 |     13 |    61 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1207+ |       0 |     101 |       49 |     13 |    61 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1208+ |       0 |     101 |       49 |     13 |    61 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1209+ |       0 |     101 |       49 |     13 |    61 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1210+ |       0 |     101 |       49 |     13 |    61 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1211+ |       0 |     101 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1212+ |       0 |     101 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1213+ |       0 |     101 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1214+ |       0 |     101 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1215+ |       0 |     101 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1216+ |       0 |     101 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1218+ |       0 |     102 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1219+ |       0 |     102 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1220+ |       0 |     102 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1220+ |       0 |     102 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1221+ |       0 |     102 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1222+ |       0 |     102 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1223+ |       0 |     102 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1224+ |       0 |     102 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1226+ |       0 |     103 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.3 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1228+ |       0 |     104 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.1 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1230+ |       0 |     105 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.1 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1230+ |       0 |     105 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.1 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1231+ |       0 |     105 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.1 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1232+ |       0 |     105 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.1 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1233+ |       0 |     105 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.1 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1235+ |       0 |     106 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.1 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1236+ |       0 |     106 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.1 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1237+ |       0 |     106 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.1 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1238+ |       0 |     106 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.1 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1239+ |       0 |     106 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.1 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1240+ |       0 |     106 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.1 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1240+ |       0 |     106 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.1 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1241+ |       0 |     106 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -14.1 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1243+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1244+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1245+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1246+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1247+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1248+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1249+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1250+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1250+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1251+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1252+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1253+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1254+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1255+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1256+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1257+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1258+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1259+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1260+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1260+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1261+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1262+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1263+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1264+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1265+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1266+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1267+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1268+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1269+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1270+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1270+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1271+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1272+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1273+ |       0 |     107 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -13.9 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1276+ |       0 |     109 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1277+ |       0 |     109 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1278+ |       0 |     109 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1279+ |       0 |     109 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1280+ |       0 |     109 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1280+ |       0 |     109 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1281+ |       0 |     109 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1282+ |       0 |     109 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1283+ |       0 |     109 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1284+ |       0 |     109 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1285+ |       0 |     109 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1287+ |       0 |     110 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1288+ |       0 |     110 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1289+ |       0 |     110 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1290+ |       0 |     110 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1290+ |       0 |     110 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1291+ |       0 |     110 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1292+ |       0 |     110 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1293+ |       0 |     110 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1294+ |       0 |     110 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1295+ |       0 |     110 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1297+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1298+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1299+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1300+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1301+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1302+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1303+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1304+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1305+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1306+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1307+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1308+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1309+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1310+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1310+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1311+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1312+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1313+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1314+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1315+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1316+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1317+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1318+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1319+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1320+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1320+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1321+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1322+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1323+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1324+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1325+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1326+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1327+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1328+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1329+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1330+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1330+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1331+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1332+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1333+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1334+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1335+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1336+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1337+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1338+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1339+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1340+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1340+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1341+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1342+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1343+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1344+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1345+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1346+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1347+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1348+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1349+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1350+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1350+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1351+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1352+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1353+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1354+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1355+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1356+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1357+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1358+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1359+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1360+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1360+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1361+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1362+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1363+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1364+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1365+ |       0 |     111 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.8 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1370+ |       0 |     115 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1371+ |       0 |     116 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1372+ |       0 |     116 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1373+ |       0 |     116 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1374+ |       0 |     116 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1375+ |       0 |     116 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1376+ |       0 |     116 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1377+ |       0 |     116 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1378+ |       0 |     116 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1379+ |       0 |     116 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1380+ |       0 |     116 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1380+ |       0 |     116 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1381+ |       0 |     116 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1383+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1384+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1385+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1386+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1387+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1388+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1389+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1390+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1390+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1391+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1392+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1393+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1394+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1395+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1396+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1397+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1398+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1399+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    1400+ |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    515 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+    final |       0 |     117 |       49 |     13 |    62 |    +0.4% |   -0.126 |       -4.5 |      -12.5 |    452 | core/div/remainder\[64\]$_SDFFE_PP0P_/D
+------------------------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0040] Inserted 49 buffers.
+[INFO RSZ-0051] Resized 117 instances: 117 up, 0 up match, 0 down, 0 VT
+[INFO RSZ-0043] Swapped pins on 62 instances.
+[INFO RSZ-0049] Cloned 13 instances.
+[WARNING RSZ-0062] Unable to repair all setup violations.
+[INFO RSZ-0505] Runtime: 14.92s
+[INFO RSZ-0033] No hold violations found.
+[INFO RSZ-0506] Runtime: 0.03s
+Took 15 seconds: repair_timing -setup_margin 0 -hold_margin 0 -repair_tns 100 -verbose
+detailed_placement
+[INFO DPL-0006] Core area: 88535.44 um^2
+[INFO DPL-0007] Movable instances area: 52823.61 um^2
+[INFO DPL-0008] Fixed instances area within core: 2693.78 um^2
+[INFO DPL-0009] Utilization: 62.7%
+[INFO DPL-0005] Diamond search max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+[INFO DPL-1102] Legalizing using negotiation legalizer.
+[INFO DPL-1103] Negotiation base search window: +/-20 sites horizontally, +/-5 rows vertically 
+	Automatic search window extension enabled.
+	Search window extendable up to the max displacement cap of +/-500 sites, +/-100 rows near walls.
+[INFO DPL-1104] NegotiationLegalizer DRC penalty: 5.
+[INFO DPL-0392] Negotiation cell height distribution (2 unique row-count(s)):
+[INFO DPL-0393]   height 1 row(s): 29651 cells
+[INFO DPL-0393]   height 44 row(s): 2 cells
+          |      Total |  Illegal |  Illegal
+Iteration | Violations |    Cells |    Sites
+---------------------------------------------
+        0 |        939 |       167 |       772
+        1 |        485 |        59 |       426
+        2 |        358 |        36 |       313
+        3 |        298 |        24 |       253
+        4 |        228 |        20 |       208
+        5 |        238 |        16 |       222
+        6 |        241 |        19 |       192
+        7 |        136 |        17 |       119
+        8 |        131 |        17 |       114
+        9 |         86 |        10 |        76
+       10 |         48 |         6 |        42
+       19 |          0 |         0 |         0
+Negotiation phase 1 converged at iteration 19.
+[INFO DPL-0500] Runtime: 0.44s
+Placement Analysis
+---------------------------------
+total displacement        513.3 u
+average displacement        0.0 u
+max displacement           10.9 u
+original HPWL          430227.1 u
+legalized HPWL         430742.3 u
+delta HPWL                    0 %
+
+estimate_parasitics -placement
+Report metrics stage 4, cts final...
+
+==========================================================================
+cts final report_design_area
+--------------------------------------------------------------------------
+Design area 55517 um^2 63% utilization.
+write_db /work/results/nangate45/tinyRocket/base/4_1_cts.odb
+write_sdc -no_timestamp /work/results/nangate45/tinyRocket/base/4_cts.sdc
+Elapsed time: 0:28.32[h:]min:sec. CPU time: user 56.67 sys 9.52 (233%). Peak memory: 313996KB.
+Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
+4_1_cts                   .odb           28            306 abd197f6b707a6c3ae33

@@ -1,0 +1,40 @@
+vlsi:
+  core:
+    top_module: "gcd"
+  inputs:
+    supplies:
+      VDD: "1.1 V"
+      VSS: "0 V"
+      power_nets: ["VDD"]
+      ground_nets: ["VSS"]
+    clocks:
+      - name: "core_clock"
+        path: "clk"
+        period: "0.25 ns"
+        uncertainty: "0.01 ns"
+    placement_constraints:
+      - path: "gcd"
+        type: "toplevel"
+        x: 0
+        y: 0
+        width: 35.755
+        height: 35.755
+        margins:
+          left: 1.14
+          right: 1.14
+          top: 1.4
+          bottom: 1.4
+    pin_mode: "none"
+
+synthesis.inputs:
+  top_module: "gcd"
+  input_files:
+    - "/OpenROAD-flow-scripts/flow/designs/src/gcd/gcd.v"
+
+par:
+  openroad:
+    floorplan_mode: "generate"
+    openrcx_techfiles: []
+    klayout_techfile_source: "/dev/null"
+    write_reports: false
+  power_straps_mode: empty

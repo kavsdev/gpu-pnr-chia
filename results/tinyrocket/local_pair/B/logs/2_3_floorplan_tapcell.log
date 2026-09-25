@@ -1,0 +1,19 @@
+OpenROAD unknown 
+Features included (+) or not (-): -GPU +GUI -Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 16 thread(s).
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_liberty /OpenROAD-flow-scripts/flow/designs/nangate45/tinyRocket/fakeram45_1024x32.lib
+read_liberty /OpenROAD-flow-scripts/flow/designs/nangate45/tinyRocket/fakeram45_64x32.lib
+read_db /work/results/nangate45/tinyRocket/base/2_2_floorplan_macro.odb
+read_sdc /work/results/nangate45/tinyRocket/base/2_1_floorplan.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+[INFO ODB-0303] The initial 212 rows (332840 sites) were cut with 2 shapes for a total of 304 rows (321064 sites).
+[INFO TAP-0004] Inserted 608 endcaps.
+[INFO TAP-0005] Inserted 191 tapcells.
+Design area 53980 um^2 61% utilization.
+write_db /work/results/nangate45/tinyRocket/base/2_3_floorplan_tapcell.odb
+Elapsed time: 0:00.35[h:]min:sec. CPU time: user 0.28 sys 0.07 (99%). Peak memory: 126672KB.
+Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
+2_3_floorplan_tapcell     .odb            0            123 5f48c7e710b5134c5921

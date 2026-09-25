@@ -1,0 +1,374 @@
+{
+ "design": "tinyRocket",
+ "settings": {
+  "rounds": 4,
+  "batch": 8,
+  "route_top": 3,
+  "repeats": 3,
+  "seed": 0,
+  "validate_seeds": [
+   101,
+   102,
+   103,
+   104
+  ]
+ },
+ "search": [
+  {
+   "arm": "random_proxy#r0",
+   "design": "tinyRocket",
+   "routes_used": 1,
+   "routes_executed": 1,
+   "grt_runs": 0,
+   "best_score": null,
+   "best_cfg": null,
+   "invalid_llm_answers": null
+  },
+  {
+   "arm": "random_proxy#r1",
+   "design": "tinyRocket",
+   "routes_used": 3,
+   "routes_executed": 3,
+   "grt_runs": 0,
+   "best_score": null,
+   "best_cfg": null,
+   "invalid_llm_answers": null
+  },
+  {
+   "arm": "random_proxy#r2",
+   "design": "tinyRocket",
+   "routes_used": 2,
+   "routes_executed": 2,
+   "grt_runs": 0,
+   "best_score": null,
+   "best_cfg": null,
+   "invalid_llm_answers": null
+  },
+  {
+   "arm": "random_grt#r1",
+   "design": "tinyRocket",
+   "routes_used": 0,
+   "routes_executed": 0,
+   "grt_runs": 5,
+   "best_score": null,
+   "best_cfg": null,
+   "invalid_llm_answers": null
+  },
+  {
+   "arm": "random_grt#r2",
+   "design": "tinyRocket",
+   "routes_used": 1,
+   "routes_executed": 1,
+   "grt_runs": 3,
+   "best_score": 1634115.87456,
+   "best_cfg": {
+    "target_density": 0.6919118211588345,
+    "density_weight": 2.223323775567924e-05,
+    "gamma": 5.142509173167917,
+    "stop_overflow": 0.06864518584416017,
+    "learning_rate": 0.004262346383862094
+   },
+   "invalid_llm_answers": null
+  },
+  {
+   "arm": "default_seeds#r0",
+   "routes_used": 12,
+   "best_score": 1545999.02061,
+   "best_cfg": {
+    "target_density": 0.8,
+    "density_weight": 8e-05,
+    "gamma": 4.0,
+    "stop_overflow": 0.1,
+    "learning_rate": 0.01
+   },
+   "best_seed": 11,
+   "stopped_early": false
+  },
+  {
+   "arm": "llm_grt#r0",
+   "design": "tinyRocket",
+   "routes_used": 6,
+   "routes_executed": 6,
+   "grt_runs": 14,
+   "best_score": 1486211.8904,
+   "best_cfg": {
+    "target_density": 0.65,
+    "density_weight": 0.0001,
+    "gamma": 10.0,
+    "stop_overflow": 0.08,
+    "learning_rate": 0.02
+   },
+   "stopped_early": false,
+   "invalid_llm_answers": 0
+  },
+  {
+   "arm": "llm_grt#r1",
+   "design": "tinyRocket",
+   "routes_used": 3,
+   "routes_executed": 3,
+   "grt_runs": 16,
+   "best_score": 1428645.3626700002,
+   "best_cfg": {
+    "target_density": 0.65,
+    "density_weight": 3e-05,
+    "gamma": 8.0,
+    "stop_overflow": 0.12,
+    "learning_rate": 0.015
+   },
+   "stopped_early": false,
+   "invalid_llm_answers": 0
+  },
+  {
+   "arm": "llm_grt#r2",
+   "design": "tinyRocket",
+   "routes_used": 9,
+   "routes_executed": 9,
+   "grt_runs": 22,
+   "best_score": 1482782.0928,
+   "best_cfg": {
+    "target_density": 0.75,
+    "density_weight": 0.00025,
+    "gamma": 5.0,
+    "stop_overflow": 0.09,
+    "learning_rate": 0.012
+   },
+   "stopped_early": false,
+   "invalid_llm_answers": 0
+  },
+  {
+   "arm": "llm_proxy#r0",
+   "design": "tinyRocket",
+   "routes_used": 7,
+   "routes_executed": 7,
+   "grt_runs": 0,
+   "best_score": 1548885.3831,
+   "best_cfg": {
+    "target_density": 0.7,
+    "density_weight": 0.0002,
+    "gamma": 5.0,
+    "stop_overflow": 0.11,
+    "learning_rate": 0.012
+   },
+   "stopped_early": false,
+   "invalid_llm_answers": 0
+  },
+  {
+   "arm": "llm_proxy#r1",
+   "design": "tinyRocket",
+   "routes_used": 11,
+   "routes_executed": 10,
+   "grt_runs": 0,
+   "best_score": 1379549.17956,
+   "best_cfg": {
+    "target_density": 0.65,
+    "density_weight": 8e-05,
+    "gamma": 2.5,
+    "stop_overflow": 0.095,
+    "learning_rate": 0.0105
+   },
+   "stopped_early": false,
+   "invalid_llm_answers": 0
+  },
+  {
+   "arm": "llm_proxy#r2",
+   "design": "tinyRocket",
+   "routes_used": 1,
+   "routes_executed": 0,
+   "grt_runs": 0,
+   "best_score": 2052687.3294400002,
+   "best_cfg": {
+    "target_density": 0.8,
+    "density_weight": 8e-05,
+    "gamma": 4.0,
+    "stop_overflow": 0.1,
+    "learning_rate": 0.01
+   },
+   "stopped_early": false,
+   "invalid_llm_answers": 0
+  },
+  {
+   "arm": "random_grt#r0",
+   "design": "tinyRocket",
+   "routes_used": 0,
+   "routes_executed": 0,
+   "grt_runs": 0,
+   "best_score": null,
+   "best_cfg": null,
+   "stopped_early": false,
+   "invalid_llm_answers": null
+  }
+ ],
+ "validation": {
+  "random_proxy#r0": {
+   "error": "no routed result"
+  },
+  "random_proxy#r1": {
+   "error": "no routed result"
+  },
+  "random_proxy#r2": {
+   "error": "no routed result"
+  },
+  "random_grt#r1": {
+   "error": "no routed result"
+  },
+  "random_grt#r2": {
+   "selection_score": 1634115.87456,
+   "validated_scores": [
+    1417874.0507099999
+   ],
+   "validated_mean": 1417874.0507099999,
+   "validated_std": null,
+   "validated_wl_mean": 482193,
+   "n_ok": 1,
+   "cfg": {
+    "target_density": 0.6919118211588345,
+    "density_weight": 2.223323775567924e-05,
+    "gamma": 5.142509173167917,
+    "stop_overflow": 0.06864518584416017,
+    "learning_rate": 0.004262346383862094
+   }
+  },
+  "default_seeds#r0": {
+   "selection_score": 1545999.02061,
+   "validated_scores": [
+    1807238.10034,
+    2292530.27244,
+    1867978.89575
+   ],
+   "validated_mean": 1989249.0895099998,
+   "validated_std": 215881.0907209877,
+   "validated_wl_mean": 507293,
+   "n_ok": 3,
+   "cfg": {
+    "target_density": 0.8,
+    "density_weight": 8e-05,
+    "gamma": 4.0,
+    "stop_overflow": 0.1,
+    "learning_rate": 0.01
+   }
+  },
+  "llm_grt#r0": {
+   "selection_score": 1486211.8904,
+   "validated_scores": [
+    1507930.09956,
+    1318350.6076999998
+   ],
+   "validated_mean": 1413140.3536299998,
+   "validated_std": 94789.74593000009,
+   "validated_wl_mean": 481457.5,
+   "n_ok": 2,
+   "cfg": {
+    "target_density": 0.65,
+    "density_weight": 0.0001,
+    "gamma": 10.0,
+    "stop_overflow": 0.08,
+    "learning_rate": 0.02
+   }
+  },
+  "llm_grt#r1": {
+   "selection_score": 1428645.3626700002,
+   "validated_scores": [
+    1467488.54005,
+    1732873.79694
+   ],
+   "validated_mean": 1600181.1684949999,
+   "validated_std": 132692.62844500004,
+   "validated_wl_mean": 479298.5,
+   "n_ok": 2,
+   "cfg": {
+    "target_density": 0.65,
+    "density_weight": 3e-05,
+    "gamma": 8.0,
+    "stop_overflow": 0.12,
+    "learning_rate": 0.015
+   }
+  },
+  "llm_grt#r2": {
+   "selection_score": 1482782.0928,
+   "validated_scores": [
+    1881472.94248,
+    1835285.68238
+   ],
+   "validated_mean": 1858379.31243,
+   "validated_std": 23093.630050000036,
+   "validated_wl_mean": 509177.5,
+   "n_ok": 2,
+   "cfg": {
+    "target_density": 0.75,
+    "density_weight": 0.00025,
+    "gamma": 5.0,
+    "stop_overflow": 0.09,
+    "learning_rate": 0.012
+   }
+  },
+  "llm_proxy#r0": {
+   "selection_score": 1548885.3831,
+   "validated_scores": [
+    1468995.0452700001,
+    1599027.10338
+   ],
+   "validated_mean": 1534011.074325,
+   "validated_std": 65016.02905499993,
+   "validated_wl_mean": 479295.5,
+   "n_ok": 2,
+   "cfg": {
+    "target_density": 0.7,
+    "density_weight": 0.0002,
+    "gamma": 5.0,
+    "stop_overflow": 0.11,
+    "learning_rate": 0.012
+   }
+  },
+  "llm_proxy#r1": {
+   "selection_score": 1379549.17956,
+   "validated_scores": [
+    1413279.2088,
+    1622991.3536999999
+   ],
+   "validated_mean": 1518135.28125,
+   "validated_std": 104856.07244999998,
+   "validated_wl_mean": 480324,
+   "n_ok": 2,
+   "cfg": {
+    "target_density": 0.65,
+    "density_weight": 8e-05,
+    "gamma": 2.5,
+    "stop_overflow": 0.095,
+    "learning_rate": 0.0105
+   }
+  },
+  "llm_proxy#r2": {
+   "selection_score": 2052687.3294400002,
+   "validated_scores": [
+    1807238.10034,
+    2292530.27244,
+    1867978.89575
+   ],
+   "validated_mean": 1989249.0895099998,
+   "validated_std": 215881.0907209877,
+   "validated_wl_mean": 507293,
+   "n_ok": 3,
+   "cfg": {
+    "target_density": 0.8,
+    "density_weight": 8e-05,
+    "gamma": 4.0,
+    "stop_overflow": 0.1,
+    "learning_rate": 0.01
+   }
+  },
+  "random_grt#r0": {
+   "error": "no routed result"
+  }
+ },
+ "cache_hits": 29,
+ "repaired": [
+  "default_seeds#r0",
+  "llm_grt#r0",
+  "llm_grt#r1",
+  "llm_grt#r2",
+  "llm_proxy#r0",
+  "llm_proxy#r1",
+  "llm_proxy#r2",
+  "random_grt#r0"
+ ]
+}

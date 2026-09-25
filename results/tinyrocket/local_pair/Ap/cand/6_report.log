@@ -1,0 +1,81 @@
+OpenROAD unknown 
+Features included (+) or not (-): -GPU +GUI -Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 16 thread(s).
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_liberty /OpenROAD-flow-scripts/flow/designs/nangate45/tinyRocket/fakeram45_1024x32.lib
+read_liberty /OpenROAD-flow-scripts/flow/designs/nangate45/tinyRocket/fakeram45_64x32.lib
+read_db /work/tinyRocket/18b7966f4e91c8d5/orfs/results/nangate45/tinyRocket/base/6_1_fill.odb
+read_sdc /work/tinyRocket/18b7966f4e91c8d5/orfs/results/nangate45/tinyRocket/base/6_1_fill.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+write_db /work/tinyRocket/18b7966f4e91c8d5/orfs/results/nangate45/tinyRocket/base/6_final.odb
+write_sdc -no_timestamp /work/tinyRocket/18b7966f4e91c8d5/orfs/results/nangate45/tinyRocket/base/6_final.sdc
+Deleted 0 routing obstructions
+[INFO RCX-0431] Defined process_corner X with ext_model_index 0
+[INFO RCX-0029] Defined extraction corner X
+[INFO RCX-0435] Reading extraction model file /OpenROAD-flow-scripts/flow/platforms/nangate45/rcx_patterns.rules ...
+[INFO RCX-0436] RC segment generation RocketTile (max_merge_res 50.0) ...
+[INFO RCX-0040] Final 121755 rc segments
+[INFO RCX-0439] Coupling Cap extraction RocketTile ...
+[INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.
+[INFO RCX-0442] 18% of 212693 wires extracted
+[INFO RCX-0442] 47% of 212693 wires extracted
+[INFO RCX-0442] 70% of 212693 wires extracted
+[INFO RCX-0442] 100% of 212693 wires extracted
+[INFO RCX-0045] Extract 32864 nets, 150205 rsegs, 150205 caps, 347362 ccs
+[INFO RCX-0443] 32864 nets finished
+[INFO PSM-0040] All shapes on net VDD are connected.
+########## IR report #################
+Net              : VDD
+Corner           : default
+Total power      : 8.85e-02 W
+Supply voltage   : 1.10e+00 V
+Worstcase voltage: 1.08e+00 V
+Average voltage  : 1.09e+00 V
+Average IR drop  : 5.79e-03 V
+Worstcase IR drop: 1.87e-02 V
+Percentage drop  : 1.70 %
+######################################
+[INFO PSM-0040] All shapes on net VSS are connected.
+########## IR report #################
+Net              : VSS
+Corner           : default
+Total power      : 8.85e-02 W
+Supply voltage   : 0.00e+00 V
+Worstcase voltage: 1.34e-02 V
+Average voltage  : 4.98e-03 V
+Average IR drop  : 4.98e-03 V
+Worstcase IR drop: 1.34e-02 V
+Percentage drop  : 1.22 %
+######################################
+Cell type report:                       Count       Area
+  Macro                                     2    2481.25
+  Fill cell                             25549   33168.60
+  Tap cell                                799     212.53
+  Clock buffer                            912    1075.70
+  Timing Repair Buffer                    948    1512.74
+  Inverter                               1874    1012.93
+  Clock inverter                          184     148.43
+  Sequential cell                        3913   17737.15
+  Multi-Input combinational cell        19549   30534.94
+  Total                                 53730   87884.27
+Report metrics stage 6, finish...
+
+==========================================================================
+finish report_design_area
+--------------------------------------------------------------------------
+Design area 54716 um^2 62% utilization.
+[WARNING GUI-0010] File path does not end with a valid extension, new path is: /work/tinyRocket/18b7966f4e91c8d5/orfs/reports/nangate45/tinyRocket/base/final_all.webp.png
+[WARNING GUI-0010] File path does not end with a valid extension, new path is: /work/tinyRocket/18b7966f4e91c8d5/orfs/reports/nangate45/tinyRocket/base/final_routing.webp.png
+[WARNING GUI-0010] File path does not end with a valid extension, new path is: /work/tinyRocket/18b7966f4e91c8d5/orfs/reports/nangate45/tinyRocket/base/final_placement.webp.png
+[WARNING GUI-0010] File path does not end with a valid extension, new path is: /work/tinyRocket/18b7966f4e91c8d5/orfs/reports/nangate45/tinyRocket/base/final_ir_drop.webp.png
+[WARNING GUI-0010] File path does not end with a valid extension, new path is: /work/tinyRocket/18b7966f4e91c8d5/orfs/reports/nangate45/tinyRocket/base/final_clocks.webp.png
+[WARNING GUI-0010] File path does not end with a valid extension, new path is: /work/tinyRocket/18b7966f4e91c8d5/orfs/reports/nangate45/tinyRocket/base/cts_default_core_clock.webp.png
+[WARNING GUI-0010] File path does not end with a valid extension, new path is: /work/tinyRocket/18b7966f4e91c8d5/orfs/reports/nangate45/tinyRocket/base/cts_default_core_clock_layout.webp.png
+[WARNING GUI-0010] File path does not end with a valid extension, new path is: /work/tinyRocket/18b7966f4e91c8d5/orfs/reports/nangate45/tinyRocket/base/final_resizer.webp.png
+[WARNING GUI-0010] File path does not end with a valid extension, new path is: /work/tinyRocket/18b7966f4e91c8d5/orfs/reports/nangate45/tinyRocket/base/final_congestion.webp.png
+[WARNING GUI-0010] File path does not end with a valid extension, new path is: /work/tinyRocket/18b7966f4e91c8d5/orfs/reports/nangate45/tinyRocket/base/final_worst_path.webp.png
+Elapsed time: 0:29.32[h:]min:sec. CPU time: user 37.35 sys 4.85 (143%). Peak memory: 691980KB.
+Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
+6_report                                 29            675                  N/A

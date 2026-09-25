@@ -1,0 +1,78 @@
+{
+  "hmac": false,
+  "narrative": "",
+  "payload": {
+    "label": "measured-routed",
+    "repro_cmd": "python -m pnr_node.raw_handoff --design tinyRocket --stage route --seed 0 --cfg '{\"Llambda_density_weight_iteration\": 1, \"Lsub_iteration\": 1, \"density_weight\": 8e-05, \"gamma\": 4.0, \"iteration\": 1000, \"learning_rate\": 0.01, \"num_bins\": 0, \"stop_overflow\": 0.1, \"target_density\": 0.8}' --native",
+    "request": {
+      "constraints_id": "",
+      "design": "tinyRocket",
+      "placer_cfg": {
+        "Llambda_density_weight_iteration": 1,
+        "Lsub_iteration": 1,
+        "density_weight": 8e-05,
+        "gamma": 4.0,
+        "iteration": 1000,
+        "learning_rate": 0.01,
+        "num_bins": 0,
+        "stop_overflow": 0.1,
+        "target_density": 0.8
+      },
+      "seed": 0,
+      "stage": "route",
+      "tech": "nangate45",
+      "tool_id": "8e06b5030400"
+    },
+    "result": {
+      "area": 54715.7,
+      "drc_violations": 0,
+      "error": "",
+      "grt_wl": null,
+      "ok": true,
+      "power": 0.0884547,
+      "provenance": {
+        "components_imported": 26386,
+        "dp_iterations": 500,
+        "dp_overflow": 0.09997382,
+        "dp_runtime_s": 3.07,
+        "gpl_lines_in_3_3": 0,
+        "handoff_read_def_in_3_3": true,
+        "host": {
+          "cpus": 16,
+          "docker_cpus": null,
+          "gpu": true,
+          "hostname": "e55b47c1e3c7",
+          "mode": "native",
+          "vm": null
+        },
+        "opendp_avg_displacement_um": 1.4,
+        "req_key": "18b7966f4e91c8d5",
+        "reused_grt": false,
+        "seed": 0,
+        "threads": {
+          "cpus": 16,
+          "dreamplace": 8
+        },
+        "tool_id": "8e06b5030400",
+        "toolchain": {
+          "dp_build_arch": "8.6",
+          "dp_depth": "global",
+          "dreamplace_commit": "6627f3327e6cc17db7782c0b90073a498531ca3c",
+          "dreamplace_device": "gpu",
+          "gpu_arch": "8.6",
+          "orfs_image": "native-unpinned",
+          "platform": "nangate45",
+          "timing_driven": false,
+          "torch": "2.9.1+cu129"
+        }
+      },
+      "proxy_hpwl": 1782898.0,
+      "routed_wl": 510284,
+      "runtime_s": 695.4455239772797,
+      "stage": "route",
+      "tns": -243.191,
+      "wns": -0.308182
+    }
+  },
+  "sha256": "a5bd9fb3fc59b984d4377b5f7cbc3323be4399f5562ca5cb55831bb3378d57e5"
+}

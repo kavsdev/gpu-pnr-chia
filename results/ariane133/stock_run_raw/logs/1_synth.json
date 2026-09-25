@@ -1,0 +1,21 @@
+{
+	"synth__design__io": 495,
+	"synth__design__nets": 184209,
+	"synth__design__die__area": 0,
+	"synth__design__core__area": 0,
+	"synth__design__instance__count": 155373,
+	"synth__design__instance__area": 710135,
+	"synth__design__instance__count__stdcell": 155241,
+	"synth__design__instance__area__stdcell": 293671,
+	"synth__design__instance__count__macros": 132,
+	"synth__design__instance__area__macros": 416463,
+	"synth__design__instance__count__padcells": 0,
+	"synth__design__instance__area__padcells": 0,
+	"synth__design__instance__count__cover": 0,
+	"synth__design__instance__area__cover": 0,
+	"synth__design__rows": 0,
+	"synth__design__sites": 0,
+	"synth__flow__warnings__count": 0,
+	"synth__flow__errors__count": 0,
+	"synth__flow__warnings__type_count": 0
+}

@@ -1,0 +1,27 @@
+OpenROAD unknown 
+Features included (+) or not (-): -GPU +GUI -Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 16 thread(s).
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_liberty /OpenROAD-flow-scripts/flow/designs/nangate45/tinyRocket/fakeram45_1024x32.lib
+read_liberty /OpenROAD-flow-scripts/flow/designs/nangate45/tinyRocket/fakeram45_64x32.lib
+read_db /work/tinyRocket/base/results/nangate45/tinyRocket/base/3_2_place_iop.odb
+read_sdc /work/tinyRocket/base/results/nangate45/tinyRocket/base/2_floorplan.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+[INFO RSZ-0026] Removed 2381 buffers.
+Perform port buffering...
+[INFO RSZ-0027] Inserted 130 BUF_X1 input buffers.
+[INFO RSZ-0028] Inserted 124 BUF_X1 output buffers.
+write_def /work/tinyRocket/base/dp/pre_gp.def
+estimate_parasitics -placement
+Report metrics stage 3, global place...
+
+==========================================================================
+global place report_design_area
+--------------------------------------------------------------------------
+Design area 51774 um^2 58% utilization.
+write_db /work/tinyRocket/base/results/nangate45/tinyRocket/base/3_3_place_gp.odb
+Elapsed time: 0:05.79[h:]min:sec. CPU time: user 7.62 sys 1.10 (150%). Peak memory: 227592KB.
+Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
+3_3_place_gp              .odb            5            222 f19b9b40789299a5a138

@@ -1,0 +1,5 @@
+# tools.yml
+vlsi:
+  core:
+    synthesis_tool: "hammer.synthesis.yosys"
+    par_tool: "hammer.par.openroad"

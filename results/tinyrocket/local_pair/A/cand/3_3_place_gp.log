@@ -1,0 +1,31 @@
+OpenROAD unknown 
+Features included (+) or not (-): -GPU +GUI -Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 16 thread(s).
+read_liberty /OpenROAD-flow-scripts/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib
+read_liberty /OpenROAD-flow-scripts/flow/designs/nangate45/tinyRocket/fakeram45_1024x32.lib
+read_liberty /OpenROAD-flow-scripts/flow/designs/nangate45/tinyRocket/fakeram45_64x32.lib
+read_db /work/tinyRocket/da29399a677d6344/orfs/results/nangate45/tinyRocket/base/3_2_place_iop.odb
+read_sdc /work/tinyRocket/da29399a677d6344/orfs/results/nangate45/tinyRocket/base/2_floorplan.sdc
+source /OpenROAD-flow-scripts/flow/platforms/nangate45/setRC.tcl
+[INFO RSZ-0026] Removed 2381 buffers.
+Perform port buffering...
+[INFO RSZ-0027] Inserted 130 BUF_X1 input buffers.
+[INFO RSZ-0028] Inserted 124 BUF_X1 output buffers.
+read_def -incremental /work/tinyRocket/da29399a677d6344/orfs/dp/gp.def
+[INFO ODB-0127] Reading DEF file: /work/tinyRocket/da29399a677d6344/orfs/dp/gp.def
+[INFO ODB-0128] Design: RocketTile
+[INFO ODB-0253]     Updated 26386 components.
+[INFO ODB-0134] Finished DEF file: /work/tinyRocket/da29399a677d6344/orfs/dp/gp.def
+estimate_parasitics -placement
+Report metrics stage 3, global place...
+
+==========================================================================
+global place report_design_area
+--------------------------------------------------------------------------
+Design area 51774 um^2 58% utilization.
+write_db /work/tinyRocket/da29399a677d6344/orfs/results/nangate45/tinyRocket/base/3_3_place_gp.odb
+Elapsed time: 0:05.90[h:]min:sec. CPU time: user 7.81 sys 1.03 (150%). Peak memory: 227560KB.
+Log                       Ext     Elapsed/s Peak Memory/MB sha1sum result [0:20)
+3_3_place_gp              .odb            5            222 c69d3fa33dbbb5ed4470

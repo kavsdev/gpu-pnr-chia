@@ -1,0 +1,26 @@
+[project]
+name = "pnr-node"
+version = "0.1.0"
+description = "GPU-accelerated place-and-route evaluator node for CHIA: splices DREAMPlace global placement into stock OpenROAD/ORFS routing, driven by an LLM-agent search loop."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = []
+# pnr_node itself has zero hard third-party dependencies -- every optional integration (the CHIA
+# framework, an LLM provider SDK) is imported lazily at the call site and degrades gracefully when
+# absent (see pnr_node/node.py's `ChiaFunction` fallback, pnr_node/llm.py's provider docstring).
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+llm-vertex = ["google-genai"]
+llm-anthropic = ["anthropic"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["pnr_node*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

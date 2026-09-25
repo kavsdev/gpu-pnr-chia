@@ -1,0 +1,12 @@
+{
+ "n_total": 60,
+ "n_routed": 60,
+ "n_rejected_or_failed": 0,
+ "spearman_proxy_vs_routed_wl": -0.29278390630658496,
+ "spearman_proxy_vs_score": -0.2667963323145318,
+ "top3_recall": 0.0,
+ "top5_recall": 0.0,
+ "routed_wl_range_pct_of_mean": 51.1,
+ "noise_sigma_pct_assumed": 3.0,
+ "signal_to_noise": 4.26
+}

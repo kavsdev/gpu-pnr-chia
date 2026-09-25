@@ -1,0 +1,10 @@
+# tech.yml
+vlsi:
+  core:
+    technology: "hammer.technology.nangate45"
+    node: 45
+technology:
+  nangate45:
+    install_dir: "/OpenROAD-flow-scripts/flow/platforms/nangate45"
+  core:
+    stackup: "nangate45_3Ma_2Mb_2Mc_2Md"
