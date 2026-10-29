@@ -1,0 +1,6 @@
+# Mid-size designs (between tinyRocket and ariane133): smoke test = the default flow and stock, full route, seed 101.
+# A full route also yields the CTS-stage metrics, so these are the first baseline points too.
+scripts/gap/run_arm.sh swerv_wrapper mid_def_s101 --stage route --seed 101 --flow-cfg '{}'
+scripts/gap/run_stock.sh swerv_wrapper route_s101 --seed 101
+scripts/gap/run_arm.sh jpeg mid_def_s101 --stage route --seed 101 --flow-cfg '{}'
+scripts/gap/run_stock.sh jpeg route_s101 --seed 101

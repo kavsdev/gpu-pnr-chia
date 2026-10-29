@@ -54,8 +54,11 @@ class ResultsDB:
         except sqlite3.OperationalError:
             pass  # Already exists
 
-    def record_eval(self, arm: str, rnd: int, req: EvalRequest, res: EvalResult, note: str = "") -> float:
-        s = score(res)
+    def record_eval(self, arm: str, rnd: int, req: EvalRequest, res: EvalResult, note: str = "",
+                    score_fn=None) -> float:
+        """`score_fn` (default: the original `score`) fills the `score` column; v2 arms pass `score_timing`.
+        `req.flow_cfg` rides in req_json (rows written before it existed read back as an empty flow_cfg)."""
+        s = (score_fn or score)(res)
         self.con.execute(
             "INSERT INTO evals(ts,arm,round,design,stage,req_key,req_json,result_json,score,note) VALUES (?,?,?,?,?,?,?,?,?,?)",
             (time.time(), arm, rnd, req.design, req.stage, req.key(), json.dumps(req.__dict__, default=str),
@@ -77,7 +80,9 @@ class ResultsDB:
         out = []
         for r in rows:
             d = dict(r)
-            d["cfg"] = json.loads(d["req_json"])["placer_cfg"]
+            rq = json.loads(d["req_json"])
+            d["cfg"] = rq["placer_cfg"]
+            d["flow_cfg"] = rq.get("flow_cfg") or {}
             d["result"] = EvalResult.from_json(d["result_json"])
             out.append(d)
         return out
@@ -89,7 +94,9 @@ class ResultsDB:
         out = []
         for r in rows:
             d = dict(r)
-            d["cfg"] = json.loads(d["req_json"])["placer_cfg"]
+            rq = json.loads(d["req_json"])
+            d["cfg"] = rq["placer_cfg"]
+            d["flow_cfg"] = rq.get("flow_cfg") or {}
             d["result"] = EvalResult.from_json(d["result_json"])
             out.append(d)
         return out

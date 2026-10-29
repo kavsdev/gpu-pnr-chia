@@ -1,0 +1,5 @@
+# swerv_wrapper (flat): stock on held-out seeds 105-108; the default flow already has 101-112 (final round).
+scripts/gap/run_stock.sh swerv_wrapper route_s105 --seed 105 --from $HOME/work/netwt/stock_swerv_wrapper_src OPENROAD_HIERARCHICAL=0 SWAP_ARITH_OPERATORS=0
+scripts/gap/run_stock.sh swerv_wrapper route_s106 --seed 106 --from $HOME/work/netwt/stock_swerv_wrapper_src OPENROAD_HIERARCHICAL=0 SWAP_ARITH_OPERATORS=0
+scripts/gap/run_stock.sh swerv_wrapper route_s107 --seed 107 --from $HOME/work/netwt/stock_swerv_wrapper_src OPENROAD_HIERARCHICAL=0 SWAP_ARITH_OPERATORS=0
+scripts/gap/run_stock.sh swerv_wrapper route_s108 --seed 108 --from $HOME/work/netwt/stock_swerv_wrapper_src OPENROAD_HIERARCHICAL=0 SWAP_ARITH_OPERATORS=0

@@ -1,0 +1,8 @@
+# swerv_wrapper smoke, flat netlist, for stock and our flow alike. Upstream config.mk sets OPENROAD_HIERARCHICAL=1 and
+# SWAP_ARITH_OPERATORS=1 (swappable adder architectures, which ORFS only allows with hierarchy). The gpl net-weight slack
+# dump (net_slack_dump.tcl) assumes a flat netlist: OpenSTA segfaults on slack_max of a hierarchical pin, and
+# `get_nets *` misses nets inside kept modules. So both flows run flat without operator swapping; the upstream-config
+# stock run is the reference for what that ORFS feature is worth.
+scripts/gap/run_arm.sh swerv_wrapper mid_def_s101 --stage route --seed 101 --flow-cfg '{}' --orfs-var OPENROAD_HIERARCHICAL=0 --orfs-var SWAP_ARITH_OPERATORS=0
+scripts/gap/run_stock.sh swerv_wrapper route_s101 --seed 101 OPENROAD_HIERARCHICAL=0 SWAP_ARITH_OPERATORS=0
+scripts/gap/run_stock.sh swerv_wrapper upstream_route_s101 --seed 101

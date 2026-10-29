@@ -1,0 +1,3 @@
+scripts/gap/run_arm.sh tinyRocket final_d045_s1 --seed 1 --stage route --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --timing-driven-netwt static --netwt-scheme gpl --rebuf-presplit --dp-extra '{"target_density":0.45}'
+scripts/gap/run_arm.sh tinyRocket final_d045_s2 --seed 2 --stage route --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --timing-driven-netwt static --netwt-scheme gpl --rebuf-presplit --dp-extra '{"target_density":0.45}'
+scripts/gap/run_arm.sh tinyRocket final_d045_s3 --seed 3 --stage route --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --timing-driven-netwt static --netwt-scheme gpl --rebuf-presplit --dp-extra '{"target_density":0.45}'

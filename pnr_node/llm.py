@@ -6,6 +6,7 @@ is a one-line config change:
 
     make_provider({"provider": "vertex", "model": "gemini-3.1-pro-preview", "location": "global"})
     make_provider({"provider": "gemini_api", "model": "gemini-3.1-pro-preview"})  # off-cloud, GEMINI_API_KEY
+    make_provider({"provider": "gemini_rest", "model": "gemini-3.1-pro-preview"})  # stdlib urllib, GEMINI_API_KEY
     make_provider({"provider": "openai_compat", "base_url": "http://localhost:8000/v1", "model": "..."})
     make_provider({"provider": "anthropic", "model": "claude-sonnet-5"})
     make_provider({"provider": "chia", "llm": <chia LLMCallBase instance>})
@@ -248,7 +249,171 @@ class GeminiAPI(VertexGemini):
         super().__init__(**kw)
 
 
+class LLMBudgetExceeded(LLMError):
+    """The shared cost cap is reached: the caller must stop calling the LLM (a v2 LLM arm-run then ends)."""
+
+
+class CostMeter:
+    """Running token / USD estimate across every provider sharing it, with a hard cap. Thread-safe.
+
+    Prices are per 1M tokens; Gemini thinking tokens are billed as output and are counted as output here."""
+
+    def __init__(self, cap_usd: float = 50.0, in_per_m: float = 2.50, out_per_m: float = 15.0):
+        import threading
+
+        self.cap_usd, self.in_per_m, self.out_per_m = float(cap_usd), float(in_per_m), float(out_per_m)
+        self.input_tokens = self.output_tokens = self.calls = 0
+        self._l = threading.Lock()
+
+    @property
+    def spent_usd(self) -> float:
+        return self.input_tokens * self.in_per_m / 1e6 + self.output_tokens * self.out_per_m / 1e6
+
+    def check(self) -> None:
+        with self._l:
+            if self.spent_usd >= self.cap_usd:
+                raise LLMBudgetExceeded(f"LLM cost estimate ${self.spent_usd:.4f} reached cap ${self.cap_usd:.2f}")
+
+    def add(self, input_tokens: Optional[int], output_tokens: Optional[int]) -> None:
+        with self._l:
+            self.calls += 1
+            self.input_tokens += int(input_tokens or 0)
+            self.output_tokens += int(output_tokens or 0)
+
+    def summary(self) -> Dict[str, Any]:
+        return {"calls": self.calls, "input_tokens": self.input_tokens, "output_tokens": self.output_tokens,
+                "est_cost_usd": round(self.spent_usd, 6), "cap_usd": self.cap_usd,
+                "price_per_m": {"input": self.in_per_m, "output": self.out_per_m}}
+
+
+GEMINI_REST_BASE = "https://generativelanguage.googleapis.com/v1beta"
+
+
+class _HTTPFatal(Exception):
+    """A non-retryable HTTP error (4xx other than 429)."""
+
+
+def _gemini_http(method: str, url: str, api_key: str, body: Optional[Dict[str, Any]] = None,
+                 timeout: float = 300.0) -> Dict[str, Any]:
+    """One Gemini REST call. The key goes ONLY in the x-goog-api-key header (never in the URL, logs or errors)."""
+    import urllib.error
+    import urllib.request
+
+    data = json.dumps(body).encode() if body is not None else None
+    req = urllib.request.Request(url, data=data, method=method,
+                                 headers={"Content-Type": "application/json", "x-goog-api-key": api_key})
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return json.loads(r.read().decode())
+    except urllib.error.HTTPError as e:
+        try:
+            msg = json.loads(e.read().decode()).get("error", {}).get("message", "")
+        except Exception:
+            msg = ""
+        err = f"HTTP {e.code} from Gemini REST: {msg[:300]}"
+        if 400 <= e.code < 500 and e.code != 429:
+            raise _HTTPFatal(err) from None
+        raise RuntimeError(err) from None
+
+
+def gemini_list_models(api_key: Optional[str] = None, api_key_env: str = "GEMINI_API_KEY") -> List[Dict[str, Any]]:
+    key = api_key or os.environ.get(api_key_env) or ""
+    if not key:
+        raise LLMError(f"gemini_rest needs an API key in ${api_key_env}")
+    out, token = [], ""
+    while True:
+        url = f"{GEMINI_REST_BASE}/models?pageSize=1000" + (f"&pageToken={token}" if token else "")
+        d = _gemini_http("GET", url, key, timeout=60)
+        out += d.get("models", [])
+        token = d.get("nextPageToken") or ""
+        if not token:
+            return out
+
+
+def pick_newest_pro(models: Sequence[Dict[str, Any]]) -> Optional[str]:
+    """Newest 'gemini-<ver>-pro*' model that supports generateContent. Prefers higher version, then a GA name over
+    a -preview, then the shortest name (the base model over its variants, e.g. -customtools)."""
+    import re
+
+    best = None
+    for m in models:
+        name = (m.get("name") or "").split("/")[-1]
+        if "generateContent" not in (m.get("supportedGenerationMethods") or []):
+            continue
+        mt = re.match(r"gemini-(\d+(?:\.\d+)?)-pro(.*)$", name)
+        if not mt or any(t in mt.group(2) for t in ("tts", "image", "embedding", "vision", "audio")):
+            continue
+        key = (float(mt.group(1)), "preview" not in mt.group(2) and "exp" not in mt.group(2), -len(name), name)
+        if best is None or key > best[0]:
+            best = (key, name)
+    return best[1] if best else None
+
+
+class GeminiREST:
+    """Gemini Developer API over plain REST (stdlib urllib only -- no google-genai needed on the host).
+
+    POST {GEMINI_REST_BASE}/models/<model>:generateContent, key in the x-goog-api-key header from $GEMINI_API_KEY.
+    Token usage comes from the response's usageMetadata; an optional shared `meter` (CostMeter) enforces a hard
+    USD cap: once reached, complete() raises LLMBudgetExceeded without calling the API."""
+
+    def __init__(self, model: str = "gemini-3.1-pro-preview", api_key: Optional[str] = None,
+                 api_key_env: str = "GEMINI_API_KEY", meter: Optional[CostMeter] = None, timeout: float = 300.0,
+                 tries: int = 3, **_: Any):
+        self.name = "gemini_rest"
+        self.model = model
+        self._key = api_key or os.environ.get(api_key_env) or ""
+        self.api_key_env, self.meter, self.timeout, self.tries = api_key_env, meter, timeout, tries
+        self.last_usage: Dict[str, Any] = {}
+
+    def __repr__(self) -> str:  # never show the key
+        return f"GeminiREST(model={self.model!r})"
+
+    def _call(self, body: Dict[str, Any]) -> Dict[str, Any]:
+        url = f"{GEMINI_REST_BASE}/models/{self.model}:generateContent"
+        last: Optional[Exception] = None
+        for i in range(self.tries):
+            try:
+                return _gemini_http("POST", url, self._key, body, self.timeout)
+            except _HTTPFatal as e:
+                raise LLMError(str(e)) from None
+            except Exception as e:
+                last = e
+                if i + 1 < self.tries:
+                    time.sleep(2.0 * (2 ** i))
+        raise LLMError(f"gemini_rest failed after {self.tries} tries: {last}")
+
+    def complete(self, system, messages, *, json_mode=False, max_tokens=4096, temperature=None):
+        if not self._key:
+            raise LLMError(f"gemini_rest needs an API key in ${self.api_key_env}")
+        if self.meter is not None:
+            self.meter.check()
+        gen: Dict[str, Any] = {"maxOutputTokens": max(max_tokens, 2048)}  # thinking tokens count against the cap
+        if json_mode:
+            gen["responseMimeType"] = "application/json"
+        if temperature is not None:
+            gen["temperature"] = temperature
+        body: Dict[str, Any] = {
+            "contents": [{"role": "model" if m.role == "assistant" else "user", "parts": [{"text": m.content}]}
+                         for m in messages],
+            "generationConfig": gen}
+        if system:
+            body["systemInstruction"] = {"parts": [{"text": system}]}
+        t0 = time.time()
+        d = self._call(body)
+        u = d.get("usageMetadata", {}) or {}
+        tin = u.get("promptTokenCount")
+        tout = (u.get("candidatesTokenCount") or 0) + (u.get("thoughtsTokenCount") or 0)
+        self.last_usage = u
+        if self.meter is not None:
+            self.meter.add(tin, tout)
+        cands = d.get("candidates") or []
+        parts = (cands[0].get("content", {}) or {}).get("parts", []) if cands else []
+        text = "".join(p.get("text", "") for p in parts if not p.get("thought"))
+        return LLMResponse(text, self.name, d.get("modelVersion") or self.model, tin, tout, time.time() - t0)
+
+
 _REGISTRY = {
+    "gemini_rest": GeminiREST,
     "vertex": VertexGemini, "gemini": VertexGemini,
     "gemini_api": GeminiAPI, "google_ai": GeminiAPI,
     "openai_compat": OpenAICompat, "openai": OpenAICompat, "vllm": OpenAICompat, "ollama": OpenAICompat,

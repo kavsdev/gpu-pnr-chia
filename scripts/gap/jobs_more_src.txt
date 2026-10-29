@@ -1,0 +1,4 @@
+# Stock --from sources rebuilt (synthesis + floorplan only): prune_finished.sh had removed 1_*/2_* results of the old ones.
+scripts/gap/run_stock.sh ariane133 src --stage floorplan
+scripts/gap/run_stock.sh tinyRocket src --stage floorplan
+scripts/gap/run_stock.sh swerv_wrapper src --stage floorplan OPENROAD_HIERARCHICAL=0 SWAP_ARITH_OPERATORS=0

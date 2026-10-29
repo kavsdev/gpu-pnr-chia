@@ -1,0 +1,16 @@
+--- a/dreamplace/PlaceObj.py
++++ b/dreamplace/PlaceObj.py
+@@ -253,8 +253,11 @@
+                 params, placedb, self.data_collections)
+             self.op_collections.pin_utilization_map_op = self.build_pin_utilization_map(
+                 params, placedb, self.data_collections)
+-            self.op_collections.nctugr_congestion_map_op = self.build_nctugr_congestion_map(
+-                params, placedb, self.data_collections)
++            # NCTUgr needs Bookshelf input (aux) and per-layer capacities; LEF/DEF input has neither, and building
++            # it unconditionally crashed routability mode (unit_horizontal_capacities is None). RUDY/pin maps suffice.
++            if params.adjust_nctugr_area_flag:
++                self.op_collections.nctugr_congestion_map_op = self.build_nctugr_congestion_map(
++                    params, placedb, self.data_collections)
+             # adjust instance area with congestion map
+             self.op_collections.adjust_node_area_op = self.build_adjust_node_area(
+                 params, placedb, self.data_collections)

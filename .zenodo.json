@@ -1,0 +1,11 @@
+{
+  "title": "pnr-node: a GPU-accelerated DREAMPlace/OpenROAD evaluator node for CHIA",
+  "upload_type": "software",
+  "description": "Artifact of the A³ (Agentic Approaches to Architecture) Workshop at MICRO 2026 hackathon short paper \"A GPU-Accelerated DREAMPlace/OpenROAD Evaluator Node for CHIA: Timing-Driven GPU Placement, Cached Multi-Backend Evaluation, and Noise-Aware Agentic Search\". Contains the evaluator node, the Docker environment, the job files, and the results with the scripts that recompute every table and figure.",
+  "creators": [
+    {"name": "Krishnamoorthy, Kaviprashanna", "affiliation": "Independent"}
+  ],
+  "license": "MIT",
+  "keywords": ["placement", "GPU", "DREAMPlace", "OpenROAD", "timing-driven placement", "CHIA", "LLM agents", "design space exploration"],
+  "version": "a3-camera-ready"
+}

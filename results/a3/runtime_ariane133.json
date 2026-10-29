@@ -1,0 +1,210 @@
+{
+ "gpu_s11": {
+  "complete": true,
+  "dir": "$WORK/netwt/ariane133/440263637ea88297/orfs/logs/nangate45/ariane133/base",
+  "dp_wall": 283.25230264663696,
+  "drt_cpu": 14674.410000000002,
+  "drt_wall": 1895.83,
+  "place_wall": 502.612302646637,
+  "stages": {
+   "3_3_place_gp": {
+    "cpu": 51.52,
+    "wall": 33.74
+   },
+   "3_4_place_resized": {
+    "cpu": 123.24,
+    "wall": 72.9
+   },
+   "3_5_place_dp": {
+    "cpu": 158.21,
+    "wall": 112.72
+   },
+   "4_1_cts": {
+    "cpu": 2878.54,
+    "wall": 585.8
+   },
+   "5_1_grt": {
+    "cpu": 5310.94,
+    "wall": 1318.4
+   },
+   "5_2_route": {
+    "cpu": 14674.410000000002,
+    "wall": 1895.83
+   },
+   "5_3_fillcell": {
+    "cpu": 4.82,
+    "wall": 4.82
+   },
+   "6_1_fill": {
+    "cpu": 2.02,
+    "wall": 2.03
+   },
+   "6_1_merge": {
+    "cpu": 13.799999999999999,
+    "wall": 13.81
+   },
+   "6_report": {
+    "cpu": 454.56,
+    "wall": 253.6
+   }
+  },
+  "total_cpu_orfs": 23672.06,
+  "total_wall": 4576.9023026466375
+ },
+ "gpu_s12": {
+  "complete": true,
+  "dir": "$WORK/netwt/ariane133/cfdf485c359bcbd1/orfs/logs/nangate45/ariane133/base",
+  "dp_wall": 277.911269903183,
+  "drt_cpu": 13876.69,
+  "drt_wall": 1806.62,
+  "place_wall": 493.18126990318297,
+  "stages": {
+   "3_3_place_gp": {
+    "cpu": 50.62,
+    "wall": 32.86
+   },
+   "3_4_place_resized": {
+    "cpu": 122.24,
+    "wall": 71.59
+   },
+   "3_5_place_dp": {
+    "cpu": 156.76000000000002,
+    "wall": 110.82
+   },
+   "4_1_cts": {
+    "cpu": 4718.38,
+    "wall": 893.83
+   },
+   "5_1_grt": {
+    "cpu": 6720.71,
+    "wall": 1709.95
+   },
+   "5_2_route": {
+    "cpu": 13876.69,
+    "wall": 1806.62
+   },
+   "5_3_fillcell": {
+    "cpu": 5.029999999999999,
+    "wall": 5.04
+   },
+   "6_1_fill": {
+    "cpu": 2.02,
+    "wall": 2.02
+   },
+   "6_1_merge": {
+    "cpu": 13.57,
+    "wall": 13.57
+   },
+   "6_report": {
+    "cpu": 454.82,
+    "wall": 253.83
+   }
+  },
+  "total_cpu_orfs": 26120.84,
+  "total_wall": 5178.041269903183
+ },
+ "stock_s1": {
+  "complete": true,
+  "dir": "$WORK/netwt/stock_ariane133_time3_s1/logs/nangate45/ariane133/base",
+  "dp_wall": null,
+  "drt_cpu": 12957.37,
+  "drt_wall": 1688.13,
+  "place_wall": 885.59,
+  "stages": {
+   "3_3_place_gp": {
+    "cpu": 1112.81,
+    "wall": 704.82
+   },
+   "3_4_place_resized": {
+    "cpu": 120.79,
+    "wall": 70.42
+   },
+   "3_5_place_dp": {
+    "cpu": 156.21,
+    "wall": 110.35
+   },
+   "4_1_cts": {
+    "cpu": 3294.6699999999996,
+    "wall": 657.68
+   },
+   "5_1_grt": {
+    "cpu": 5852.879999999999,
+    "wall": 1417.5
+   },
+   "5_2_route": {
+    "cpu": 12957.37,
+    "wall": 1688.13
+   },
+   "5_3_fillcell": {
+    "cpu": 4.99,
+    "wall": 4.99
+   },
+   "6_1_fill": {
+    "cpu": 2.02,
+    "wall": 2.03
+   },
+   "6_1_merge": {
+    "cpu": 13.61,
+    "wall": 13.62
+   },
+   "6_report": {
+    "cpu": 452.17,
+    "wall": 252.19
+   }
+  },
+  "total_cpu_orfs": 23967.52,
+  "total_wall": 4921.729999999999
+ },
+ "stock_s2": {
+  "complete": true,
+  "dir": "$WORK/netwt/stock_ariane133_time3_s2/logs/nangate45/ariane133/base",
+  "dp_wall": null,
+  "drt_cpu": 13205.220000000001,
+  "drt_wall": 1676.66,
+  "place_wall": 887.2099999999999,
+  "stages": {
+   "3_3_place_gp": {
+    "cpu": 1132.28,
+    "wall": 709.29
+   },
+   "3_4_place_resized": {
+    "cpu": 121.23,
+    "wall": 71.16
+   },
+   "3_5_place_dp": {
+    "cpu": 151.92,
+    "wall": 106.75999999999999
+   },
+   "4_1_cts": {
+    "cpu": 2736.8999999999996,
+    "wall": 554.21
+   },
+   "5_1_grt": {
+    "cpu": 4279.0599999999995,
+    "wall": 1107.88
+   },
+   "5_2_route": {
+    "cpu": 13205.220000000001,
+    "wall": 1676.66
+   },
+   "5_3_fillcell": {
+    "cpu": 4.82,
+    "wall": 4.82
+   },
+   "6_1_fill": {
+    "cpu": 2.02,
+    "wall": 2.02
+   },
+   "6_1_merge": {
+    "cpu": 13.629999999999999,
+    "wall": 13.63
+   },
+   "6_report": {
+    "cpu": 454.81,
+    "wall": 251.8
+   }
+  },
+  "total_cpu_orfs": 22101.890000000003,
+  "total_wall": 4498.2300000000005
+ }
+}

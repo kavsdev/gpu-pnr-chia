@@ -1,0 +1,9 @@
+# Phase 5a: Ariane arms to global route (3 seeds). Route continues from these (5b).
+scripts/gap/run_arm.sh ariane133 rebufF0602_s0 --stage grt --seed 0 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2
+scripts/gap/run_arm.sh ariane133 rebufF0602_d033_s0 --stage grt --seed 0 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --dp-extra '{"target_density":0.33}'
+scripts/gap/run_arm.sh ariane133 rebufF0602_s1 --stage grt --seed 1 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2
+scripts/gap/run_arm.sh ariane133 rebufF0602_d033_s1 --stage grt --seed 1 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --dp-extra '{"target_density":0.33}'
+scripts/gap/run_arm.sh ariane133 off_s1 --stage grt --seed 1
+scripts/gap/run_arm.sh ariane133 rebufF0602_s2 --stage grt --seed 2 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2
+scripts/gap/run_arm.sh ariane133 rebufF0602_d033_s2 --stage grt --seed 2 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --dp-extra '{"target_density":0.33}'
+scripts/gap/run_arm.sh ariane133 off_s2 --stage grt --seed 2

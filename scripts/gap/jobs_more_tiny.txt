@@ -1,0 +1,9 @@
+# tinyRocket: default flow vs stock on held-out seeds 105-108 (Table A had 101-104).
+scripts/gap/run_arm.sh tinyRocket confirm_def_s105 --stage route --seed 105 --flow-cfg '{}'
+scripts/gap/run_stock.sh tinyRocket route_s105 --stage route --seed 105 --from $HOME/work/netwt/stock_tinyRocket_src
+scripts/gap/run_arm.sh tinyRocket confirm_def_s106 --stage route --seed 106 --flow-cfg '{}'
+scripts/gap/run_stock.sh tinyRocket route_s106 --stage route --seed 106 --from $HOME/work/netwt/stock_tinyRocket_src
+scripts/gap/run_arm.sh tinyRocket confirm_def_s107 --stage route --seed 107 --flow-cfg '{}'
+scripts/gap/run_stock.sh tinyRocket route_s107 --stage route --seed 107 --from $HOME/work/netwt/stock_tinyRocket_src
+scripts/gap/run_arm.sh tinyRocket confirm_def_s108 --stage route --seed 108 --flow-cfg '{}'
+scripts/gap/run_stock.sh tinyRocket route_s108 --stage route --seed 108 --from $HOME/work/netwt/stock_tinyRocket_src

@@ -1,0 +1,5 @@
+scripts/gap/run_arm.sh ariane133 v2_default_cts_s3 --stage cts --seed 3 --flow-cfg '{}'
+scripts/gap/run_arm.sh ariane133 v2_default_cts_s4 --stage cts --seed 4 --flow-cfg '{}'
+scripts/gap/run_arm.sh ariane133 v2_default_cts_s5 --stage cts --seed 5 --flow-cfg '{}'
+scripts/gap/run_arm.sh ariane133 v2_default_cts_s6 --stage cts --seed 6 --flow-cfg '{}'
+scripts/gap/run_arm.sh ariane133 v2_default_cts_s7 --stage cts --seed 7 --flow-cfg '{}'

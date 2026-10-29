@@ -1,0 +1,38 @@
+--- a/dreamplace/Placer.py
++++ b/dreamplace/Placer.py
+@@ -40,6 +40,35 @@
+     placedb(params)
+     logging.info("reading database takes %.2f seconds" % (time.time() - tt))
+ 
++    # ODB-mediated timing-driven: override per-net weights from a "net_name weight"
++    # file computed by OpenSTA on the real ODB (no internal timer). Set BEFORE the
++    # placer copies placedb.net_weights into data_collections (BasicPlace). Only net
++    # names are matched, canonicalized (strip DEF "\" escaping) on both sides.
++    _nwf = getattr(params, "net_weights_file", "")
++    if _nwf:
++        def _canon(s):
++            if isinstance(s, bytes):
++                s = s.decode("utf-8", "replace")
++            return s.replace("\\", "")
++        _name2id = {}
++        for _k, _v in placedb.net_name2id_map.items():
++            _name2id[_canon(_k)] = int(_v)
++        _w = np.array(placedb.net_weights, dtype=placedb.net_weights.dtype).copy()
++        _nset = _nmiss = 0
++        with open(_nwf) as _f:
++            for _line in _f:
++                _p = _line.split()
++                if len(_p) < 2:
++                    continue
++                _i = _name2id.get(_canon(_p[0]))
++                if _i is None:
++                    _nmiss += 1
++                    continue
++                _w[_i] = float(_p[1])
++                _nset += 1
++        placedb.net_weights = _w
++        logging.info("net_weights_file %s: set %d nets, %d unmatched" % (_nwf, _nset, _nmiss))
++
+     # Read timing constraints provided in the benchmarks into out timing analysis
+     # engine and then pass the timer into the placement core.
+     timer = None

@@ -1,0 +1,9 @@
+# Ariane133: W vs default on fresh held-out seeds 107-110 (extends the clean confirmation on 103-106).
+scripts/gap/run_arm.sh ariane133 confirm_win_s107 --stage route --seed 107 --flow-cfg '{"density_weight": 8e-05, "dp_routability": false, "gamma": 2.0, "learning_rate": 0.01, "netwt_max": 8.0, "netwt_pct": 10.0, "rebuf_full": true, "rebuf_stops": "0.6,0.4,0.2", "target_density": 0.45}'
+scripts/gap/run_arm.sh ariane133 confirm_def_s107 --stage route --seed 107 --flow-cfg '{}'
+scripts/gap/run_arm.sh ariane133 confirm_win_s108 --stage route --seed 108 --flow-cfg '{"density_weight": 8e-05, "dp_routability": false, "gamma": 2.0, "learning_rate": 0.01, "netwt_max": 8.0, "netwt_pct": 10.0, "rebuf_full": true, "rebuf_stops": "0.6,0.4,0.2", "target_density": 0.45}'
+scripts/gap/run_arm.sh ariane133 confirm_def_s108 --stage route --seed 108 --flow-cfg '{}'
+scripts/gap/run_arm.sh ariane133 confirm_win_s109 --stage route --seed 109 --flow-cfg '{"density_weight": 8e-05, "dp_routability": false, "gamma": 2.0, "learning_rate": 0.01, "netwt_max": 8.0, "netwt_pct": 10.0, "rebuf_full": true, "rebuf_stops": "0.6,0.4,0.2", "target_density": 0.45}'
+scripts/gap/run_arm.sh ariane133 confirm_def_s109 --stage route --seed 109 --flow-cfg '{}'
+scripts/gap/run_arm.sh ariane133 confirm_win_s110 --stage route --seed 110 --flow-cfg '{"density_weight": 8e-05, "dp_routability": false, "gamma": 2.0, "learning_rate": 0.01, "netwt_max": 8.0, "netwt_pct": 10.0, "rebuf_full": true, "rebuf_stops": "0.6,0.4,0.2", "target_density": 0.45}'
+scripts/gap/run_arm.sh ariane133 confirm_def_s110 --stage route --seed 110 --flow-cfg '{}'

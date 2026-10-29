@@ -28,6 +28,8 @@ class DPResult:
     iterations: Optional[int] = None
     runtime_s: float = 0.0
     error: str = ""
+    netwt: Optional[Dict] = None  # net-weight timing-driven mode: per-round OpenSTA trace (raw_handoff._place_netwt)
+    rebuf: Optional[Dict] = None  # re-buffer mode: trace + "from" (the placement the kept repair ran on; replayed at 3_3)
 
 
 def dp_env(install: str) -> Dict[str, str]:
@@ -53,7 +55,8 @@ def build_config(lef_files: List[str], def_in: str, out_dir: str, cfg: Dict[str,
                  lib_input: Optional[List[str]] = None, sdc_input: Optional[str] = None,
                  wire_resistance_per_micron: Optional[float] = None,
                  wire_capacitance_per_micron: Optional[float] = None,
-                 dp_depth: str = "global") -> Dict:
+                 dp_depth: str = "global", net_weights_file: Optional[str] = None,
+                 warm_start: bool = False, extra: Optional[Dict] = None) -> Dict:
     nb = int(cfg.get("num_bins", 0))
     nb = 0 if nb < 32 else nb  # below 32 makes no sense; treat as auto (DREAMPlace picks the grid)
     gp_iter = int(cfg.get("iteration", 1000))
@@ -73,6 +76,9 @@ def build_config(lef_files: List[str], def_in: str, out_dir: str, cfg: Dict[str,
         "detailed_place_flag": detail,  # DREAMPlace's key; the old "detail_place_flag" was silently ignored
         "plot_flag": 0,
         "enable_fillers": 0,
+        # Fixed-point atomics: the same config gives the same placement. Without it, same-config tinyRocket GPs
+        # differed by ~7% in STA WNS, which swamps single-run arm comparisons.
+        "deterministic_flag": 1,
         "ignore_net_degree": 100,
         "random_seed": int(seed),
         "target_density": cfg["target_density"],
@@ -88,6 +94,14 @@ def build_config(lef_files: List[str], def_in: str, out_dir: str, cfg: Dict[str,
             "optimizer": "nesterov", "Llambda_density_weight_iteration": llambda, "Lsub_iteration": lsub,
         }],
     }
+    if net_weights_file:
+        # Net-weight timing-driven mode: per-net weights computed outside DREAMPlace (OpenSTA, pnr_node/netwt.py) and
+        # loaded by the Placer.py hook (docker/dreamplace_net_weights.patch) into placedb.net_weights, which the
+        # weighted-wirelength operator multiplies. DREAMPlace's own timer stays off (no timing_opt_flag).
+        conf["net_weights_file"] = net_weights_file
+    if warm_start:
+        # Start GP from the DEF's positions (a previous round's placement) instead of a random cluster at the center.
+        conf["random_center_init_flag"] = 0
     if timing_driven:
         # NOT functional in this flow (paper §6). HeteroSTA rather than OpenTimer because OpenTimer needs a
         # `verilog_input` netlist this flow does not produce; HeteroSTA also fails in this build (its timing graph
@@ -102,6 +116,15 @@ def build_config(lef_files: List[str], def_in: str, out_dir: str, cfg: Dict[str,
             conf["wire_resistance_per_micron"] = wire_resistance_per_micron
         if wire_capacitance_per_micron is not None:
             conf["wire_capacitance_per_micron"] = wire_capacitance_per_micron
+    if extra:
+        # Raw DREAMPlace params outside the knob box (e.g. Ariane's 0.33 target density, routability settings);
+        # evaluator-level and part of the toolchain fingerprint (RawHandoffEvaluator.dp_extra). A dict value for
+        # "global_place_stages" is merged into the (single) stage instead of replacing the list.
+        for k, v in extra.items():
+            if k == "global_place_stages" and isinstance(v, dict):
+                conf[k][0].update(v)
+            else:
+                conf[k] = v
     return conf
 
 
@@ -124,14 +147,16 @@ def run_dreamplace(lef_files: List[str], def_in: str, out_dir: str, cfg: Dict[st
                    lib_input: Optional[List[str]] = None, sdc_input: Optional[str] = None,
                    wire_resistance_per_micron: Optional[float] = None,
                    wire_capacitance_per_micron: Optional[float] = None,
-                   dp_depth: str = "global") -> DPResult:
+                   dp_depth: str = "global", net_weights_file: Optional[str] = None,
+                   warm_start: bool = False, extra: Optional[Dict] = None) -> DPResult:
     os.makedirs(out_dir, exist_ok=True)
     conf = build_config(lef_files, def_in, out_dir, cfg, seed, gpu,
                         timing_driven=timing_driven, lib_input=lib_input,
                         sdc_input=sdc_input,
                         wire_resistance_per_micron=wire_resistance_per_micron,
                         wire_capacitance_per_micron=wire_capacitance_per_micron,
-                        dp_depth=dp_depth)
+                        dp_depth=dp_depth, net_weights_file=net_weights_file, warm_start=warm_start,
+                        extra=extra)
     conf_path = os.path.join(out_dir, "dreamplace.json")
     with open(conf_path, "w") as f:
         json.dump(conf, f, indent=2)

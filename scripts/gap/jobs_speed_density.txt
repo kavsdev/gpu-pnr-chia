@@ -1,0 +1,4 @@
+scripts/gap/run_arm.sh ariane133 gpl10_d033_s0_route --stage route --seed 0 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --timing-driven-netwt static --netwt-scheme gpl --dp-extra '{"target_density":0.33}'
+scripts/gap/run_arm.sh ariane133 gpl10_d045_s0_route --stage route --seed 0 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --timing-driven-netwt static --netwt-scheme gpl --dp-extra '{"target_density":0.45}'
+scripts/gap/run_arm.sh ariane133 gpl10_d060_s0_route --stage route --seed 0 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --timing-driven-netwt static --netwt-scheme gpl --dp-extra '{"target_density":0.6}'
+scripts/gap/run_arm.sh ariane133 gpl10_d033_rd_s0_route --stage route --seed 0 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --timing-driven-netwt static --netwt-scheme gpl --dp-extra '{"target_density":0.33}' --dp-routability

@@ -1,0 +1,6 @@
+scripts/gap/run_arm.sh tinyRocket rebufF0602_s0 --stage grt --seed 0 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2
+scripts/gap/run_arm.sh tinyRocket rebufF0602_rd_s0 --stage grt --seed 0 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --dp-routability
+scripts/gap/run_arm.sh tinyRocket rebufF0602_s1 --stage grt --seed 1 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2
+scripts/gap/run_arm.sh tinyRocket rebufF0602_rd_s1 --stage grt --seed 1 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --dp-routability
+scripts/gap/run_arm.sh tinyRocket rebufF0602_s2 --stage grt --seed 2 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2
+scripts/gap/run_arm.sh tinyRocket rebufF0602_rd_s2 --stage grt --seed 2 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --dp-routability

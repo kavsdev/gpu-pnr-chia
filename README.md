@@ -1,178 +1,145 @@
 # pnr-node
 
-A GPU-accelerated place-and-route evaluator node for [CHIA](https://arxiv.org/abs/2606.27350) that splices
-[DREAMPlace](https://github.com/limbo018/DREAMPlace)'s GPU global placement into a stock
-[OpenROAD-flow-scripts](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts) (ORFS) flow, and an
-LLM-agent search loop that drives it — turning placement-knob search into an optimizer for **real, routed PPA**
-(post-detailed-route timing and DRC), not just a placement-stage proxy metric.
+A GPU-accelerated place-and-route evaluator node for [CHIA](https://arxiv.org/abs/2606.27350). It places with
+[DREAMPlace](https://github.com/limbo018/DREAMPlace) on the GPU inside an otherwise stock
+[OpenROAD-flow-scripts](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts) (ORFS) flow, makes that
+placement timing-driven, caches every evaluation, and runs a noise-aware agentic search over flow knobs that is
+judged on routed timing.
 
 ## Paper
 
-**[A GPU-Accelerated DREAMPlace/OpenROAD Evaluator Node for CHIA](paper/main.pdf)** — the full writeup, with the
-funnel design, protocol and every result below traced to a source. In short: DREAMPlace's own wirelength proxy is
-*anti-correlated* with routed wirelength on gcd (Spearman ρ = −0.29), while a cheap global-route estimate is not
-(ρ = +0.99), which motivates the proxy/grt/route funnel below. On tinyRocket, knob search shortens routed
-wirelength by up to 4.4% with every route DRC-clean, while AutoDMP's best trial has 159 DRC violations — but an LLM
-proposer turns out to be indistinguishable from random search once noise is controlled, and stock ORFS keeps
-better setup timing and a faster end-to-end flow than our handoff on both tinyRocket and Ariane133.
+**[A GPU-Accelerated DREAMPlace/OpenROAD Evaluator Node for CHIA: Timing-Driven GPU Placement, Cached
+Multi-Backend Evaluation, and Noise-Aware Agentic Search](paper/main.pdf)** (A³: Agentic Approaches to Architecture Workshop at MICRO 2026,
+hackathon short paper). The tag `a3-camera-ready` is the release that matches the paper. Its results and the scripts that
+recompute them are in [`results/a3/`](results/a3/README.md).
 
-## Why this exists
+In short:
 
-Most learned/automated placement work (including the tools we benchmark against below) optimizes a proxy —
-wirelength, congestion, density estimated *at placement time* — and stops there. The central bet of this project is
-that a proxy which looks good in its own optimization loop can fall apart once it goes through a real router: DRC
-violations, timing regressions, and power-connectivity failures that the proxy never saw. So the evaluator here
-always closes the loop through a **real OpenROAD detailed route**, not just a placement-stage estimate, and the
-search loop is explicitly noise-aware (seed-lottery baselines, held-out validation) so a good number isn't just a
-lucky seed.
+- **Timing-driven GPU placement.** DREAMPlace is interleaved with OpenROAD buffer repair and OpenSTA net weights.
+  On Ariane133 (161k cells, 132 macros) it beats stock ORFS on TNS by 208 ± 169 ns and on WNS by
+  0.096 ± 0.068 ns, with placement 1.8× faster (498 vs. 887 s) and comparable end-to-end runtime. On
+  swerv_wrapper, jpeg and tinyRocket it routes 2–5% shorter, ties on TNS, and loses 0.059 ns WNS on swerv_wrapper.
+- **Noise-aware search.** Candidates are scored after clock-tree synthesis (CTS), the cheapest stage whose timing
+  ranks configurations like the routed result. A routed final round adopts a candidate only if it beats the
+  default by more than seed noise. Five proposers (default, random, a tree-structured Parzen estimator (TPE), an LLM, and an
+  LLM with timing diagnosis) were compared on four designs. The round keeps the default on jpeg and tinyRocket. On swerv_wrapper it adopts an
+  LLM-proposed configuration that improves WNS on 11 of 12 test seeds; its score gain is within seed noise.
+- **Reusable node.** One request/result contract over two flow backends (ORFS on NanGate45, LibreLane on sky130),
+  placement and routing as separate GPU and CPU CHIA functions, and content-addressed caching that replays
+  finished experiments without rerunning tools.
 
-## How the splice works
-
-ORFS runs completely unmodified through floorplan/PDN/IO placement. The one step that's replaced is global
-placement (`global_place.tcl`): instead of running OpenROAD's built-in placer, it either dumps the current
-placement to a DEF (`pre_gp.def`) or, once DREAMPlace has placed it on GPU, re-imports the result
-(`read_def -incremental gp.def`). Every stage after that — resize, legalization, CTS, global route, detailed route,
-signoff reporting — is stock ORFS, untouched. So the numbers you get are real OpenROAD output, not a hand-rolled
-approximation of one.
+## How the flow works
 
 ```
-ORFS (stock)  →  floorplan, PDN, IO placement            [unmodified]
-                        │
-                        ▼
-              global_place.tcl  →  dump DEF  →  DREAMPlace (GPU)  →  import DEF   [the splice]
-                        │
-                        ▼
-ORFS (stock)  →  resize, legalize, CTS, route, signoff    [unmodified]
+ORFS (stock)    floorplan, PDN, IO placement                                   [unmodified]
+                      │  design written as DEF
+                      ▼
+DREAMPlace (GPU)  global placement to overflow 0.6 ─┐
+OpenROAD          repair_design + re-buffer,        │  repeated at overflow 0.2,
+OpenSTA           per-net slack → net weights ──────┘  last run to 0.1
+                      │  cells read back into OpenROAD
+                      ▼
+ORFS (stock)    resize, legalize, CTS, global and detailed route, reports     [unmodified]
 ```
 
-Implementation: `pnr_node/raw_handoff.py` (`RawHandoffEvaluator`). The evaluator supports a **three-tier funnel** so
-a search loop doesn't have to pay for a full route on every candidate:
-
-| Tier | What it measures | Cost |
-|---|---|---|
-| `proxy` | DREAMPlace's own placement cost | cheapest, but **anti-correlated** with routed quality — do not trust it alone |
-| `grt` | Global-route wirelength/timing estimate | cheap, **strongly correlated** with final routed quality (see `results/gcd/proxy_route_study_gcd.md`) |
-| `route` | Full detailed route + signoff report | expensive, ground truth |
+Stock ORFS's global placer also pauses twice to repair the netlist and reweight critical nets; the GPU flow does
+the same around DREAMPlace. The worst 10% of nets by slack get weights of up to 5. Before the first repair, nets
+with more than 2000 loads are split by a 5×5 grid of buffers. Target density is 0.45. Implementation:
+`pnr_node/raw_handoff.py` (`RawHandoffEvaluator`, `FINAL_FLOW_KWARGS`), `pnr_node/netwt.py`,
+`pnr_node/rebuf_presplit.tcl`.
 
 ## What's in this repo
 
 ```
-pnr_node/                  the evaluator + search framework (pure Python, no hard third-party deps)
-├── contract.py              EvalRequest/EvalResult, score() — the objective the search optimizes
-├── raw_handoff.py           the DEF-splice mechanism (core of the project)
-├── dreamplace_runner.py     DREAMPlace config/invocation. Timing-driven options are wired but NOT functional
-│                             (audited: the timer never receives a netlist; see paper §6)
-├── node.py                  CHIA @ChiaFunction wiring — GPU-only place / CPU-only route split, ChiaEvaluator
-├── batch.py                 machine-local place-once/route-parallel batching
-├── study.py                 proxy-vs-route rank-correlation study (place / route / analyze)
-├── search.py                the LLM-agent search loop; RandomProposer and LLMProposer both implement
-│                             propose(history, n), so either (or a new one) runs in the same loop
-├── experiment.py            noise-aware multi-arm experiment runner (seed-lottery baseline, repair(), reports)
-├── report.py / db.py        result storage + arm-comparison writeups; db.py's CachedEvaluator wraps any evaluator
-├── llm.py                   provider-agnostic LLM layer (Vertex/Gemini API/Anthropic/OpenAI-compatible/CHIA/fake,
-│                             lazy-imported) — make_provider() picks one from a config dict
-├── manifest.py               capability manifest: stages, metrics, knob ranges, measured noise, known gaps
-├── mock_eval.py              fast synthetic evaluator for testing the search loop without real EDA tools —
-│                             our own test suite runs the full experiment driver against it
-├── evidence.py                writes reproducibility bundles alongside every real result
-└── librelane_handoff.py      DREAMPlace-through-LibreLane splice (sky130A), same EvalRequest/EvalResult interface
-                               as raw_handoff.py — a second, ChiaEvaluator-compatible backend, not just a script
+pnr_node/                  the evaluator and search framework (pure Python, no hard third-party deps)
+├── contract.py              EvalRequest/EvalResult, the flow knobs, score_timing() (the search objective)
+├── raw_handoff.py           the ORFS + DREAMPlace flow (handoff, repair stages, net weights, stage stops)
+├── netwt.py                 OpenSTA slack → per-net weights; net_weights.tcl, net_slack_dump.tcl
+├── rebuf_presplit.tcl       high-fanout net presplit before the first repair
+├── dreamplace_runner.py     DREAMPlace config and invocation (its built-in timer stays off)
+├── node.py                  CHIA @ChiaFunction wiring: GPU-only place / CPU-only route, ChiaEvaluator
+├── arm_eval.py              host-side evaluator: one scripts/gap/run_arm.sh docker run per evaluation
+├── search.py                search loop and proposers (random, TPE, LLM), all implementing propose(history, n)
+├── diag.py, diag_proposer.py  the LLM proposer with timing diagnosis: per-run evidence and stated hypotheses
+├── experiment.py            search driver, validation, and the routed final round
+├── db.py, report.py         ResultsDB, CachedEvaluator, reports
+├── llm.py                   provider-agnostic LLM layer (Gemini, Anthropic, OpenAI-compatible, CHIA, fake)
+├── mock_eval.py             synthetic evaluators for running the search loop without EDA tools
+├── study.py                 rank-correlation study (does a cheap metric order candidates like an expensive one?)
+├── batch.py, evidence.py, manifest.py   batching, reproducibility bundles, capability manifest
+└── librelane_handoff.py     the same DREAMPlace handoff through LibreLane (sky130A)
 
-docker/                    the actual Dockerfiles the evaluators run inside (pulled from the real build, not
-                            reconstructed) — base (ORFS + CHIA worker) → hammer (own venv, pydantic conflict with
-                            CHIA) → dp (own venv, DREAMPlace + CUDA-pinned torch); build_dreamplace.sh is the real
-                            cmake build DREAMPlace's own install directory comes from; run_local.sh builds and runs
-                            the same images with no cloud/GCP dependency
-packer/                    GCE image template to provision a fresh VM from these Dockerfiles + a public NVIDIA/CUDA
-                            base image, so the whole environment is reproducible from code, not a hand-tuned VM
-
-flows/                     flow-side scripts used by the backends and baselines
-├── librelane_sky130/        the LibreLane-side flow script `librelane_handoff.py` (above) talks to — sky130A/`spm`,
-│                             DREAMPlace actually spliced through LibreLane's Step API
-└── autodmp/                  scripts used to get NVlabs' AutoDMP running against our designs for comparison
-                               (DEF/LEF→Bookshelf conversion, config, macro-placement fixes) — see results/tinyrocket/
-
-results/                   every real, evidence-linked finding, one folder per design/comparison, including the raw
-                            data cited by the paper (search-arm databases, cache-replay logs, the laptop runtime pair)
-tests/                     75 tests, `pytest tests/`
+docker/                    Dockerfiles (base: ORFS + CHIA worker; hammer; dp: DREAMPlace + CUDA torch), the
+                            DREAMPlace patches, and run_local.sh, which builds everything on one Linux + NVIDIA box
+scripts/arms/              search and final-round drivers, the A3 job file, export and verify scripts
+scripts/gap/               run_arm.sh / run_stock.sh (one GPU-flow / stock ORFS run in docker), queue.sh, job files
+scripts/                   flow_time.py, stage_timing.py, make_fig_results.py
+results/a3/                the A3 paper's results (see its README)
+results/                   results of the earlier version of the paper (commit a17c44a)
+flows/, packer/            LibreLane and AutoDMP flow scripts; GCE image template
+paper/                     LaTeX sources and main.pdf
+tests/                     157 tests, `pytest tests/`
 ```
 
 ## Quickstart
 
 ```bash
 pip install -e ".[test]"
-pytest tests/                                    # 75 tests, no EDA tools or GPU required
+pytest tests/                                   # 157 tests, no EDA tools or GPU required
 
-# Run one real evaluation through the splice (needs docker + the ORFS image + a DREAMPlace install):
-python -m pnr_node.raw_handoff --design gcd --stage route \
-    --work ~/work/handoff --dp-install ~/work/dreamplace/install2
+# Recompute the paper's tables and figure data from results/a3/
+python3 scripts/arms/verify_table_a.py
+python3 scripts/arms/verify_final_round.py
+python3 scripts/arms/fidelity_corr.py
+python3 scripts/arms/verify_w.py
 
-# Run the full noise-aware, LLM-driven arm comparison (needs a CHIA cluster; --mock runs without one):
-python -m pnr_node.experiment --design gcd --db ./gcd.db --out ./gcd_results.json --mock
+# Run the search loop end to end on a synthetic evaluator (no tools, no LLM key)
+python3 scripts/arms/run_arms.py --design tinyRocket --arms default,random,tpe,llm,llm_diag --reps 1 \
+    --budget-evals 8 --batch 4 --stage cts --seeds 0 --promote-top 1 --promote-seeds 1 --default-seeds 0,1 \
+    --validate-seeds 101 --validate-stage route --db d.sqlite --out d.json --llm-provider fake --dry-run
 
-# Or fully local, no cloud/GCP: see LOCAL_QUICKSTART.md and docker/run_local.sh
+# Build the toolchain locally (Docker + NVIDIA container runtime; see LOCAL_QUICKSTART.md), then run one
+# GPU-flow evaluation through the full route
+docker/run_local.sh
+export DP_INSTALL=$HOME/work/dreamplace/install_local      # run_local.sh's DREAMPlace install
+scripts/gap/run_arm.sh gcd demo --seed 1 --stage route --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 \
+    --timing-driven-netwt static --netwt-scheme gpl --rebuf-presplit --dp-extra '{"target_density":0.45}'
 ```
-
-`pnr_node` itself has **zero hard third-party dependencies** — the CHIA framework and any LLM provider SDK are
-imported lazily and degrade gracefully when absent (see `node.py`'s `ChiaFunction` fallback and `llm.py`'s provider
-docstring), so the core package and its tests run anywhere with a plain Python 3.10+.
-
-## Results
-
-| Design | What was tested | Result | Detail |
-|---|---|---|---|
-| gcd | proxy/grt/route correlation study, 60 configs | Proxy (DREAMPlace HPWL) is **anti-correlated** with routed WL (ρ = −0.29, p = 0.023); the global-route estimate is strongly correlated (ρ = +0.99) — the funnel's justification | [`results/gcd/proxy_route_study_gcd.md`](results/gcd/proxy_route_study_gcd.md) |
-| gcd | LLM-driven vs. random vs. default-seed search, 5 arms | Negative/neutral — gcd is too small a design to clear the seed-lottery 2σ bar, explained not hidden | [`results/gcd/gcd_arms.md`](results/gcd/gcd_arms.md) |
-| tinyRocket | Held-out search (LLM grt-feedback, LLM proxy-only, random grt-feedback) vs. default, 4 held-out seeds | Random search and the proxy-only LLM beat the default by 4.3–4.4% (clearing 2σ); the LLM with grt feedback by 2.8% (not clearing it). 0 DRC on every route. But the **LLM proposer is indistinguishable from random search** here (llm_grt − random_grt = +1.47%, 2·SE = 2.9%: no detectable difference), and stock ORFS keeps better setup timing (held-out WNS −0.20 to −0.27 ns vs. stock −0.122 ns) | [`results/tinyrocket/tinyrocket_arms.md`](results/tinyrocket/tinyrocket_arms.md) addendum, [`results/tinyrocket/random_controls_raw/analyze_output.txt`](results/tinyrocket/random_controls_raw/analyze_output.txt) |
-| tinyRocket | Our search vs. NVlabs AutoDMP, real detailed route | Every one of our arms is 0 DRC; AutoDMP's best trial (run through a Bookshelf conversion, outside its tested setup) is 159 DRC, never produces usable timing (a real VDD-connectivity failure), and its detailed route took 5 h 06 min against under an hour for each of ours | [`results/tinyrocket/autodmp_vs_llm_tinyrocket.md`](results/tinyrocket/autodmp_vs_llm_tinyrocket.md) |
-| tinyRocket, laptop (RTX 3060) | Our handoff vs. stock ORFS, full flow, one run each | With DREAMPlace legalization + detailed placement on: placement stage 21.8 s vs. 32.2 s (ours faster), but downstream is 1.39× slower and end-to-end is 1.29× slower (791 vs. 611 s; 1.14×, 697 s, with the default global-only handoff); routed WL within noise (+0.3%), WNS worse (−0.30 vs. −0.12 ns), 0 DRC both. The laptop's stock run reproduced the cloud stock-ORFS result bit-for-bit (WL, DRC, WNS) | [`results/tinyrocket/local_pair/compare.md`](results/tinyrocket/local_pair/compare.md) |
-| Ariane133 (132 macros, cloud) | Same handoff vs. stock ORFS, full flow | Global placement drops 768.6 s → 50.6 s, but the flow is ~1.9× slower overall (resize 7.6×, detailed route 4.8×) and loses on quality: WNS −1.10 vs. −0.27 ns, routed WL 6.96M vs. 6.14M µm | [`results/ariane133/ariane133_vs_stock.md`](results/ariane133/ariane133_vs_stock.md) |
-| gcd | Hammer-wrapped OpenROAD (hand-tuned toward ORFS) vs. direct ORFS integration | Hammer is 26.3% longer in WL (5593 vs. 4429 µm) and about 2× worse WNS (−0.32 vs. −0.162 ns), with equal power. On aes it fails legalization (DPL-0038), so we kept direct ORFS | [`results/hammer_orfs_parity.md`](results/hammer_orfs_parity.md) |
-| sky130 `spm` / `test_sram_macro` | Second flow-engine backend: LibreLane with the same DREAMPlace splice | `spm`: Magic DRC = 0, Netgen LVS = 0, WNS = 0. `test_sram_macro` (2 SRAM macros): LVS = 0, 532 DRC violations, all one rule class (`nwell.4`) | [`results/librelane_sky130/REPORT.md`](results/librelane_sky130/REPORT.md) |
-
-**Reading guide**: every result file states its sources (which raw report JSON/CSV/DB backs each number) and its
-caveats up front — noise/statistical-confidence limits, tier mismatches, anything that was pushed outside a
-compared tool's tested configuration. None of the numbers here are cited without the file that they came from.
-Some older result files predate a 2026-09-25 audit that found DREAMPlace's timing-driven mode never functioned as
-intended; those files now carry a correction note pointing to paper §6 rather than being rewritten.
 
 ## Reproducing the paper
 
 | What | Command |
 |---|---|
-| Figs 1–2 (overview, protocol) | `make -C paper/tikz` |
-| Fig 3 (proxy vs. routed scatter) | `python3 scripts/make_fig_scatter.py` |
-| Fig 4 (tinyRocket floorplans) | `python3 scripts/make_fig_floorplans.py` |
-| Table 1 (tinyRocket search arms) | `python3 random_controls_run.py analyze --db results/tinyrocket/random_controls_raw/merged.db` |
-| §3 cache-replay claim | `python3 scripts/replay_cache_check.py <db>` (e.g. `results/tinyrocket/repair3_raw/tinyRocket_main.db`) |
-| §5 laptop runtime pair | `python3 results/tinyrocket/local_pair/collect.py` |
-| The paper itself | `make -C paper` (needs a TeX install with Libertine/Biolinum/newtx; outputs `paper/main.pdf`) |
+| Tables 1–2, Fig. 3 data, runtime | see [`results/a3/README.md`](results/a3/README.md) |
+| Fig. 3 | `python3 scripts/make_fig_results.py` |
+| Figs. 1–2 | `make -C paper/tikz` |
+| Searches and final rounds | `scripts/arms/jobs_a3.txt` |
+| Other routed runs (test seeds, stock ORFS, runtime) | `scripts/gap/queue.sh scripts/gap/jobs_<name>.txt [N]` |
+| The paper | `make -C paper` (needs a TeX install with Libertine/Biolinum/newtx) |
+
+The toolchain is the ORFS image `openroad/orfs@sha256:573c1716efa0e286c4f641c26d343e20929d58d27fffbb22be2d0b93f09764f6`
+and DREAMPlace commit `6627f33` with the patches in `docker/`; `docker/run_local.sh` builds both.
 
 ## Reusing the node
 
-The same interfaces the paper's §3 "Reuse beyond this flow" describes:
-
-- **Proposer** — anything implementing `propose(history, n)` runs in the search loop alongside `RandomProposer` and
-  `LLMProposer` (`pnr_node/search.py`).
-- **LLM provider** — `pnr_node/llm.py`'s `make_provider()` selects Gemini (Vertex or the API-key path), an
-  OpenAI-compatible endpoint, Anthropic, or CHIA's own LLM call from a config dict.
-- **Evaluator** — anything implementing `evaluate(EvalRequest)` gets caching (`db.py`'s `CachedEvaluator`), the
-  three-tier funnel and the noise protocol for free via `experiment.run_experiment`.
-- **No search loop needed** — `ChiaEvaluator.evaluate(req)` (`pnr_node/node.py`) runs a single routed evaluation
-  directly.
-- **Rank-correlation study** — `pnr_node/study.py` is a standalone command (place / route / analyze) for checking
-  whether a cheap metric orders candidates like an expensive one on a new design or knob range, before a funnel is
-  built on it.
-- **Mock evaluator** — `pnr_node/mock_eval.py`'s `MockEvaluator` runs the full experiment driver with no EDA tools
-  or GPU; it's what the test suite above uses.
+- **Proposer**: anything implementing `propose(history, n)` runs in the search loop (`pnr_node/search.py`).
+- **LLM provider**: `pnr_node/llm.py`'s `make_provider()` selects one from a config dict.
+- **Evaluator**: anything implementing `evaluate(EvalRequest)` gets caching (`db.py`'s `CachedEvaluator`), the
+  search driver and the routed final round (`pnr_node/experiment.py`).
+- **Single evaluation**: `ChiaEvaluator.evaluate(req)` (`pnr_node/node.py`) runs one routed evaluation directly.
+- **Rank-correlation study**: `pnr_node/study.py` checks whether a cheap metric orders candidates like an
+  expensive one on a new design or knob range.
+- **Mock evaluators**: `pnr_node/mock_eval.py` runs the full driver with no EDA tools or GPU.
 
 ## Limitations
 
-DREAMPlace's timing-driven mode does not work in this flow: the timer never receives a netlist from the ORFS
-handoff, and net reweighting is gated to fire after the runs here have already converged. Every result in this repo
-therefore uses wirelength-driven placement, while stock ORFS places timing-driven — the likely reason our handoff
-loses on setup timing. See paper §6 for what fixing it would take.
+Only global placement runs on the GPU. Timing-driven placement still needs OpenROAD repair and OpenSTA on the
+CPU, and these take nearly all of the placement time; CTS and routing take most of the end-to-end runtime. So the
+GPU flow matches stock ORFS end to end and is slower on small designs. The evidence covers four NanGate45 designs,
+one of them (Ariane133) large and macro-dense. The per-net slack step needs a flat netlist, so hierarchical designs
+are flattened. With two or three search runs per proposer and 4–12 test seeds per design, the study cannot rank
+the proposers. CTS was validated as the search stage on Ariane133 only. See the paper's §5.
 
 ## License
 
-MIT — see [`LICENSE`](LICENSE).
+MIT, see [`LICENSE`](LICENSE).

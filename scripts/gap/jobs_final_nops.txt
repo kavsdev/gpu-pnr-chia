@@ -1,0 +1,1 @@
+scripts/gap/run_arm.sh ariane133 final_d045_nops_s1_idle --seed 1 --stage route --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --timing-driven-netwt static --netwt-scheme gpl --dp-extra '{"target_density":0.45}'

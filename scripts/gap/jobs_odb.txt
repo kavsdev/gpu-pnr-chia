@@ -1,0 +1,2 @@
+scripts/gap/run_arm.sh ariane133 odbv1_ps_s0_route --stage route --seed 0 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --timing-driven-netwt static --netwt-scheme gpl --rebuf-presplit
+scripts/gap/run_arm.sh ariane133 odbv1_s0_route --stage route --seed 0 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --timing-driven-netwt static --netwt-scheme gpl

@@ -1,0 +1,3 @@
+scripts/gap/run_stock.sh tinyRocket route_s1 --stage route --seed 1 --from $HOME/work/netwt/stock_tinyRocket
+scripts/gap/run_stock.sh tinyRocket route_s2 --stage route --seed 2 --from $HOME/work/netwt/stock_tinyRocket
+scripts/gap/run_stock.sh tinyRocket route_s3 --stage route --seed 3 --from $HOME/work/netwt/stock_tinyRocket

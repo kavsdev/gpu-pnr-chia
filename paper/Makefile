@@ -4,7 +4,7 @@
 
 MAIN = main
 
-$(MAIN).pdf: $(MAIN).tex references.bib acmart.cls ACM-Reference-Format.bst
+$(MAIN).pdf: $(MAIN).tex references.bib acmart.cls ACM-Reference-Format.bst fig_results.pdf $(wildcard tikz/*.pdf)
 	pdflatex -interaction=nonstopmode -halt-on-error $(MAIN).tex
 	-bibtex $(MAIN)
 	pdflatex -interaction=nonstopmode -halt-on-error $(MAIN).tex

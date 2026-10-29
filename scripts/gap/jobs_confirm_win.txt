@@ -1,0 +1,16 @@
+scripts/gap/run_arm.sh ariane133 confirm_win_s103 --stage route --seed 103 --flow-cfg '{"density_weight": 8e-05, "dp_routability": false, "gamma": 2.0, "learning_rate": 0.01, "netwt_max": 8.0, "netwt_pct": 10.0, "rebuf_full": true, "rebuf_stops": "0.6,0.4,0.2", "target_density": 0.45}'
+scripts/gap/run_arm.sh ariane133 confirm_def_s103 --stage route --seed 103 --flow-cfg '{}'
+scripts/gap/run_arm.sh ariane133 confirm_win_s104 --stage route --seed 104 --flow-cfg '{"density_weight": 8e-05, "dp_routability": false, "gamma": 2.0, "learning_rate": 0.01, "netwt_max": 8.0, "netwt_pct": 10.0, "rebuf_full": true, "rebuf_stops": "0.6,0.4,0.2", "target_density": 0.45}'
+scripts/gap/run_arm.sh ariane133 confirm_def_s104 --stage route --seed 104 --flow-cfg '{}'
+scripts/gap/run_arm.sh ariane133 confirm_win_s105 --stage route --seed 105 --flow-cfg '{"density_weight": 8e-05, "dp_routability": false, "gamma": 2.0, "learning_rate": 0.01, "netwt_max": 8.0, "netwt_pct": 10.0, "rebuf_full": true, "rebuf_stops": "0.6,0.4,0.2", "target_density": 0.45}'
+scripts/gap/run_arm.sh ariane133 confirm_def_s105 --stage route --seed 105 --flow-cfg '{}'
+scripts/gap/run_arm.sh ariane133 confirm_win_s106 --stage route --seed 106 --flow-cfg '{"density_weight": 8e-05, "dp_routability": false, "gamma": 2.0, "learning_rate": 0.01, "netwt_max": 8.0, "netwt_pct": 10.0, "rebuf_full": true, "rebuf_stops": "0.6,0.4,0.2", "target_density": 0.45}'
+scripts/gap/run_arm.sh ariane133 confirm_def_s106 --stage route --seed 106 --flow-cfg '{}'
+scripts/gap/run_stock.sh ariane133 route_s101 --stage route --seed 101 --from $HOME/work/netwt/stock_ariane133
+scripts/gap/run_stock.sh ariane133 route_s102 --stage route --seed 102 --from $HOME/work/netwt/stock_ariane133
+scripts/gap/run_stock.sh ariane133 route_s103 --stage route --seed 103 --from $HOME/work/netwt/stock_ariane133
+scripts/gap/run_stock.sh ariane133 route_s104 --stage route --seed 104 --from $HOME/work/netwt/stock_ariane133
+scripts/gap/run_arm.sh tinyRocket confirm_win_s101 --stage route --seed 101 --flow-cfg '{"density_weight": 8e-05, "dp_routability": false, "gamma": 2.0, "learning_rate": 0.01, "netwt_max": 8.0, "netwt_pct": 10.0, "rebuf_full": true, "rebuf_stops": "0.6,0.4,0.2", "target_density": 0.45}'
+scripts/gap/run_arm.sh tinyRocket confirm_win_s102 --stage route --seed 102 --flow-cfg '{"density_weight": 8e-05, "dp_routability": false, "gamma": 2.0, "learning_rate": 0.01, "netwt_max": 8.0, "netwt_pct": 10.0, "rebuf_full": true, "rebuf_stops": "0.6,0.4,0.2", "target_density": 0.45}'
+scripts/gap/run_arm.sh tinyRocket confirm_win_s103 --stage route --seed 103 --flow-cfg '{"density_weight": 8e-05, "dp_routability": false, "gamma": 2.0, "learning_rate": 0.01, "netwt_max": 8.0, "netwt_pct": 10.0, "rebuf_full": true, "rebuf_stops": "0.6,0.4,0.2", "target_density": 0.45}'
+scripts/gap/run_arm.sh tinyRocket confirm_win_s104 --stage route --seed 104 --flow-cfg '{"density_weight": 8e-05, "dp_routability": false, "gamma": 2.0, "learning_rate": 0.01, "netwt_max": 8.0, "netwt_pct": 10.0, "rebuf_full": true, "rebuf_stops": "0.6,0.4,0.2", "target_density": 0.45}'

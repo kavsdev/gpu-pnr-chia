@@ -1,0 +1,20 @@
+# Phase 1: noise floor (tinyRocket, grt). stock full_s1 / noTD_s1 were started by hand.
+scripts/gap/run_arm.sh tinyRocket off_s1 --stage grt --seed 1
+scripts/gap/run_arm.sh tinyRocket off_s2 --stage grt --seed 2
+scripts/gap/run_stock.sh tinyRocket full_s2 --stage grt --seed 2 --from $HOME/work/netwt/stock_tinyRocket
+scripts/gap/run_stock.sh tinyRocket full_s3 --stage grt --seed 3 --from $HOME/work/netwt/stock_tinyRocket
+# Phase 2: stock ablation ladder
+scripts/gap/run_stock.sh tinyRocket noRD_s1 --stage grt --seed 1 --from $HOME/work/netwt/stock_tinyRocket GPL_ROUTABILITY_DRIVEN=0
+scripts/gap/run_stock.sh tinyRocket virtual_s1 --stage grt --seed 1 --from $HOME/work/netwt/stock_tinyRocket GPL_KEEP_OVERFLOW=0
+scripts/gap/run_stock.sh tinyRocket plain_s1 --stage grt --seed 1 --from $HOME/work/netwt/stock_tinyRocket GPL_TIMING_DRIVEN=0 GPL_ROUTABILITY_DRIVEN=0
+scripts/gap/run_stock.sh tinyRocket d80_s1 --stage grt --seed 1 --from $HOME/work/netwt/stock_tinyRocket PLACE_DENSITY=0.8
+scripts/gap/run_stock.sh tinyRocket noRD_s2 --stage grt --seed 2 --from $HOME/work/netwt/stock_tinyRocket GPL_ROUTABILITY_DRIVEN=0
+scripts/gap/run_stock.sh tinyRocket virtual_s2 --stage grt --seed 2 --from $HOME/work/netwt/stock_tinyRocket GPL_KEEP_OVERFLOW=0
+scripts/gap/run_stock.sh tinyRocket noTD_s2 --stage grt --seed 2 --from $HOME/work/netwt/stock_tinyRocket GPL_TIMING_DRIVEN=0
+scripts/gap/run_stock.sh tinyRocket plain_s2 --stage grt --seed 2 --from $HOME/work/netwt/stock_tinyRocket GPL_TIMING_DRIVEN=0 GPL_ROUTABILITY_DRIVEN=0
+scripts/gap/run_stock.sh tinyRocket d80_s2 --stage grt --seed 2 --from $HOME/work/netwt/stock_tinyRocket PLACE_DENSITY=0.8
+scripts/gap/run_stock.sh tinyRocket noRD_s3 --stage grt --seed 3 --from $HOME/work/netwt/stock_tinyRocket GPL_ROUTABILITY_DRIVEN=0
+scripts/gap/run_stock.sh tinyRocket virtual_s3 --stage grt --seed 3 --from $HOME/work/netwt/stock_tinyRocket GPL_KEEP_OVERFLOW=0
+scripts/gap/run_stock.sh tinyRocket noTD_s3 --stage grt --seed 3 --from $HOME/work/netwt/stock_tinyRocket GPL_TIMING_DRIVEN=0
+scripts/gap/run_stock.sh tinyRocket plain_s3 --stage grt --seed 3 --from $HOME/work/netwt/stock_tinyRocket GPL_TIMING_DRIVEN=0 GPL_ROUTABILITY_DRIVEN=0
+scripts/gap/run_stock.sh tinyRocket d80_s3 --stage grt --seed 3 --from $HOME/work/netwt/stock_tinyRocket PLACE_DENSITY=0.8

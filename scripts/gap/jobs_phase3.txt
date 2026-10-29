@@ -1,0 +1,21 @@
+# Phase 3: match DREAMPlace to stock (tinyRocket, grt, seeds 0-2). 'st1' = --timing-driven-netwt static --netwt-k 1
+scripts/gap/run_arm.sh tinyRocket st1_s0 --stage grt --seed 0 --timing-driven-netwt static --netwt-k 1
+scripts/gap/run_arm.sh tinyRocket off_d0.75_s0 --stage grt --seed 0 --cfg '{"target_density":0.75}'
+scripts/gap/run_arm.sh tinyRocket st1_d0.75_s0 --stage grt --seed 0 --timing-driven-netwt static --netwt-k 1 --cfg '{"target_density":0.75}'
+scripts/gap/run_arm.sh tinyRocket off_d0.78_s0 --stage grt --seed 0 --cfg '{"target_density":0.78}'
+scripts/gap/run_arm.sh tinyRocket st1_d0.78_s0 --stage grt --seed 0 --timing-driven-netwt static --netwt-k 1 --cfg '{"target_density":0.78}'
+scripts/gap/run_arm.sh tinyRocket st1_keepbuf_s0 --stage grt --seed 0 --orfs-var GPL_TIMING_DRIVEN=0 --timing-driven-netwt static --netwt-k 1
+scripts/gap/run_arm.sh tinyRocket st1_s1 --stage grt --seed 1 --timing-driven-netwt static --netwt-k 1
+scripts/gap/run_arm.sh tinyRocket off_d0.75_s1 --stage grt --seed 1 --cfg '{"target_density":0.75}'
+scripts/gap/run_arm.sh tinyRocket st1_d0.75_s1 --stage grt --seed 1 --timing-driven-netwt static --netwt-k 1 --cfg '{"target_density":0.75}'
+scripts/gap/run_arm.sh tinyRocket off_d0.78_s1 --stage grt --seed 1 --cfg '{"target_density":0.78}'
+scripts/gap/run_arm.sh tinyRocket st1_d0.78_s1 --stage grt --seed 1 --timing-driven-netwt static --netwt-k 1 --cfg '{"target_density":0.78}'
+scripts/gap/run_arm.sh tinyRocket off_keepbuf_s1 --stage grt --seed 1 --orfs-var GPL_TIMING_DRIVEN=0
+scripts/gap/run_arm.sh tinyRocket st1_keepbuf_s1 --stage grt --seed 1 --orfs-var GPL_TIMING_DRIVEN=0 --timing-driven-netwt static --netwt-k 1
+scripts/gap/run_arm.sh tinyRocket st1_s2 --stage grt --seed 2 --timing-driven-netwt static --netwt-k 1
+scripts/gap/run_arm.sh tinyRocket off_d0.75_s2 --stage grt --seed 2 --cfg '{"target_density":0.75}'
+scripts/gap/run_arm.sh tinyRocket st1_d0.75_s2 --stage grt --seed 2 --timing-driven-netwt static --netwt-k 1 --cfg '{"target_density":0.75}'
+scripts/gap/run_arm.sh tinyRocket off_d0.78_s2 --stage grt --seed 2 --cfg '{"target_density":0.78}'
+scripts/gap/run_arm.sh tinyRocket st1_d0.78_s2 --stage grt --seed 2 --timing-driven-netwt static --netwt-k 1 --cfg '{"target_density":0.78}'
+scripts/gap/run_arm.sh tinyRocket off_keepbuf_s2 --stage grt --seed 2 --orfs-var GPL_TIMING_DRIVEN=0
+scripts/gap/run_arm.sh tinyRocket st1_keepbuf_s2 --stage grt --seed 2 --orfs-var GPL_TIMING_DRIVEN=0 --timing-driven-netwt static --netwt-k 1

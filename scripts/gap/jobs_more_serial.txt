@@ -1,0 +1,7 @@
+# Serial runtime (run with N=1 on an otherwise idle machine): stock Ariane133 seed 1 again (conditions check: 4770 / 4779 s
+# before) and seed 2, then tinyRocket ours vs stock on seed 11 (never used,
+# so no DREAMPlace-phase cache hit).
+scripts/gap/run_stock.sh ariane133 time3_s1 --stage route --seed 1 --from $HOME/work/netwt/stock_ariane133_src
+scripts/gap/run_stock.sh ariane133 time3_s2 --stage route --seed 2 --from $HOME/work/netwt/stock_ariane133_src
+scripts/gap/run_arm.sh tinyRocket final_d045_s11_idle --seed 11 --stage route --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --timing-driven-netwt static --netwt-scheme gpl --rebuf-presplit --dp-extra '{"target_density":0.45}'
+scripts/gap/run_stock.sh tinyRocket time_s11 --stage route --seed 11 --from $HOME/work/netwt/stock_tinyRocket_src

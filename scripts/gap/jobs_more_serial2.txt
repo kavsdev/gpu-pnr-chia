@@ -1,0 +1,5 @@
+# Serial runtime, same day as stock time3_s1 / time3_s2 (Oct 28): our final flow on two fresh seeds (11, 12; never
+# used, so no DREAMPlace-phase cache hit). Stock seeds differ by 9% in wall time (global route), so one stock seed
+# against two of ours was not enough.
+scripts/gap/run_arm.sh ariane133 final_d045_s11_idle --seed 11 --stage route --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --timing-driven-netwt static --netwt-scheme gpl --rebuf-presplit --dp-extra '{"target_density":0.45}'
+scripts/gap/run_arm.sh ariane133 final_d045_s12_idle --seed 12 --stage route --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --timing-driven-netwt static --netwt-scheme gpl --rebuf-presplit --dp-extra '{"target_density":0.45}'

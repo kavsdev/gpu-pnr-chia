@@ -11,7 +11,8 @@ import json
 from dataclasses import asdict, dataclass, field, fields
 from typing import Any, Dict, Optional
 
-STAGES = ("proxy", "grt", "route")  # DREAMPlace only / through global route / through detailed route
+# DREAMPlace only / through global route / through detailed route / through CTS (4_1; the v2 search stage)
+STAGES = ("proxy", "grt", "route", "cts")
 
 
 @dataclass(frozen=True)
@@ -24,10 +25,56 @@ class Knob:
     default: float
     integer: bool = False
     log: bool = False
+    # Categorical knob: the legal values (str/bool/float, returned exactly as listed here); lo/hi are unused.
+    choices: Optional[tuple] = None
 
-    def clamp(self, v: float) -> float:
+    def clamp(self, v: Any) -> Any:
+        if self.choices is not None:
+            return self._snap(v)
         v = min(max(float(v), self.lo), self.hi)
         return int(round(v)) if self.integer else v
+
+    def _snap(self, v: Any) -> Any:
+        """Snap a categorical value to the identical (or nearest) choice; the choice object itself is returned."""
+        cs = self.choices
+        if all(isinstance(c, bool) for c in cs):
+            if isinstance(v, str):
+                t = v.strip().lower()
+                if t in ("true", "1", "yes", "on"):
+                    v = True
+                elif t in ("false", "0", "no", "off", ""):
+                    v = False
+                else:
+                    return self.default
+            b = bool(v)
+            return next(c for c in cs if c is b) if any(c is b for c in cs) else self.default
+        for c in cs:  # identical (type-aware: True must not match 1.0)
+            if type(c) is type(v) and c == v:
+                return c
+        if all(isinstance(c, str) for c in cs):
+            t = str(v).replace(" ", "").strip()
+            if t in cs:
+                return t
+            vals = _floats(t)  # nearest by numeric content, e.g. "0.6,0.25" -> "0.6,0.2"
+            if vals is None:
+                return self.default
+
+            def dist(c: str):
+                cv = _floats(c) or []
+                return (abs(len(cv) - len(vals)), sum(abs(a - b) for a, b in zip(cv, vals)))
+            return min(cs, key=dist)
+        try:
+            x = float(v)
+        except (TypeError, ValueError):
+            return self.default
+        return min(cs, key=lambda c: abs(float(c) - x))
+
+
+def _floats(s: str) -> Optional[list]:
+    try:
+        return [float(x) for x in str(s).split(",")]
+    except ValueError:
+        return None
 
 
 # The original bounded action space: the region where DREAMPlace converged on gcd (results/gcd/proxy_route_study_gcd.md:
@@ -59,6 +106,26 @@ _EXPANDED = (
 
 CORE_KNOBS: Dict[str, Knob] = {k.name: k for k in _CORE}
 KNOBS: Dict[str, Knob] = {k.name: k for k in (_CORE + _EXPANDED)}
+
+# Flow-level action space (identical for every v2 arm). Defaults = the final flow
+# (raw_handoff.FINAL_FLOW_KWARGS); raw_handoff.flow_kwargs maps a clamped dict onto RawHandoffEvaluator kwargs
+# (target_density -> dp_extra, so the 0.6-1.0 KNOBS range does not apply) and DREAMPlace placer_cfg overrides.
+_FLOW = (
+    Knob("target_density", 0.35, 0.80, 0.45),
+    Knob("rebuf_stops", 0.0, 0.0, "0.6,0.2", choices=("0.6,0.2", "0.6,0.4,0.2", "0.7,0.3", "0.5,0.2", "0.6", "0.4")),
+    Knob("netwt_pct", 5.0, 25.0, 10.0),
+    Knob("netwt_max", 2.0, 10.0, 5.0),
+    Knob("rebuf_full", 0.0, 0.0, True, choices=(True, False)),
+    # Pinned off (2026-10-21): with the rebuffer flow the resumed GP has no fillers and routability inflation crashed
+    # (DREAMPlace [-0:] slice, docker/dreamplace_filler0.patch); patched, the final GP still diverges (tinyRocket overflow
+    # 0.91 at 1000 iterations, gcd 0.56). Kept in the space so keys/tests stay stable.
+    Knob("dp_routability", 0.0, 0.0, False, choices=(False,)),
+    Knob("density_weight", 2e-5, 4e-4, 8e-5, log=True),
+    Knob("gamma", 2.0, 8.0, 4.0),
+    Knob("learning_rate", 0.004, 0.025, 0.01, log=True),
+)
+FLOW_KNOBS: Dict[str, Knob] = {k.name: k for k in _FLOW}
+FLOW_DP_KNOBS = ("density_weight", "gamma", "learning_rate")  # applied as DREAMPlace placer_cfg overrides
 
 
 def default_config(knobs: Optional[Dict[str, Knob]] = None) -> Dict[str, float]:
@@ -116,11 +183,16 @@ class EvalRequest:
     stage: str = "route"  # "proxy" = DREAMPlace only; "route" = full OpenROAD
     tool_id: str = ""  # fingerprint of the toolchain (image digest + DREAMPlace commit); part of the identity
     constraints_id: str = ""  # stable ID for the design constraints
+    # Flow-level config (FLOW_KNOBS). {} = the evaluator's own flow; clamped (and filled with defaults)
+    # when non-empty. Not part of key() when empty or all-default, so every pre-v2 cache key is unchanged.
+    flow_cfg: Dict[str, Any] = field(default_factory=dict)
 
     def __post_init__(self) -> None:
         if self.stage not in STAGES:
             raise ValueError(f"stage must be one of {STAGES}, got {self.stage!r}")
         self.placer_cfg = clamp_config(self.placer_cfg)
+        if self.flow_cfg:
+            self.flow_cfg = clamp_config(self.flow_cfg, FLOW_KNOBS)
 
     def key(self) -> str:
         """Stable hash of the experiment identity: design, tech, knobs, seed, stage and toolchain.
@@ -138,6 +210,8 @@ class EvalRequest:
         d = asdict(self)
         if not d.get("constraints_id"):
             d.pop("constraints_id", None)
+        if not d.get("flow_cfg") or d["flow_cfg"] == default_config(FLOW_KNOBS):
+            d.pop("flow_cfg", None)  # the default flow keeps its pre-v2 keys (and cached results)
         blob = json.dumps(d, sort_keys=True)
         return hashlib.sha256(blob.encode()).hexdigest()[:16]
 
@@ -237,3 +311,33 @@ def score(r: EvalResult) -> float:
     elif r.drc_violations:
         pen += 0.01 * r.drc_violations
     return float(wl) * (1.0 + pen)
+
+
+def _wl(r: EvalResult) -> Optional[float]:
+    return r.routed_wl if r.routed_wl is not None else r.grt_wl
+
+
+def score_timing(r: EvalResult, ref: Optional[Dict[str, float]] = None) -> float:
+    """Timing-first objective, lower is better: -TNS (ns) + 100 * -WNS (ns).
+
+    +inf if the eval failed, a timing number is missing, or detailed route reported DRC violations. `ref` is accepted
+    for a uniform signature but does not change the score (it is only used by passes()).
+    """
+    if not r.ok or r.wns is None or r.tns is None:
+        return float("inf")
+    if r.drc_violations is not None and r.drc_violations > 0:
+        return float("inf")
+    return -float(r.tns) + 100.0 * -float(r.wns)
+
+
+def passes(r: EvalResult, ref: Dict[str, float]) -> bool:
+    """Does `r` match or beat the default-flow reference `ref` ({wns, tns, wl}; mean at the same stage)?
+    wns >= ref.wns, tns >= ref.tns, and (grt/routed) WL <= 1.03 * ref.wl when both are known."""
+    if score_timing(r) == float("inf"):
+        return False
+    if r.wns < ref["wns"] or r.tns < ref["tns"]:
+        return False
+    wl, rwl = _wl(r), ref.get("wl")
+    if wl is not None and rwl is not None and wl > 1.03 * rwl:
+        return False
+    return True

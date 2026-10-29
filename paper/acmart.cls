@@ -422,17 +422,17 @@
   }%
   \addto\captionsfrench{%
       \if@ACM@journal
-        \renewcommand\keywordsname{Mots Cl^^c3^^a9s et Phrases Suppl^^c3^^a9mentaires}%
+        \renewcommand\keywordsname{Mots Clés et Phrases Supplémentaires}%
       \else
-        \renewcommand\keywordsname{Mots cl^^c3^^a9s}%
+        \renewcommand\keywordsname{Mots clés}%
       \fi
       \renewcommand\acksname{Remerciements}%
   }%
   \addto\captionsgerman{%
       \if@ACM@journal
-        \renewcommand\keywordsname{Zus^^c3^^a4tzliche Schlagw^^c3^^b6rter und Phrasen}%
+        \renewcommand\keywordsname{Zusätzliche Schlagwörter und Phrasen}%
       \else
-        \renewcommand\keywordsname{Schlagw^^c3^^b6rter}%
+        \renewcommand\keywordsname{Schlagwörter}%
       \fi
       \renewcommand\acksname{Danksagungen}%
   }%
@@ -2079,7 +2079,7 @@
    affiliate of the national government of Canada. As such, the Crown
    in Right of Canada retains an equal interest in the
    copyright. Reprints must include clear attribution to ACM and the
-   author^^e2^^80^^99s government agency affiliation. Permission to make digital
+   author’s government agency affiliation. Permission to make digital
    or hard copies for personal or classroom use is granted. Copies
    must bear this notice and the full citation on the first
    page. Copyrights for components of this work owned by others than

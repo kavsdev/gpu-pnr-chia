@@ -1,5 +1,8 @@
 # Raw data behind the paper's figures and cross-design numbers
 
+This directory backs the earlier version of the paper (commit a17c44a); figure numbers below refer to that
+version, and its figure scripts are in that commit. The A3 camera-ready results are in `results/a3/`.
+
 Every file under `results/figures_data/raw/` was copied from the cloud run directory that produced it; nothing was
 re-typed from a report. The cloud VMs no longer exist, so these copies are the durable source. ORFS metric files
 use the standard keys: `detailedroute__route__wirelength` / `detailedroute__route__drc_errors` (in `5_2_route.json`),

@@ -1,0 +1,20 @@
+# Searches and routed final rounds behind the A3 paper, as run (from the repo root, A = the results directory,
+# e.g. export A=$HOME/work/arms_v2). Each evaluation is one scripts/gap/run_arm.sh docker run. The LLM proposers
+# used gemini-3.1-pro-preview (recorded as llm.model in each search summary); the key is read from
+# ~/work/secrets/gemini.env. Routed runs outside these (test seeds 103+, stock ORFS, runtime) are in
+# scripts/gap/jobs_*.txt. results/a3/ is collected from A with scripts/arms/export_results.py.
+
+# Search (CTS stage) per design
+python3 scripts/arms/run_arms.py --design ariane133 --arms default,random,tpe,llm,llm_diag --reps 2 --budget-evals 12 --batch 4 --seeds 3 --promote-top 1 --promote-seeds 4,5 --default-seeds 3,4,5,6,7 --validate-seeds 101,102 --validate-stage route --workers 3 --arm-workers 8 --deadline-hours 30 --llm-budget-usd 30 --timeout-s 14400 --db $A/ariane133.sqlite --out $A/ariane133_v2.json
+python3 scripts/arms/run_arms.py --design swerv_wrapper --arms default,random,llm,llm_diag --reps 2 --budget-evals 12 --batch 4 --stage cts --seeds 3 --promote-top 1 --promote-seeds 4,5 --default-seeds 3,4,5,6,7 --validate-seeds 101,102 --validate-stage route --orfs-var OPENROAD_HIERARCHICAL=0 --orfs-var SWAP_ARITH_OPERATORS=0 --workers 2 --db $A/swerv_wrapper.sqlite --out $A/swerv_wrapper_v2.json --llm-provider gemini_rest --llm-model gemini-3.1-pro-preview --llm-budget-usd 10
+python3 scripts/arms/run_arms.py --design jpeg --arms default,random,llm,llm_diag --reps 2 --budget-evals 12 --batch 4 --stage cts --seeds 3 --promote-top 1 --promote-seeds 4,5 --default-seeds 3,4,5,6,7 --validate-seeds 101,102 --validate-stage route --workers 4 --db $A/jpeg.sqlite --out $A/jpeg_v2.json --llm-provider gemini_rest --llm-model gemini-3.1-pro-preview --llm-budget-usd 10
+python3 scripts/arms/run_arms.py --design tinyRocket --arms default,random,tpe,llm,llm_diag --reps 3 --budget-evals 16 --batch 4 --seeds 0 --promote-top 2 --promote-seeds 1 --default-seeds 0,1,2,3,4,5 --validate-seeds 101,102,103,104 --validate-stage route --workers 3 --arm-workers 12 --deadline-hours 6 --llm-budget-usd 15 --timeout-s 7200 --db $A/tinyRocket.sqlite --out $A/tinyRocket_v2.json
+python3 scripts/arms/revalidate.py --db $A/tinyRocket.sqlite --out $A/tinyRocket_v2.json --workers 3
+
+# Routed final round: the top 4 distinct CTS configurations and the default, routed on selection seeds 8 and 9.
+# Only the Ariane133 round passes --min-gain auto; the other three ran with the default 0 and theta is applied to
+# their recorded leads (scripts/arms/verify_final_round.py).
+python3 scripts/arms/final_round.py --design swerv_wrapper --db $A/swerv_wrapper.sqlite --out $A/swerv_wrapper_final.json --top 4 --select-seeds 8,9 --validate-seeds 101,102,103,104,105,106,107,108,109,110,111,112 --orfs-var OPENROAD_HIERARCHICAL=0 --orfs-var SWAP_ARITH_OPERATORS=0 --workers 4
+python3 scripts/arms/final_round.py --design jpeg --db $A/jpeg.sqlite --out $A/jpeg_final.json --top 4 --select-seeds 8,9 --validate-seeds 101,102,103,104 --workers 2
+python3 scripts/arms/final_round.py --design tinyRocket --db $A/tinyRocket.sqlite --out $A/tinyRocket_final.json --top 4 --select-seeds 8,9 --validate-seeds 101,102,103,104 --workers 2
+python3 scripts/arms/final_round.py --design ariane133 --db $A/ariane133.sqlite --out $A/ariane133_final.json --top 4 --select-seeds 8,9 --validate-seeds 101,102 --min-gain auto --workers 3

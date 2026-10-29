@@ -1,0 +1,11 @@
+# Phase 5b: full routes. Stock: seed 3 = existing stock_ariane133 (config default).
+scripts/gap/run_stock.sh ariane133 full_s1 --seed 1 --from $HOME/work/netwt/stock_ariane133
+scripts/gap/run_stock.sh ariane133 full_s2 --seed 2 --from $HOME/work/netwt/stock_ariane133
+scripts/gap/run_arm.sh ariane133 rebufF0602_s0_route --stage route --seed 0 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2
+scripts/gap/run_arm.sh ariane133 rebufF0602_d033_s0_route --stage route --seed 0 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --dp-extra '{"target_density":0.33}'
+scripts/gap/run_arm.sh ariane133 rebufF0602_s1_route --stage route --seed 1 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2
+scripts/gap/run_arm.sh ariane133 rebufF0602_d033_s1_route --stage route --seed 1 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --dp-extra '{"target_density":0.33}'
+scripts/gap/run_arm.sh ariane133 off_s1_route --stage route --seed 1
+scripts/gap/run_arm.sh ariane133 rebufF0602_s2_route --stage route --seed 2 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2
+scripts/gap/run_arm.sh ariane133 rebufF0602_d033_s2_route --stage route --seed 2 --rebuffer --rebuf-full --rebuf-overflow 0.6,0.2 --dp-extra '{"target_density":0.33}'
+scripts/gap/run_arm.sh ariane133 off_s2_route --stage route --seed 2

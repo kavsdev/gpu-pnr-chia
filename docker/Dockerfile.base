@@ -1,8 +1,8 @@
 # chia-pnr:base -- OpenROAD + Yosys (from ORFS) + CHIA worker layer + Hammer.
 # DREAMPlace is layered on top in a later stage (Dockerfile.dp).
-# ORFS_IMAGE defaults to the floating :latest (the packer/cloud path builds it that way, unchanged); the local
-# path (docker/run_local.sh) overrides it with the pinned digest so the toolchain fingerprint is reproducible.
-ARG ORFS_IMAGE=openroad/orfs:latest
+# ORFS_IMAGE defaults to the ORFS image digest every paper result was produced with (docker/run_local.sh passes the
+# same digest), so the toolchain fingerprint is reproducible. Override it to build on a newer ORFS.
+ARG ORFS_IMAGE=openroad/orfs@sha256:573c1716efa0e286c4f641c26d343e20929d58d27fffbb22be2d0b93f09764f6
 FROM ${ORFS_IMAGE}
 USER root
 RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates openssh-client rsync git \

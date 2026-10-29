@@ -263,9 +263,14 @@ if [[ ${SKIP_DP} -eq 0 ]]; then
     # from torch.cuda.is_available(), so without a visible GPU it silently compiles CPU-only ops that then fail at
     # runtime with "CANNOT enable GPU without CUDA compiled".
     docker run --rm --gpus all -v "${DP_SRC}:/dp-src" -v "${DP_INSTALL}:/dp-install" "${CUDA_DEVEL_IMAGE}" bash -c "$DP_BUILD_CMD"
+    # The flow's DREAMPlace patches (Python only, so they apply to the install): externally supplied net weights,
+    # LEF/DEF routability mode, and the filler-area fix.
+    for p in "$REPO_ROOT"/docker/dreamplace_*.patch; do
+        patch -d "$DP_INSTALL" -p1 -N --no-backup-if-mismatch < "$p" || { echo "patch failed: $p" >&2; exit 1; }
+    done
     echo "$DP_COMMIT"  > "$DP_INSTALL/COMMIT"
     echo "$CUDA_ARCH"  > "$DP_INSTALL/CUDA_ARCH"   # read back by the toolchain fingerprint as dp_build_arch
-    echo "  DREAMPlace installed to $DP_INSTALL (COMMIT + CUDA_ARCH recorded)"
+    echo "  DREAMPlace installed to $DP_INSTALL (patched; COMMIT + CUDA_ARCH recorded)"
 else
     say "Skipping DREAMPlace build (--skip-dreamplace); expecting an existing $DP_INSTALL"
     [[ -d "$DP_INSTALL" ]] || { echo "no $DP_INSTALL to reuse" >&2; exit 1; }
