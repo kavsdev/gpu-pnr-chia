@@ -10,7 +10,8 @@ judged on routed timing.
 
 **[A GPU-Accelerated DREAMPlace/OpenROAD Evaluator Node for CHIA: Timing-Driven GPU Placement, Cached
 Multi-Backend Evaluation, and Noise-Aware Agentic Search](paper/main.pdf)** (A³: Agentic Approaches to Architecture Workshop at MICRO 2026,
-hackathon short paper). The tag `a3-camera-ready` is the release that matches the paper. Its results and the scripts that
+hackathon short paper). The tag `a3-camera-ready` is the release that matches the paper, archived at
+[doi:10.5281/zenodo.23763972](https://doi.org/10.5281/zenodo.23763972). Its results and the scripts that
 recompute them are in [`results/a3/`](results/a3/README.md).
 
 In short:
